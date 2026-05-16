@@ -1,0 +1,354 @@
+{
+  "queries": [
+    {
+      "query_text": "туалетный столик карина белый матовый",
+      "query_type": "Exact Match",
+      "target_product_id": "16",
+      "expected_relevance": 3,
+      "logic": "Точное совпадение названия модели и основного цвета"
+    },
+    {
+      "query_text": "стол для макияжа с лампочками",
+      "query_type": "Semantic/Synonym",
+      "target_product_id": "16",
+      "expected_relevance": 3,
+      "logic": "Синоним (макияжный стол) и описание функционала (подсветка)"
+    },
+    {
+      "query_text": "мебель в спальню",
+      "query_type": "Broad/Category",
+      "target_product_id": "16",
+      "expected_relevance": 2,
+      "logic": "Широкий запрос категории, куда входит данный товар"
+    },
+    {
+      "query_text": "белый столик 90х45 с зеркалом",
+      "query_type": "Specific Attribute",
+      "target_product_id": "16",
+      "expected_relevance": 2,
+      "logic": "Указание точных размеров и базового цвета"
+    },
+    {
+      "query_text": "сервант камелия белый золото",
+      "query_type": "Exact Match",
+      "target_product_id": "18",
+      "expected_relevance": 3,
+      "logic": "Поиск конкретной модели по бренду и отделке"
+    },
+    {
+      "query_text": "шкаф витрина для посуды в гостиную",
+      "query_type": "Semantic/Synonym",
+      "target_product_id": "18",
+      "expected_relevance": 3,
+      "logic": "Описание типа мебели (витрина) и её назначения (для посуды)"
+    },
+    {
+      "query_text": "белый шкаф со стеклом",
+      "query_type": "Broad/Category",
+      "target_product_id": "18",
+      "expected_relevance": 2,
+      "logic": "Широкий запрос по визуальным признакам"
+    },
+    {
+      "query_text": "высокий сервант 185 см с патиной",
+      "query_type": "Specific Attribute",
+      "target_product_id": "18",
+      "expected_relevance": 2,
+      "logic": "Уточнение по высоте и специфическому виду покрытия"
+    },
+    {
+      "query_text": "кровать альфа 160х200 с подъемником",
+      "query_type": "Exact Match",
+      "target_product_id": "21",
+      "expected_relevance": 3,
+      "logic": "Точный поиск модели с указанием размера и механизма"
+    },
+    {
+      "query_text": "двуспалка с ящиком для белья",
+      "query_type": "Semantic/Synonym",
+      "target_product_id": "21",
+      "expected_relevance": 3,
+      "logic": "Разговорное название (двуспалка) и функциональное описание ниши"
+    },
+    {
+      "query_text": "кровать в спальню",
+      "query_type": "Broad/Category",
+      "target_product_id": "21",
+      "expected_relevance": 2,
+      "logic": "Базовый категорийный запрос"
+    },
+    {
+      "query_text": "кровать венге 160 на 200",
+      "query_type": "Specific Attribute",
+      "target_product_id": "21",
+      "expected_relevance": 2,
+      "logic": "Поиск по цвету дерева и стандартному размеру"
+    },
+    {
+      "query_text": "диван лион велюр изумруд",
+      "query_type": "Exact Match",
+      "target_product_id": "22",
+      "expected_relevance": 3,
+      "logic": "Поиск конкретной модели и редкого цвета ткани"
+    },
+    {
+      "query_text": "зеленая кушетка на золотых ножках",
+      "query_type": "Semantic/Synonym",
+      "target_product_id": "22",
+      "expected_relevance": 3,
+      "logic": "Описание визуальных акцентов товара без названия модели"
+    },
+    {
+      "query_text": "диван для двоих",
+      "query_type": "Broad/Category",
+      "target_product_id": "22",
+      "expected_relevance": 2,
+      "logic": "Запрос по вместимости без уточнения стиля"
+    },
+    {
+      "query_text": "небольшой велюровый диван в офис",
+      "query_type": "Specific Attribute",
+      "target_product_id": "22",
+      "expected_relevance": 2,
+      "logic": "Уточнение материала и потенциального места установки"
+    },
+    {
+      "query_text": "стол обеденный лофт дуб артизан",
+      "query_type": "Exact Match",
+      "target_product_id": "23",
+      "expected_relevance": 3,
+      "logic": "Поиск по стилю серии и цвету столешницы"
+    },
+    {
+      "query_text": "большой кухонный стол на железных ногах",
+      "query_type": "Semantic/Synonym",
+      "target_product_id": "23",
+      "expected_relevance": 3,
+      "logic": "Описание конструктивной особенности (металлокаркас)"
+    },
+    {
+      "query_text": "стол на кухню",
+      "query_type": "Broad/Category",
+      "target_product_id": "23",
+      "expected_relevance": 2,
+      "logic": "Самый широкий запрос в категории"
+    },
+    {
+      "query_text": "стол 180х80 дерево металл",
+      "query_type": "Specific Attribute",
+      "target_product_id": "23",
+      "expected_relevance": 2,
+      "logic": "Поиск по точным габаритам и сочетанию материалов"
+    },
+    {
+      "query_text": "вешалка альпы напольная черная",
+      "query_type": "Exact Match",
+      "target_product_id": "26",
+      "expected_relevance": 3,
+      "logic": "Название модели и тип конструкции"
+    },
+    {
+      "query_text": "стойка для одежды с полкой под обувь",
+      "query_type": "Semantic/Synonym",
+      "target_product_id": "26",
+      "expected_relevance": 3,
+      "logic": "Функциональное описание комбинированного товара"
+    },
+    {
+      "query_text": "мебель в прихожую",
+      "query_type": "Broad/Category",
+      "target_product_id": "26",
+      "expected_relevance": 2,
+      "logic": "Категория помещения, где используется товар"
+    },
+    {
+      "query_text": "узкая вешалка металл 50 см",
+      "query_type": "Specific Attribute",
+      "target_product_id": "26",
+      "expected_relevance": 2,
+      "logic": "Акцент на компактности и материале"
+    },
+    {
+      "query_text": "реклайнер стокгольм серый меланж",
+      "query_type": "Exact Match",
+      "target_product_id": "27",
+      "expected_relevance": 3,
+      "logic": "Точное название и цвет ткани"
+    },
+    {
+      "query_text": "кресло для отдыха с подставкой под ноги",
+      "query_type": "Semantic/Synonym",
+      "target_product_id": "27",
+      "expected_relevance": 3,
+      "logic": "Описание комплектации (пуф) и назначения"
+    },
+    {
+      "query_text": "мягкое кресло сканди",
+      "query_type": "Broad/Category",
+      "target_product_id": "27",
+      "expected_relevance": 2,
+      "logic": "Поиск по популярному стилистическому направлению"
+    },
+    {
+      "query_text": "серое кресло велюр с пуфом",
+      "query_type": "Specific Attribute",
+      "target_product_id": "27",
+      "expected_relevance": 2,
+      "logic": "Уточнение набора предметов и материала"
+    },
+    {
+      "query_text": "стеллаж лофт 6 полок дуб",
+      "query_type": "Exact Match",
+      "target_product_id": "31",
+      "expected_relevance": 3,
+      "logic": "Указание серии и количества ярусов"
+    },
+    {
+      "query_text": "открытый шкаф для книг и декора",
+      "query_type": "Semantic/Synonym",
+      "target_product_id": "31",
+      "expected_relevance": 3,
+      "logic": "Описание типа хранения (открытый) и предметов"
+    },
+    {
+      "query_text": "полки для дома",
+      "query_type": "Broad/Category",
+      "target_product_id": "31",
+      "expected_relevance": 2,
+      "logic": "Общий запрос на системы хранения"
+    },
+    {
+      "query_text": "высокий стеллаж 220 см металл",
+      "query_type": "Specific Attribute",
+      "target_product_id": "31",
+      "expected_relevance": 2,
+      "logic": "Поиск по критическому параметру высоты"
+    },
+    {
+      "query_text": "шкаф купе стокгольм дуб артизан",
+      "query_type": "Exact Match",
+      "target_product_id": "33",
+      "expected_relevance": 3,
+      "logic": "Конкретная модель и цвет фасада"
+    },
+    {
+      "query_text": "большой гардероб с зеркальными дверями",
+      "query_type": "Semantic/Synonym",
+      "target_product_id": "33",
+      "expected_relevance": 3,
+      "logic": "Описание типа дверей и назначения мебели"
+    },
+    {
+      "query_text": "шкаф для одежды",
+      "query_type": "Broad/Category",
+      "target_product_id": "33",
+      "expected_relevance": 2,
+      "logic": "Стандартный запрос категории шкафов"
+    },
+    {
+      "query_text": "трехдверный шкаф 220х220 зеркало",
+      "query_type": "Specific Attribute",
+      "target_product_id": "33",
+      "expected_relevance": 2,
+      "logic": "Уточнение конфигурации дверей и габаритов"
+    },
+    {
+      "query_text": "диван норд горчичный велюр",
+      "query_type": "Exact Match",
+      "target_product_id": "36",
+      "expected_relevance": 3,
+      "logic": "Поиск по названию и яркому цвету"
+    },
+    {
+      "query_text": "желтый диван тройка в скандинавском стиле",
+      "query_type": "Semantic/Synonym",
+      "target_product_id": "36",
+      "expected_relevance": 3,
+      "logic": "Описание стиля и количества мест (тройка)"
+    },
+    {
+      "query_text": "прямой диван",
+      "query_type": "Broad/Category",
+      "target_product_id": "36",
+      "expected_relevance": 2,
+      "logic": "Базовый запрос по форме дивана"
+    },
+    {
+      "query_text": "трехместный диван горчица велюр",
+      "query_type": "Specific Attribute",
+      "target_product_id": "36",
+      "expected_relevance": 2,
+      "logic": "Сочетание вместимости, цвета и ткани"
+    },
+    {
+      "query_text": "комод парма дуб артизан",
+      "query_type": "Exact Match",
+      "target_product_id": "40",
+      "expected_relevance": 3,
+      "logic": "Модель и цвет исполнения"
+    },
+    {
+      "query_text": "низкий широкий шкаф с ящиками",
+      "query_type": "Semantic/Synonym",
+      "target_product_id": "40",
+      "expected_relevance": 3,
+      "logic": "Описание форм-фактора изделия"
+    },
+    {
+      "query_text": "хранение вещей",
+      "query_type": "Broad/Category",
+      "target_product_id": "40",
+      "expected_relevance": 2,
+      "logic": "Запрос по общей потребности"
+    },
+    {
+      "query_text": "комод 120 см на 6 ящиков",
+      "query_type": "Specific Attribute",
+      "target_product_id": "40",
+      "expected_relevance": 2,
+      "logic": "Поиск по ширине и количеству выдвижных элементов"
+    },
+    {
+      "query_text": "книжная полка лофт черная",
+      "query_type": "Exact Match",
+      "target_product_id": "44",
+      "expected_relevance": 3,
+      "logic": "Поиск подвесного модуля конкретной серии"
+    },
+    {
+      "query_text": "навесной стеллаж над столом",
+      "query_type": "Semantic/Synonym",
+      "target_product_id": "44",
+      "expected_relevance": 3,
+      "logic": "Описание способа монтажа и расположения"
+    },
+    {
+      "query_text": "полка для книг",
+      "query_type": "Broad/Category",
+      "target_product_id": "44",
+      "expected_relevance": 2,
+      "logic": "Широкий запрос на настенные полки"
+    },
+    {
+      "query_text": "подвесной шкаф 100 см металл дуб",
+      "query_type": "Specific Attribute",
+      "target_product_id": "44",
+      "expected_relevance": 2,
+      "logic": "Уточнение материалов и длины полки"
+    },
+    {
+      "query_text": "корзина венето серая",
+      "query_type": "Exact Match",
+      "target_product_id": "46",
+      "expected_relevance": 3,
+      "logic": "Название модели и цвет"
+    },
+    {
+      "query_text": "бачок для грязного белья с мешком",
+      "query_type": "Semantic/Synonym",
+      "target_product_id": "46",
+      "expected_relevance": 3,
+      "logic": "Разговорное описание функционала"
+    }
+  ]
+}
