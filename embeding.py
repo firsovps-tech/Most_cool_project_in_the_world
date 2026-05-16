@@ -1,5 +1,4 @@
 import csv
-import hashlib
 from pathlib import Path
 
 import numpy as np
@@ -7,14 +6,6 @@ from rank_bm25 import BM25Okapi
 from FlagEmbedding import BGEM3FlagModel
 
 
-# ============================================================
-# 1. НАСТРОЙКИ
-# ============================================================
-
-# Известные категории.
-# Сюда можно заранее записать категории, которые мы уже умеем обрабатывать.
-# Если в файле появится новая категория, которой нет здесь,
-# код её найдёт и вызовет функцию-заглушку.
 KNOWN_CATEGORIES = {
     "Ванная",
     "Гостиная",
@@ -32,24 +23,8 @@ KNOWN_CATEGORIES = {
 }
 
 
-# Веса итогового скоринга.
-# Потом их можно поменять после тестов.
-#
-# text_score:
-#   поиск по точным словам, BM25.
-#   Здесь учитываем артикул.
-#
-# general_embedding_score:
-#   общий смысловой embedding товара.
-#   Здесь артикул НЕ учитываем.
-#
-# category_embedding_score:
-#   embedding по категориальному описанию.
-#   Здесь тоже артикул НЕ учитываем.
-#
-# attribute_score:
-#   точное совпадение признаков: тип, модель, цвет, материал, цена и т.д.
-SCORE_WEIGHTS = {
+NORMAL_SCORE_WEIGHTS = {
+    "article_score": 0.00,
     "text_score": 0.30,
     "general_embedding_score": 0.30,
     "category_embedding_score": 0.20,
@@ -57,8 +32,15 @@ SCORE_WEIGHTS = {
 }
 
 
-# Веса признаков для мебели.
-# Это внутренняя формула attribute_score.
+ARTICLE_SCORE_WEIGHTS = {
+    "article_score": 0.45,
+    "text_score": 0.20,
+    "general_embedding_score": 0.15,
+    "category_embedding_score": 0.05,
+    "attribute_score": 0.15,
+}
+
+
 ATTRIBUTE_WEIGHTS = {
     "category": 0.12,
     "product_type": 0.20,
@@ -72,267 +54,76 @@ ATTRIBUTE_WEIGHTS = {
 }
 
 
-# ============================================================
-# 2. ФУНКЦИЯ-ЗАГЛУШКА ДЛЯ НОВЫХ КАТЕГОРИЙ
-# ============================================================
-
 def handle_new_categories(new_categories):
-    """
-    Заглушка для обработки новых категорий.
-
-    Сейчас она ничего не делает, только return.
-
-    Потом сюда можно вставить любую логику:
-    - записать новые категории в файл;
-    - отправить уведомление;
-    - автоматически создать веса;
-    - добавить категорию в базу;
-    - запустить ручную разметку.
-
-    new_categories — это set с названиями новых категорий.
-    Например:
-    {"Сад", "Офис", "Гараж"}
-    """
-
-    # Пока специально ничего не делаем.
-    # Это место для будущей логики.
     return
 
 
-# ============================================================
-# 3. ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
-# ============================================================
-
-def safe_str(value):
-    """
-    Аккуратно превращает значение в строку.
-
-    Если значение None или пустое — вернём пустую строку.
-    Это нужно, чтобы код не падал на пустых ячейках.
-    """
-
-    if value is None:
+def normalize_text(text):
+    if text is None:
         return ""
 
-    value = str(value).strip()
+    text = str(text).strip().lower()
+    text = text.replace("ё", "е")
+    text = " ".join(text.split())
 
-    if value == "-":
+    if text in {"", "-", "none", "null", "nan"}:
+        return ""
+
+    return text
+
+
+def clean_field(value):
+    value = normalize_text(value)
+
+    if value in {"", "-", "none", "null", "nan"}:
         return ""
 
     return value
 
 
-def normalize_text(text):
-    """
-    Небольшая нормализация текста.
+def join_non_empty(parts):
+    cleaned_parts = []
 
-    Важно:
-    тут не делаем сложную очистку, потому что ты сказала,
-    что очистка и подготовка категорий происходят отдельно.
+    for part in parts:
+        part = clean_field(part)
 
-    Но базово:
-    - приводим к нижнему регистру;
-    - заменяем ё на е;
-    - убираем лишние пробелы.
-    """
+        if part:
+            cleaned_parts.append(part)
 
-    text = safe_str(text).lower()
-    text = text.replace("ё", "е")
-    text = " ".join(text.split())
-
-    return text
+    return " ".join(cleaned_parts)
 
 
 def tokenize(text):
-    """
-    Разбиваем текст на токены для BM25.
-
-    BM25 работает не с целой строкой, а со списком слов.
-
-    Пример:
-    "диван раскладной бежевый"
-    станет:
-    ["диван", "раскладной", "бежевый"]
-    """
-
-    text = normalize_text(text)
-    return text.split()
+    return normalize_text(text).split()
 
 
-def make_article(row, row_number):
-    """
-    Получаем артикул товара.
-
-    Если в файле есть колонка:
-    - Артикул
-    - article
-    - sku
-
-    то берём её.
-
-    Если артикула нет, генерируем стабильный технический артикул
-    на основе номера строки.
-
-    Почему это нужно:
-    пользователь может искать товар по артикулу.
-    BM25 должен это учитывать.
-
-    Но embedding НЕ должен учитывать артикул,
-    потому что артикул не несёт смысл товара.
-    """
-
-    possible_article_fields = [
-        "Артикул",
-        "article",
-        "sku",
-        "SKU",
-        "id",
-        "ID",
-    ]
-
-    for field in possible_article_fields:
-        value = safe_str(row.get(field))
-        if value:
-            return value
-
-    # Если артикула в файле нет, делаем свой.
-    # Например: AUTO-000001
-    return f"AUTO-{row_number:06d}"
-
-
-def make_product_id(article):
-    """
-    Делаем технический product_id из артикула.
-
-    product_id нужен для объединения кандидатов.
-
-    В реальной базе product_id обычно уже есть.
-    Здесь мы делаем его сами.
-    """
-
-    raw = article.encode("utf-8")
-    return hashlib.md5(raw).hexdigest()
-
-
-def parse_price(value):
-    """
-    Превращает цену в число.
-
-    В файле цена может быть строкой:
-    "15700"
-    "15 700"
-    "15 700 ₽"
-
-    Функция оставляет только цифры.
-    """
-
-    value = safe_str(value)
-
-    digits = ""
-
-    for char in value:
-        if char.isdigit():
-            digits += char
-
-    if not digits:
-        return None
-
-    return int(digits)
-
-
-def split_features(value):
-    """
-    Разбивает особенности товара на список.
-
-    Например:
-    "механический, с подножкой"
-    станет:
-    ["механический", "с подножкой"]
-
-    Если особенностей нет, вернём пустой список.
-    """
-
-    value = safe_str(value)
-
-    if not value:
-        return []
-
-    parts = []
-
-    for part in value.split(","):
-        part = normalize_text(part)
-        if part:
-            parts.append(part)
-
-    return parts
-
-
-# ============================================================
-# 4. ЗАГРУЗКА ТОВАРОВ ИЗ ФАЙЛА
-# ============================================================
-
-def load_products_from_semicolon_csv(file_path):
-    """
-    Загружает товары из CSV/TXT файла с разделителем ';'.
-
-    В твоём файле колонки такие:
-
-    Категория
-    Тип товара
-    Модель
-    Габариты
-    Цвет
-    Материал
-    Особенности
-    Стиль/Назначение
-    Цена (₽)
-
-    Функция превращает каждую строку в словарь товара.
-    """
-
+def load_products_from_csv(file_path):
     products = []
-
     file_path = Path(file_path)
 
     with file_path.open("r", encoding="utf-8-sig", newline="") as file:
         reader = csv.DictReader(file, delimiter=";")
 
-        for row_number, row in enumerate(reader, start=1):
-            article = make_article(row, row_number)
-            product_id = make_product_id(article)
+        for row in reader:
+            product_id = row["id"]
+            article = row.get("Артикул", "")
 
-            category = safe_str(row.get("Категория"))
-            product_type = safe_str(row.get("Тип товара"))
-            model = safe_str(row.get("Модель"))
-            dimensions = safe_str(row.get("Габариты"))
-            color = safe_str(row.get("Цвет"))
-            material = safe_str(row.get("Материал"))
-            features_raw = safe_str(row.get("Особенности"))
-            style_or_purpose = safe_str(row.get("Стиль/Назначение"))
-            price = parse_price(row.get("Цена (₽)"))
+            category = row["Категория"]
+            product_type = row["Тип товара"]
+            model = row["Модель"]
+            dimensions = row["Габариты"]
+            color = row["Цвет"]
+            material = row["Материал"]
+            features = row["Особенности"]
+            style_or_purpose = row["Стиль/Назначение"]
+            price = row["Цена (₽)"]
 
-            features = split_features(features_raw)
+            name = join_non_empty([
+                product_type,
+                model,
+            ])
 
-            # Название товара собираем из типа товара и модели.
-            # Например:
-            # "Диван угловой Лофт"
-            name_parts = [product_type, model]
-            name = " ".join(part for part in name_parts if part)
-
-            if not name:
-                name = f"Товар {article}"
-
-            # ------------------------------------------------
-            # ТЕКСТ ДЛЯ ТОЧНОГО ПОИСКА BM25
-            # ------------------------------------------------
-            #
-            # Здесь мы УЧИТЫВАЕМ АРТИКУЛ.
-            #
-            # Почему:
-            # если пользователь вводит артикул, BM25 должен быстро найти товар.
-            #
-            # Но этот текст НЕ идёт в embedding.
-            exact_search_text = " ".join([
+            exact_search_text = join_non_empty([
                 article,
                 category,
                 product_type,
@@ -340,46 +131,23 @@ def load_products_from_semicolon_csv(file_path):
                 dimensions,
                 color,
                 material,
-                features_raw,
+                features,
                 style_or_purpose,
-                str(price) if price is not None else "",
+                price,
             ])
 
-            # ------------------------------------------------
-            # ОБЩИЙ ТЕКСТ ДЛЯ EMBEDDING
-            # ------------------------------------------------
-            #
-            # Здесь АРТИКУЛ НЕ УЧИТЫВАЕМ.
-            #
-            # Почему:
-            # артикул — это технический код.
-            # Он не помогает понять смысл товара.
-            #
-            # Embedding должен понимать:
-            # диван, материал, цвет, стиль, назначение, особенности.
-            general_embedding_text = " ".join([
+            general_embedding_text = join_non_empty([
                 category,
                 product_type,
                 model,
                 dimensions,
                 color,
                 material,
-                features_raw,
+                features,
                 style_or_purpose,
             ])
 
-            # ------------------------------------------------
-            # КАТЕГОРИАЛЬНЫЙ ТЕКСТ ДЛЯ EMBEDDING
-            # ------------------------------------------------
-            #
-            # Это отдельный embedding, который помогает понять,
-            # к какой группе относится товар.
-            #
-            # Здесь тоже НЕ учитываем артикул.
-            #
-            # Берём более категориальные поля:
-            # категория, тип товара, стиль/назначение.
-            category_embedding_text = " ".join([
+            category_embedding_text = join_non_empty([
                 category,
                 product_type,
                 style_or_purpose,
@@ -387,37 +155,23 @@ def load_products_from_semicolon_csv(file_path):
 
             product = {
                 "id": product_id,
-                "article": article,
+                "article": clean_field(article),
                 "name": name,
-
-                # Основная категория из файла:
-                # Ванная, Гостиная, Спальня, Кухня и т.д.
                 "category": category,
-
-                # Текст для BM25.
-                # В нём есть артикул.
-                "exact_search_text": normalize_text(exact_search_text),
-
-                # Текст для общего embedding.
-                # В нём нет артикула.
-                "general_embedding_text": normalize_text(general_embedding_text),
-
-                # Текст для категориального embedding.
-                # В нём нет артикула.
-                "category_embedding_text": normalize_text(category_embedding_text),
-
-                # Структурированные признаки товара.
+                "exact_search_text": exact_search_text,
+                "general_embedding_text": general_embedding_text,
+                "category_embedding_text": category_embedding_text,
                 "attributes": {
-                    "category": category,
-                    "product_type": product_type,
-                    "model": model,
-                    "dimensions": dimensions,
-                    "color": color,
-                    "material": material,
-                    "features": features,
-                    "style_or_purpose": style_or_purpose,
+                    "category": clean_field(category),
+                    "product_type": clean_field(product_type),
+                    "model": clean_field(model),
+                    "dimensions": clean_field(dimensions),
+                    "color": clean_field(color),
+                    "material": clean_field(material),
+                    "features": clean_field(features),
+                    "style_or_purpose": clean_field(style_or_purpose),
                     "price": price,
-                }
+                },
             }
 
             products.append(product)
@@ -425,102 +179,38 @@ def load_products_from_semicolon_csv(file_path):
     return products
 
 
-# ============================================================
-# 5. ПОИСКОВЫЙ КЛАСС
-# ============================================================
-
 class HybridFurnitureSearch:
-    """
-    Гибридный поиск по товарам.
-
-    Внутри есть 4 сигнала:
-
-    1. text_score:
-       BM25 по exact_search_text.
-       Тут учитывается артикул.
-
-    2. general_embedding_score:
-       Общий embedding по товару.
-       Артикул НЕ учитывается.
-
-    3. category_embedding_score:
-       Категориальный embedding.
-       Артикул НЕ учитывается.
-
-    4. attribute_score:
-       Точное совпадение признаков.
-    """
-
     def __init__(self, products):
-        """
-        products — список товаров после load_products_from_semicolon_csv().
-        """
-
         self.products = products
 
-        # ----------------------------------------------------
-        # Проверяем новые категории
-        # ----------------------------------------------------
-        #
-        # Если в файле есть категория, которой нет в KNOWN_CATEGORIES,
-        # мы её считаем новой.
         self.new_categories = self._find_new_categories()
 
-        # Если новые категории есть — вызываем заглушку.
         if self.new_categories:
             handle_new_categories(self.new_categories)
 
-        # ----------------------------------------------------
-        # Загружаем BGE-M3
-        # ----------------------------------------------------
-        #
-        # Это сильная embedding-модель.
-        #
-        # use_fp16=False — безопаснее для CPU.
-        # Если есть GPU, можно поставить True.
         self.embedding_model = BGEM3FlagModel(
             "BAAI/bge-m3",
             use_fp16=False
         )
 
-        # BM25 индекс.
         self.bm25 = None
-
-        # Embedding-векторы.
         self.general_product_embeddings = None
         self.category_product_embeddings = None
 
-        # Строим все индексы.
         self._build_indexes()
 
     def _find_new_categories(self):
-        """
-        Ищет новые категории в товарах.
-
-        Новая категория — это категория, которой нет в KNOWN_CATEGORIES.
-
-        Возвращает set.
-        """
-
         found_categories = set()
 
         for product in self.products:
             category = product.get("category")
+
             if category:
                 found_categories.add(category)
 
-        new_categories = found_categories - KNOWN_CATEGORIES
-
-        return new_categories
+        return found_categories - KNOWN_CATEGORIES
 
     def _normalize_scores(self, scores):
-        """
-        Приводит список оценок к диапазону 0...1.
-
-        Это нужно, чтобы BM25 score, embedding score
-        и attribute score можно было смешивать.
-        """
-
         scores = np.array(scores, dtype=np.float32)
 
         min_score = float(np.min(scores))
@@ -532,20 +222,6 @@ class HybridFurnitureSearch:
         return (scores - min_score) / (max_score - min_score)
 
     def _build_indexes(self):
-        """
-        Строит 3 индекса:
-
-        1. BM25 по exact_search_text.
-        2. Общие embedding-векторы по general_embedding_text.
-        3. Категориальные embedding-векторы по category_embedding_text.
-        """
-
-        # ----------------------------------------------------
-        # 1. BM25
-        # ----------------------------------------------------
-        #
-        # BM25 должен учитывать артикул.
-        # Поэтому используем exact_search_text.
         exact_texts = [
             product["exact_search_text"]
             for product in self.products
@@ -558,11 +234,6 @@ class HybridFurnitureSearch:
 
         self.bm25 = BM25Okapi(exact_tokens)
 
-        # ----------------------------------------------------
-        # 2. Общий embedding
-        # ----------------------------------------------------
-        #
-        # Тут артикул не учитывается.
         general_texts = [
             product["general_embedding_text"]
             for product in self.products
@@ -579,11 +250,6 @@ class HybridFurnitureSearch:
             dtype=np.float32
         )
 
-        # ----------------------------------------------------
-        # 3. Категориальный embedding
-        # ----------------------------------------------------
-        #
-        # Тут тоже артикул не учитывается.
         category_texts = [
             product["category_embedding_text"]
             for product in self.products
@@ -600,74 +266,74 @@ class HybridFurnitureSearch:
             dtype=np.float32
         )
 
+    def _article_search_scores(self, query_article):
+        query_article = clean_field(query_article)
+
+        scores = np.zeros(len(self.products), dtype=np.float32)
+
+        if not query_article:
+            return scores
+
+        for index, product in enumerate(self.products):
+            product_article = clean_field(product.get("article", ""))
+
+            if not product_article:
+                continue
+
+            if product_article == query_article:
+                scores[index] = 1.0
+            elif query_article in product_article:
+                scores[index] = 0.7
+            elif product_article in query_article:
+                scores[index] = 0.7
+
+        return scores
+
     def _exact_match(self, product_value, query_value):
-        """
-        Проверяет точное совпадение двух значений.
-
-        Если query_value пустой, возвращаем None,
-        потому что этот признак не надо учитывать.
-
-        Если совпало — 1.0.
-        Если не совпало — 0.0.
-        """
-
         if query_value is None:
             return None
 
-        query_value = safe_str(query_value)
-        product_value = safe_str(product_value)
+        product_value = clean_field(product_value)
+        query_value = clean_field(query_value)
 
         if not query_value:
             return None
 
-        if normalize_text(product_value) == normalize_text(query_value):
+        if product_value == query_value:
             return 1.0
 
         return 0.0
 
     def _features_score(self, product_features, query_features):
-        """
-        Считает совпадение особенностей.
+        if not query_features:
+            return None
 
-        Например:
-        query_features = ["раздвижной", "с подсветкой"]
-
-        product_features = ["раздвижной", "с подсветкой", "мягкий"]
-
-        Совпало 2 из 2 → score = 1.0
-        """
+        product_features = clean_field(product_features)
+        query_features = clean_field(query_features)
 
         if not query_features:
             return None
 
-        if isinstance(query_features, str):
-            query_features = [query_features]
+        product_parts = set(
+            part.strip()
+            for part in product_features.split(",")
+            if part.strip()
+        )
 
-        if isinstance(product_features, str):
-            product_features = [product_features]
+        query_parts = set(
+            part.strip()
+            for part in query_features.split(",")
+            if part.strip()
+        )
 
-        query_set = set(normalize_text(x) for x in query_features if x)
-        product_set = set(normalize_text(x) for x in product_features if x)
-
-        if not query_set:
+        if not query_parts:
             return None
 
-        matched = query_set.intersection(product_set)
+        matched = query_parts.intersection(product_parts)
 
-        return len(matched) / len(query_set)
+        return len(matched) / len(query_parts)
 
     def _price_score(self, product_price, query_attributes):
-        """
-        Считает совпадение по цене.
-
-        Поддерживаем:
-        price_min
-        price_max
-
-        Если цена товара внутри диапазона — 1.0.
-        Если цена вне диапазона — score плавно уменьшается.
-        """
-
         price_min = query_attributes.get("price_min")
         price_max = query_attributes.get("price_max")
 
@@ -713,28 +379,11 @@ class HybridFurnitureSearch:
         return None
 
     def _attribute_score(self, product, query_attributes):
-        """
-        Считает точное совпадение признаков товара с запросом.
-
-        query_attributes может быть таким:
-
-        {
-            "category": "Гостиная",
-            "product_type": "Диван угловой",
-            "color": "чёрный",
-            "material": "экокожа",
-            "features": ["механизм дельфин"],
-            "style_or_purpose": "лофт",
-            "price_max": 50000
-        }
-        """
-
         product_attributes = product.get("attributes", {})
 
         total_score = 0.0
         total_weight = 0.0
 
-        # Простые точные признаки.
         exact_fields = [
             "category",
             "product_type",
@@ -758,9 +407,8 @@ class HybridFurnitureSearch:
             total_score += weight * field_score
             total_weight += weight
 
-        # Особенности считаем отдельно, потому что это список.
         features_score = self._features_score(
-            product_attributes.get("features", []),
+            product_attributes.get("features"),
             query_attributes.get("features")
         )
 
@@ -769,7 +417,6 @@ class HybridFurnitureSearch:
             total_score += weight * features_score
             total_weight += weight
 
-        # Цена считается отдельно, потому что это диапазон.
         price_score = self._price_score(
             product_attributes.get("price"),
             query_attributes
@@ -785,81 +432,72 @@ class HybridFurnitureSearch:
 
         return total_score / total_weight
 
+    def _get_allowed_indexes(self, categories):
+        allowed_indexes = []
+
+        for index, product in enumerate(self.products):
+            product_category = product.get("category")
+
+            if not categories or product_category in categories:
+                allowed_indexes.append(index)
+
+        return allowed_indexes
+
+    def _top_indexes_from_scores(self, scores, allowed_indexes_set, limit):
+        sorted_indexes = np.argsort(scores)[::-1]
+        top_indexes = []
+
+        for index in sorted_indexes:
+            index = int(index)
+
+            if index in allowed_indexes_set:
+                top_indexes.append(index)
+
+            if len(top_indexes) >= limit:
+                break
+
+        return top_indexes
+
     def search(
         self,
         prepared_query,
-        top_k=10,
-        bm25_candidates_count=80,
-        general_embedding_candidates_count=80,
-        category_embedding_candidates_count=80
+        top_k=100,
+        article_candidates_count=20,
+        bm25_candidates_count=200,
+        general_embedding_candidates_count=200,
+        category_embedding_candidates_count=200
     ):
-        """
-        Главная функция поиска.
+        query_article = prepared_query.get("article", "")
 
-        prepared_query — уже подготовленный запрос.
-
-        Пример:
-
-        prepared_query = {
-            "text_for_exact": "ART-001 диван угловой лофт черный",
-            "text_for_embedding": "диван угловой черный экокожа лофт",
-            "text_for_category_embedding": "гостиная диван лофт",
-            "categories": ["Гостиная"],
-            "attributes": {
-                "category": "Гостиная",
-                "product_type": "Диван угловой",
-                "color": "чёрный",
-                "material": "экокожа",
-                "style_or_purpose": "лофт",
-                "price_max": 50000
-            }
-        }
-
-        Важно:
-        - text_for_exact может содержать артикул.
-        - text_for_embedding НЕ должен содержать артикул.
-        - text_for_category_embedding НЕ должен содержать артикул.
-        """
-
-        # Текст для точного поиска.
-        # Тут артикул можно учитывать.
         text_for_exact = normalize_text(
             prepared_query.get("text_for_exact", "")
         )
 
-        # Текст для общего embedding.
-        # Тут артикула быть не должно.
         text_for_embedding = normalize_text(
             prepared_query.get("text_for_embedding", "")
         )
 
-        # Текст для категориального embedding.
-        # Тут артикула тоже быть не должно.
         text_for_category_embedding = normalize_text(
             prepared_query.get("text_for_category_embedding", "")
         )
 
-        # Категории, где надо искать.
         categories = prepared_query.get("categories", [])
-
-        # Структурированные признаки из запроса.
         query_attributes = prepared_query.get("attributes", {})
 
-        # ----------------------------------------------------
-        # 1. BM25 score
-        # ----------------------------------------------------
-        #
-        # Здесь учитывается артикул, если он есть в text_for_exact.
+        allowed_indexes = self._get_allowed_indexes(categories)
+
+        if not allowed_indexes:
+            return []
+
+        allowed_indexes_set = set(allowed_indexes)
+
+        article_scores = self._article_search_scores(query_article)
+
         exact_tokens = tokenize(text_for_exact)
 
         bm25_raw_scores = self.bm25.get_scores(exact_tokens)
         text_scores = self._normalize_scores(bm25_raw_scores)
 
-        # ----------------------------------------------------
-        # 2. Общий embedding score
-        # ----------------------------------------------------
-        #
-        # Здесь артикул не учитываем.
         general_query_output = self.embedding_model.encode(
             [text_for_embedding],
             batch_size=1,
@@ -879,11 +517,6 @@ class HybridFurnitureSearch:
             general_embedding_raw_scores
         )
 
-        # ----------------------------------------------------
-        # 3. Категориальный embedding score
-        # ----------------------------------------------------
-        #
-        # Здесь тоже артикул не учитываем.
         category_query_output = self.embedding_model.encode(
             [text_for_category_embedding],
             batch_size=1,
@@ -903,83 +536,34 @@ class HybridFurnitureSearch:
             category_embedding_raw_scores
         )
 
-        # ----------------------------------------------------
-        # 4. Фильтр по категориям
-        # ----------------------------------------------------
-        #
-        # Если categories пустой список, ищем по всем товарам.
-        allowed_indexes = []
+        article_top_indexes = self._top_indexes_from_scores(
+            article_scores,
+            allowed_indexes_set,
+            article_candidates_count
+        )
 
-        for index, product in enumerate(self.products):
-            product_category = product.get("category")
+        bm25_top_indexes = self._top_indexes_from_scores(
+            text_scores,
+            allowed_indexes_set,
+            bm25_candidates_count
+        )
 
-            if not categories or product_category in categories:
-                allowed_indexes.append(index)
+        general_embedding_top_indexes = self._top_indexes_from_scores(
+            general_embedding_scores,
+            allowed_indexes_set,
+            general_embedding_candidates_count
+        )
 
-        allowed_indexes_set = set(allowed_indexes)
+        category_embedding_top_indexes = self._top_indexes_from_scores(
+            category_embedding_scores,
+            allowed_indexes_set,
+            category_embedding_candidates_count
+        )
 
-        if not allowed_indexes:
-            return []
-
-        # ----------------------------------------------------
-        # 5. Берём кандидатов из трёх источников
-        # ----------------------------------------------------
-
-        # Топ по BM25.
-        bm25_sorted_indexes = np.argsort(text_scores)[::-1]
-
-        bm25_top_indexes = []
-
-        for index in bm25_sorted_indexes:
-            index = int(index)
-
-            if index in allowed_indexes_set:
-                bm25_top_indexes.append(index)
-
-            if len(bm25_top_indexes) >= bm25_candidates_count:
-                break
-
-        # Топ по общему embedding.
-        general_embedding_sorted_indexes = np.argsort(
-            general_embedding_scores
-        )[::-1]
-
-        general_embedding_top_indexes = []
-
-        for index in general_embedding_sorted_indexes:
-            index = int(index)
-
-            if index in allowed_indexes_set:
-                general_embedding_top_indexes.append(index)
-
-            if len(general_embedding_top_indexes) >= general_embedding_candidates_count:
-                break
-
-        # Топ по категориальному embedding.
-        category_embedding_sorted_indexes = np.argsort(
-            category_embedding_scores
-        )[::-1]
-
-        category_embedding_top_indexes = []
-
-        for index in category_embedding_sorted_indexes:
-            index = int(index)
-
-            if index in allowed_indexes_set:
-                category_embedding_top_indexes.append(index)
-
-            if len(category_embedding_top_indexes) >= category_embedding_candidates_count:
-                break
-
-        # ----------------------------------------------------
-        # 6. Объединяем кандидатов
-        # ----------------------------------------------------
-        #
-        # Один и тот же товар может прийти из BM25,
-        # общего embedding и категориального embedding.
-        #
-        # Поэтому используем set, чтобы товар не дублировался.
         candidate_indexes = set()
+
+        for index in article_top_indexes:
+            candidate_indexes.add(index)
 
         for index in bm25_top_indexes:
             candidate_indexes.add(index)
@@ -990,15 +574,17 @@ class HybridFurnitureSearch:
         for index in category_embedding_top_indexes:
             candidate_indexes.add(index)
 
-        # ----------------------------------------------------
-        # 7. Финальный скоринг
-        # ----------------------------------------------------
+        if query_article:
+            weights = ARTICLE_SCORE_WEIGHTS
+        else:
+            weights = NORMAL_SCORE_WEIGHTS
 
         results = []
 
         for index in candidate_indexes:
             product = self.products[index]
 
+            article_score = float(article_scores[index])
             text_score = float(text_scores[index])
             general_embedding_score = float(general_embedding_scores[index])
             category_embedding_score = float(category_embedding_scores[index])
@@ -1009,10 +595,11 @@ class HybridFurnitureSearch:
             )
 
             final_score = (
-                SCORE_WEIGHTS["text_score"] * text_score
-                + SCORE_WEIGHTS["general_embedding_score"] * general_embedding_score
-                + SCORE_WEIGHTS["category_embedding_score"] * category_embedding_score
-                + SCORE_WEIGHTS["attribute_score"] * attribute_score
+                weights["article_score"] * article_score
+                + weights["text_score"] * text_score
+                + weights["general_embedding_score"] * general_embedding_score
+                + weights["category_embedding_score"] * category_embedding_score
+                + weights["attribute_score"] * attribute_score
             )
 
             results.append({
@@ -1021,6 +608,7 @@ class HybridFurnitureSearch:
                 "name": product["name"],
                 "category": product["category"],
                 "price": product["attributes"].get("price"),
+                "article_score": round(article_score, 4),
                 "text_score": round(text_score, 4),
                 "general_embedding_score": round(general_embedding_score, 4),
                 "category_embedding_score": round(category_embedding_score, 4),
@@ -1033,37 +621,15 @@ class HybridFurnitureSearch:
         return results[:top_k]
 
 
-# ============================================================
-# 6. ПРИМЕР ЗАПУСКА
-# ============================================================
-
 if __name__ == "__main__":
-    # Укажи путь к своему файлу.
-    #
-    # Например:
-    # file_path = "Qwen_csv_20260516_iyqyxkuif.txt"
-    #
-    # Если файл лежит рядом с этим Python-файлом, так и оставляй.
     file_path = "Qwen_csv_20260516_iyqyxkuif.txt"
 
-    products = load_products_from_semicolon_csv(file_path)
+    products = load_products_from_csv(file_path)
 
     search_engine = HybridFurnitureSearch(products)
 
-    # Пример подготовленного запроса.
-    #
-    # Важно:
-    # prepared_query должен приходить уже после твоего модуля очистки.
-    #
-    # text_for_exact:
-    #   для BM25, можно включать артикул.
-    #
-    # text_for_embedding:
-    #   для общего embedding, артикул НЕ включаем.
-    #
-    # text_for_category_embedding:
-    #   для категориального embedding, артикул НЕ включаем.
     prepared_query = {
+        "article": "",
         "text_for_exact": "диван угловой лофт черный механизм дельфин до 50000",
         "text_for_embedding": "диван угловой черный экокожа механизм дельфин стиль лофт",
         "text_for_category_embedding": "гостиная диван угловой лофт",
@@ -1073,13 +639,13 @@ if __name__ == "__main__":
             "product_type": "Диван угловой",
             "color": "чёрный",
             "material": "экокожа",
-            "features": ["механизм дельфин"],
+            "features": "механизм дельфин",
             "style_or_purpose": "лофт",
             "price_max": 50000,
         }
     }
 
-    results = search_engine.search(prepared_query, top_k=10)
+    results = search_engine.search(prepared_query, top_k=100)
 
     print("Новые категории:", search_engine.new_categories)
 
@@ -1089,6 +655,7 @@ if __name__ == "__main__":
         print("Артикул:", item["article"])
         print("Категория:", item["category"])
         print("Цена:", item["price"])
+        print("Article:", item["article_score"])
         print("BM25:", item["text_score"])
         print("General embedding:", item["general_embedding_score"])
         print("Category embedding:", item["category_embedding_score"])
