@@ -1,4 +1,5 @@
 import csv
+from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
@@ -6,74 +7,56 @@ from rank_bm25 import BM25Okapi
 from FlagEmbedding import BGEM3FlagModel
 
 
-KNOWN_CATEGORIES = {
-    "Ванная",
-    "Гостиная",
-    "Спальня",
-    "Прихожая",
-    "Кухня",
-    "Детская",
-    "Кабинет",
-    "Декор",
-    "Текстиль",
-    "Балкон",
-    "Освещение",
-    "Гостиница",
-    "Хозтовары",
+@dataclass
+class SearchDomainConfig:
+    searchable_fields: list[str]
+    field_embedding_weights: dict[str, float]
+    final_weights: dict[str, float]
+
+
+DOMAIN_CONFIGS = {
+    "furniture": SearchDomainConfig(
+        searchable_fields=[
+            "description",
+            "product_type",
+            "model",
+            "dimensions",
+            "color",
+            "material",
+            "features",
+            "style_or_purpose",
+        ],
+        field_embedding_weights={
+            "description": 0.30,
+            "product_type": 0.20,
+            "model": 0.10,
+            "dimensions": 0.05,
+            "color": 0.10,
+            "material": 0.10,
+            "features": 0.10,
+            "style_or_purpose": 0.05,
+        },
+        final_weights={
+            "exact_id_score": 0.35,
+            "bm25_score": 0.20,
+            "field_embedding_score": 0.35,
+            "price_score": 0.10,
+        },
+    ),
 }
 
 
-NORMAL_SCORE_WEIGHTS = {
-    "article_score": 0.00,
-    "text_score": 0.30,
-    "general_embedding_score": 0.30,
-    "category_embedding_score": 0.20,
-    "attribute_score": 0.20,
-}
-
-
-ARTICLE_SCORE_WEIGHTS = {
-    "article_score": 0.45,
-    "text_score": 0.20,
-    "general_embedding_score": 0.15,
-    "category_embedding_score": 0.05,
-    "attribute_score": 0.15,
-}
-
-
-ATTRIBUTE_WEIGHTS = {
-    "category": 0.12,
-    "product_type": 0.20,
-    "model": 0.10,
-    "dimensions": 0.08,
-    "color": 0.12,
-    "material": 0.14,
-    "features": 0.12,
-    "style_or_purpose": 0.07,
-    "price": 0.05,
-}
-
-
-def handle_new_categories(new_categories):
+def handle_new_domain(domain_name, observed_fields):
     return
 
 
-def normalize_text(text):
-    if text is None:
+def normalize_text(value):
+    if value is None:
         return ""
 
-    text = str(text).strip().lower()
-    text = text.replace("ё", "е")
-    text = " ".join(text.split())
-
-    if text in {"", "-", "none", "null", "nan"}:
-        return ""
-
-    return text
-
-
-def clean_field(value):
-    value = normalize_text(value)
+    value = str(value).strip().lower()
+    value = value.replace("ё", "е")
+    value = " ".join(value.split())
 
     if value in {"", "-", "none", "null", "nan"}:
         return ""
@@ -81,23 +64,108 @@ def clean_field(value):
     return value
 
 
+def clean_field(value):
+    return normalize_text(value)
+
+
 def join_non_empty(parts):
-    cleaned_parts = []
+    result = []
 
     for part in parts:
         part = clean_field(part)
 
         if part:
-            cleaned_parts.append(part)
+            result.append(part)
 
-    return " ".join(cleaned_parts)
+    return " ".join(result)
 
 
 def tokenize(text):
     return normalize_text(text).split()
 
 
-def load_products_from_csv(file_path):
+def normalize_vector(vector):
+    vector = np.array(vector, dtype=np.float32)
+    norm = np.linalg.norm(vector)
+
+    if norm == 0:
+        return vector
+
+    return vector / norm
+
+
+def normalize_scores(scores):
+    scores = np.array(scores, dtype=np.float32)
+
+    min_score = float(np.min(scores))
+    max_score = float(np.max(scores))
+
+    if max_score - min_score < 1e-9:
+        return np.zeros_like(scores)
+
+    return (scores - min_score) / (max_score - min_score)
+
+
+def price_to_float(value):
+    if value is None:
+        return None
+
+    value = str(value).replace(" ", "").replace(",", ".")
+
+    if not value:
+        return None
+
+    try:
+        return float(value)
+    except ValueError:
+        return None
+
+
+def calculate_price_score(product_price, price_min=None, price_max=None):
+    if price_min is None and price_max is None:
+        return None
+
+    product_price = price_to_float(product_price)
+
+    if product_price is None:
+        return 0.0
+
+    price_min = price_to_float(price_min)
+    price_max = price_to_float(price_max)
+
+    if price_min is not None and price_max is not None:
+        if price_min <= product_price <= price_max:
+            return 1.0
+
+        if product_price < price_min:
+            diff = price_min - product_price
+            return max(0.0, 1.0 - diff / price_min)
+
+        diff = product_price - price_max
+        return max(0.0, 1.0 - diff / price_max)
+
+    if price_max is not None:
+        if product_price <= price_max:
+            return 1.0
+
+        diff = product_price - price_max
+        return max(0.0, 1.0 - diff / price_max)
+
+    if price_min is not None:
+        if product_price >= price_min:
+            return 1.0
+
+        diff = price_min - product_price
+        return max(0.0, 1.0 - diff / price_min)
+
+    return None
+
+
+def load_furniture_products_from_csv(
+    file_path,
+    id_field="id",
+    description_field="Описание",
+):
     products = []
     file_path = Path(file_path)
 
@@ -105,39 +173,21 @@ def load_products_from_csv(file_path):
         reader = csv.DictReader(file, delimiter=";")
 
         for row in reader:
-            product_id = row["id"]
-            article = row.get("Артикул", "")
+            product_id = clean_field(row[id_field])
 
-            category = row["Категория"]
-            product_type = row["Тип товара"]
-            model = row["Модель"]
-            dimensions = row["Габариты"]
-            color = row["Цвет"]
-            material = row["Материал"]
-            features = row["Особенности"]
-            style_or_purpose = row["Стиль/Назначение"]
-            price = row["Цена (₽)"]
+            raw_description = row.get(description_field, "")
 
-            name = join_non_empty([
-                product_type,
-                model,
-            ])
+            product_type = row.get("Тип товара", "")
+            model = row.get("Модель", "")
+            dimensions = row.get("Габариты", "")
+            color = row.get("Цвет", "")
+            material = row.get("Материал", "")
+            features = row.get("Особенности", "")
+            style_or_purpose = row.get("Стиль/Назначение", "")
+            price = row.get("Цена (₽)", "")
 
-            exact_search_text = join_non_empty([
-                article,
-                category,
-                product_type,
-                model,
-                dimensions,
-                color,
-                material,
-                features,
-                style_or_purpose,
-                price,
-            ])
-
-            general_embedding_text = join_non_empty([
-                category,
+            description = join_non_empty([
+                raw_description,
                 product_type,
                 model,
                 dimensions,
@@ -147,31 +197,21 @@ def load_products_from_csv(file_path):
                 style_or_purpose,
             ])
 
-            category_embedding_text = join_non_empty([
-                category,
-                product_type,
-                style_or_purpose,
-            ])
+            characteristics = {
+                "product_type": clean_field(product_type),
+                "model": clean_field(model),
+                "dimensions": clean_field(dimensions),
+                "color": clean_field(color),
+                "material": clean_field(material),
+                "features": clean_field(features),
+                "style_or_purpose": clean_field(style_or_purpose),
+            }
 
             product = {
                 "id": product_id,
-                "article": clean_field(article),
-                "name": name,
-                "category": category,
-                "exact_search_text": exact_search_text,
-                "general_embedding_text": general_embedding_text,
-                "category_embedding_text": category_embedding_text,
-                "attributes": {
-                    "category": clean_field(category),
-                    "product_type": clean_field(product_type),
-                    "model": clean_field(model),
-                    "dimensions": clean_field(dimensions),
-                    "color": clean_field(color),
-                    "material": clean_field(material),
-                    "features": clean_field(features),
-                    "style_or_purpose": clean_field(style_or_purpose),
-                    "price": price,
-                },
+                "description": description,
+                "characteristics": characteristics,
+                "price": price,
             }
 
             products.append(product)
@@ -179,485 +219,419 @@ def load_products_from_csv(file_path):
     return products
 
 
-class HybridFurnitureSearch:
-    def __init__(self, products):
+class NeuralHybridProductSearch:
+    def __init__(self, products, domain_name="furniture"):
         self.products = products
+        self.domain_name = domain_name
 
-        self.new_categories = self._find_new_categories()
+        if domain_name not in DOMAIN_CONFIGS:
+            observed_fields = self._get_observed_fields()
+            handle_new_domain(domain_name, observed_fields)
+            raise ValueError(f"Unknown search domain: {domain_name}")
 
-        if self.new_categories:
-            handle_new_categories(self.new_categories)
+        self.config = DOMAIN_CONFIGS[domain_name]
 
         self.embedding_model = BGEM3FlagModel(
             "BAAI/bge-m3",
-            use_fp16=False
+            use_fp16=False,
         )
 
         self.bm25 = None
-        self.general_product_embeddings = None
-        self.category_product_embeddings = None
+        self.field_embeddings = {}
 
         self._build_indexes()
 
-    def _find_new_categories(self):
-        found_categories = set()
+    def _get_observed_fields(self):
+        fields = set()
 
         for product in self.products:
-            category = product.get("category")
+            if clean_field(product.get("description")):
+                fields.add("description")
 
-            if category:
-                found_categories.add(category)
+            for field_name, field_value in product.get("characteristics", {}).items():
+                if clean_field(field_value):
+                    fields.add(field_name)
 
-        return found_categories - KNOWN_CATEGORIES
-
-    def _normalize_scores(self, scores):
-        scores = np.array(scores, dtype=np.float32)
-
-        min_score = float(np.min(scores))
-        max_score = float(np.max(scores))
-
-        if max_score - min_score < 1e-9:
-            return np.zeros_like(scores)
-
-        return (scores - min_score) / (max_score - min_score)
+        return sorted(fields)
 
     def _build_indexes(self):
-        exact_texts = [
-            product["exact_search_text"]
-            for product in self.products
+        self._build_bm25_index()
+        self._build_field_embedding_indexes()
+
+    def _build_bm25_index(self):
+        texts = []
+
+        for product in self.products:
+            text = self._build_bm25_text_for_product(product)
+            texts.append(text)
+
+        tokens = [tokenize(text) for text in texts]
+        self.bm25 = BM25Okapi(tokens)
+
+    def _build_bm25_text_for_product(self, product):
+        parts = [
+            product.get("description", ""),
         ]
 
-        exact_tokens = [
-            tokenize(text)
-            for text in exact_texts
-        ]
+        for field_name in self.config.searchable_fields:
+            if field_name == "description":
+                continue
 
-        self.bm25 = BM25Okapi(exact_tokens)
+            value = product.get("characteristics", {}).get(field_name)
 
-        general_texts = [
-            product["general_embedding_text"]
-            for product in self.products
-        ]
+            if value:
+                parts.append(value)
 
-        general_output = self.embedding_model.encode(
-            general_texts,
+        return join_non_empty(parts)
+
+    def _build_field_embedding_indexes(self):
+        for field_name in self.config.searchable_fields:
+            texts = []
+
+            for product in self.products:
+                value = self._get_product_field_value(product, field_name)
+                texts.append(value)
+
+            vectors = self._encode_texts(texts, max_length=256)
+            self.field_embeddings[field_name] = vectors
+
+    def _get_product_field_value(self, product, field_name):
+        if field_name == "description":
+            return clean_field(product.get("description", ""))
+
+        return clean_field(
+            product.get("characteristics", {}).get(field_name, "")
+        )
+
+    def _encode_texts(self, texts, max_length=256):
+        cleaned_texts = []
+
+        for text in texts:
+            text = clean_field(text)
+
+            if not text:
+                text = " "
+
+            cleaned_texts.append(text)
+
+        output = self.embedding_model.encode(
+            cleaned_texts,
             batch_size=8,
-            max_length=512
+            max_length=max_length,
         )
 
-        self.general_product_embeddings = np.array(
-            general_output["dense_vecs"],
-            dtype=np.float32
-        )
+        vectors = output["dense_vecs"]
 
-        category_texts = [
-            product["category_embedding_text"]
-            for product in self.products
-        ]
+        normalized_vectors = []
 
-        category_output = self.embedding_model.encode(
-            category_texts,
-            batch_size=8,
-            max_length=256
-        )
+        for vector in vectors:
+            normalized_vectors.append(normalize_vector(vector))
 
-        self.category_product_embeddings = np.array(
-            category_output["dense_vecs"],
-            dtype=np.float32
-        )
+        return np.array(normalized_vectors, dtype=np.float32)
 
-    def _article_search_scores(self, query_article):
-        query_article = clean_field(query_article)
+    def _encode_one_text(self, text, max_length=256):
+        vectors = self._encode_texts([text], max_length=max_length)
+        return vectors[0]
+
+    def _exact_id_scores(self, query_id):
+        query_id = clean_field(query_id)
 
         scores = np.zeros(len(self.products), dtype=np.float32)
 
-        if not query_article:
+        if not query_id:
             return scores
 
         for index, product in enumerate(self.products):
-            product_article = clean_field(product.get("article", ""))
+            product_id = clean_field(product.get("id"))
 
-            if not product_article:
-                continue
-
-            if product_article == query_article:
+            if product_id == query_id:
                 scores[index] = 1.0
-            elif query_article in product_article:
-                scores[index] = 0.7
-            elif product_article in query_article:
-                scores[index] = 0.7
+            else:
+                scores[index] = 0.0
 
         return scores
 
-    def _exact_match(self, product_value, query_value):
-        if query_value is None:
-            return None
+    def _bm25_scores(self, query_text):
+        query_text = clean_field(query_text)
 
-        product_value = clean_field(product_value)
-        query_value = clean_field(query_value)
+        if not query_text:
+            return np.zeros(len(self.products), dtype=np.float32)
 
-        if not query_value:
-            return None
+        query_tokens = tokenize(query_text)
+        raw_scores = self.bm25.get_scores(query_tokens)
 
-        if product_value == query_value:
-            return 1.0
+        return normalize_scores(raw_scores)
 
-        return 0.0
+    def _field_embedding_scores(self, prepared_query):
+        result = {}
 
-    def _features_score(self, product_features, query_features):
-        if not query_features:
-            return None
-
-        product_features = clean_field(product_features)
-        query_features = clean_field(query_features)
-
-        if not query_features:
-            return None
-
-        product_parts = set(
-            part.strip()
-            for part in product_features.split(",")
-            if part.strip()
+        query_description = clean_field(
+            prepared_query.get("description", "")
         )
 
-        query_parts = set(
-            part.strip()
-            for part in query_features.split(",")
-            if part.strip()
-        )
+        query_characteristics = prepared_query.get("characteristics", {})
 
-        if not query_parts:
-            return None
+        for field_name in self.config.searchable_fields:
+            if field_name == "description":
+                query_value = query_description
+            else:
+                query_value = clean_field(query_characteristics.get(field_name))
 
-        matched = query_parts.intersection(product_parts)
-
-        return len(matched) / len(query_parts)
-
-    def _price_score(self, product_price, query_attributes):
-        price_min = query_attributes.get("price_min")
-        price_max = query_attributes.get("price_max")
-
-        if price_min is None and price_max is None:
-            return None
-
-        if product_price is None:
-            return 0.0
-
-        product_price = float(product_price)
-
-        if price_min is not None:
-            price_min = float(price_min)
-
-        if price_max is not None:
-            price_max = float(price_max)
-
-        if price_min is not None and price_max is not None:
-            if price_min <= product_price <= price_max:
-                return 1.0
-
-            if product_price < price_min:
-                diff = price_min - product_price
-                return max(0.0, 1.0 - diff / price_min)
-
-            diff = product_price - price_max
-            return max(0.0, 1.0 - diff / price_max)
-
-        if price_max is not None:
-            if product_price <= price_max:
-                return 1.0
-
-            diff = product_price - price_max
-            return max(0.0, 1.0 - diff / price_max)
-
-        if price_min is not None:
-            if product_price >= price_min:
-                return 1.0
-
-            diff = price_min - product_price
-            return max(0.0, 1.0 - diff / price_min)
-
-        return None
-
-    def _attribute_score(self, product, query_attributes):
-        product_attributes = product.get("attributes", {})
-
-        total_score = 0.0
-        total_weight = 0.0
-
-        exact_fields = [
-            "category",
-            "product_type",
-            "model",
-            "dimensions",
-            "color",
-            "material",
-            "style_or_purpose",
-        ]
-
-        for field in exact_fields:
-            field_score = self._exact_match(
-                product_attributes.get(field),
-                query_attributes.get(field)
-            )
-
-            if field_score is None:
+            if not query_value:
                 continue
 
-            weight = ATTRIBUTE_WEIGHTS[field]
-            total_score += weight * field_score
-            total_weight += weight
+            if field_name not in self.field_embeddings:
+                continue
 
-        features_score = self._features_score(
-            product_attributes.get("features"),
-            query_attributes.get("features")
-        )
+            query_vector = self._encode_one_text(
+                query_value,
+                max_length=256,
+            )
 
-        if features_score is not None:
-            weight = ATTRIBUTE_WEIGHTS["features"]
-            total_score += weight * features_score
-            total_weight += weight
+            product_vectors = self.field_embeddings[field_name]
+            raw_scores = product_vectors @ query_vector
+            scores = normalize_scores(raw_scores)
 
-        price_score = self._price_score(
-            product_attributes.get("price"),
-            query_attributes
-        )
+            for index, product in enumerate(self.products):
+                product_value = self._get_product_field_value(
+                    product,
+                    field_name,
+                )
 
-        if price_score is not None:
-            weight = ATTRIBUTE_WEIGHTS["price"]
-            total_score += weight * price_score
-            total_weight += weight
+                if not product_value:
+                    scores[index] = 0.0
 
-        if total_weight == 0:
-            return 0.0
+            result[field_name] = scores
 
-        return total_score / total_weight
+        return result
 
-    def _get_allowed_indexes(self, categories):
-        allowed_indexes = []
+    def _combine_field_embedding_scores(self, field_scores):
+        final_scores = np.zeros(len(self.products), dtype=np.float32)
+        used_weight_sum = 0.0
+
+        for field_name, scores in field_scores.items():
+            weight = self.config.field_embedding_weights.get(field_name, 0.0)
+
+            if weight <= 0:
+                continue
+
+            final_scores += weight * scores
+            used_weight_sum += weight
+
+        if used_weight_sum > 0:
+            final_scores = final_scores / used_weight_sum
+
+        return final_scores
+
+    def _price_scores(self, prepared_query):
+        price_min = prepared_query.get("price_min")
+        price_max = prepared_query.get("price_max")
+
+        scores = np.zeros(len(self.products), dtype=np.float32)
+
+        if price_min is None and price_max is None:
+            return scores
 
         for index, product in enumerate(self.products):
-            product_category = product.get("category")
+            score = calculate_price_score(
+                product_price=product.get("price"),
+                price_min=price_min,
+                price_max=price_max,
+            )
 
-            if not categories or product_category in categories:
-                allowed_indexes.append(index)
+            if score is None:
+                score = 0.0
 
-        return allowed_indexes
+            scores[index] = score
 
-    def _top_indexes_from_scores(self, scores, allowed_indexes_set, limit):
-        sorted_indexes = np.argsort(scores)[::-1]
-        top_indexes = []
+        return scores
 
-        for index in sorted_indexes:
-            index = int(index)
+    def _build_bm25_text_for_query(self, prepared_query):
+        parts = [
+            prepared_query.get("description", ""),
+        ]
 
-            if index in allowed_indexes_set:
-                top_indexes.append(index)
+        query_characteristics = prepared_query.get("characteristics", {})
 
-            if len(top_indexes) >= limit:
-                break
+        for field_name in self.config.searchable_fields:
+            if field_name == "description":
+                continue
 
-        return top_indexes
+            value = query_characteristics.get(field_name)
 
-    def search(
+            if value:
+                parts.append(value)
+
+        return join_non_empty(parts)
+
+    def _calculate_final_scores(
         self,
-        prepared_query,
-        top_k=100,
-        article_candidates_count=20,
-        bm25_candidates_count=200,
-        general_embedding_candidates_count=200,
-        category_embedding_candidates_count=200
+        exact_id_scores,
+        bm25_scores,
+        field_embedding_scores,
+        price_scores,
+        has_query_id,
+        has_price_filter,
     ):
-        query_article = prepared_query.get("article", "")
+        weights = dict(self.config.final_weights)
 
-        text_for_exact = normalize_text(
-            prepared_query.get("text_for_exact", "")
+        if not has_query_id:
+            weights["exact_id_score"] = 0.0
+
+        if not has_price_filter:
+            weights["price_score"] = 0.0
+
+        used_weight_sum = sum(weights.values())
+
+        if used_weight_sum <= 0:
+            return np.zeros(len(self.products), dtype=np.float32)
+
+        final_scores = (
+            weights["exact_id_score"] * exact_id_scores
+            + weights["bm25_score"] * bm25_scores
+            + weights["field_embedding_score"] * field_embedding_scores
+            + weights["price_score"] * price_scores
         )
 
-        text_for_embedding = normalize_text(
-            prepared_query.get("text_for_embedding", "")
+        final_scores = final_scores / used_weight_sum
+
+        return final_scores
+
+    def search(self, prepared_query, top_k=100):
+        query_id = prepared_query.get("id", "")
+
+        exact_id_scores = self._exact_id_scores(query_id)
+
+        bm25_query_text = self._build_bm25_text_for_query(prepared_query)
+        bm25_scores = self._bm25_scores(bm25_query_text)
+
+        field_scores = self._field_embedding_scores(prepared_query)
+
+        field_embedding_scores = self._combine_field_embedding_scores(
+            field_scores
         )
 
-        text_for_category_embedding = normalize_text(
-            prepared_query.get("text_for_category_embedding", "")
+        price_scores = self._price_scores(prepared_query)
+
+        final_scores = self._calculate_final_scores(
+            exact_id_scores=exact_id_scores,
+            bm25_scores=bm25_scores,
+            field_embedding_scores=field_embedding_scores,
+            price_scores=price_scores,
+            has_query_id=bool(clean_field(query_id)),
+            has_price_filter=(
+                prepared_query.get("price_min") is not None
+                or prepared_query.get("price_max") is not None
+            ),
         )
-
-        categories = prepared_query.get("categories", [])
-        query_attributes = prepared_query.get("attributes", {})
-
-        allowed_indexes = self._get_allowed_indexes(categories)
-
-        if not allowed_indexes:
-            return []
-
-        allowed_indexes_set = set(allowed_indexes)
-
-        article_scores = self._article_search_scores(query_article)
-
-        exact_tokens = tokenize(text_for_exact)
-
-        bm25_raw_scores = self.bm25.get_scores(exact_tokens)
-        text_scores = self._normalize_scores(bm25_raw_scores)
-
-        general_query_output = self.embedding_model.encode(
-            [text_for_embedding],
-            batch_size=1,
-            max_length=512
-        )
-
-        general_query_vector = np.array(
-            general_query_output["dense_vecs"][0],
-            dtype=np.float32
-        )
-
-        general_embedding_raw_scores = (
-            self.general_product_embeddings @ general_query_vector
-        )
-
-        general_embedding_scores = self._normalize_scores(
-            general_embedding_raw_scores
-        )
-
-        category_query_output = self.embedding_model.encode(
-            [text_for_category_embedding],
-            batch_size=1,
-            max_length=256
-        )
-
-        category_query_vector = np.array(
-            category_query_output["dense_vecs"][0],
-            dtype=np.float32
-        )
-
-        category_embedding_raw_scores = (
-            self.category_product_embeddings @ category_query_vector
-        )
-
-        category_embedding_scores = self._normalize_scores(
-            category_embedding_raw_scores
-        )
-
-        article_top_indexes = self._top_indexes_from_scores(
-            article_scores,
-            allowed_indexes_set,
-            article_candidates_count
-        )
-
-        bm25_top_indexes = self._top_indexes_from_scores(
-            text_scores,
-            allowed_indexes_set,
-            bm25_candidates_count
-        )
-
-        general_embedding_top_indexes = self._top_indexes_from_scores(
-            general_embedding_scores,
-            allowed_indexes_set,
-            general_embedding_candidates_count
-        )
-
-        category_embedding_top_indexes = self._top_indexes_from_scores(
-            category_embedding_scores,
-            allowed_indexes_set,
-            category_embedding_candidates_count
-        )
-
-        candidate_indexes = set()
-
-        for index in article_top_indexes:
-            candidate_indexes.add(index)
-
-        for index in bm25_top_indexes:
-            candidate_indexes.add(index)
-
-        for index in general_embedding_top_indexes:
-            candidate_indexes.add(index)
-
-        for index in category_embedding_top_indexes:
-            candidate_indexes.add(index)
-
-        if query_article:
-            weights = ARTICLE_SCORE_WEIGHTS
-        else:
-            weights = NORMAL_SCORE_WEIGHTS
 
         results = []
 
-        for index in candidate_indexes:
-            product = self.products[index]
-
-            article_score = float(article_scores[index])
-            text_score = float(text_scores[index])
-            general_embedding_score = float(general_embedding_scores[index])
-            category_embedding_score = float(category_embedding_scores[index])
-
-            attribute_score = self._attribute_score(
-                product,
-                query_attributes
-            )
-
-            final_score = (
-                weights["article_score"] * article_score
-                + weights["text_score"] * text_score
-                + weights["general_embedding_score"] * general_embedding_score
-                + weights["category_embedding_score"] * category_embedding_score
-                + weights["attribute_score"] * attribute_score
-            )
-
-            results.append({
+        for index, product in enumerate(self.products):
+            item = {
                 "product_id": product["id"],
-                "article": product["article"],
-                "name": product["name"],
-                "category": product["category"],
-                "price": product["attributes"].get("price"),
-                "article_score": round(article_score, 4),
-                "text_score": round(text_score, 4),
-                "general_embedding_score": round(general_embedding_score, 4),
-                "category_embedding_score": round(category_embedding_score, 4),
-                "attribute_score": round(attribute_score, 4),
-                "final_score": round(float(final_score), 4),
-            })
+                "description": product.get("description", ""),
+                "characteristics": product.get("characteristics", {}),
+                "price": product.get("price"),
+                "exact_id_score": round(float(exact_id_scores[index]), 4),
+                "bm25_score": round(float(bm25_scores[index]), 4),
+                "field_embedding_score": round(float(field_embedding_scores[index]), 4),
+                "price_score": round(float(price_scores[index]), 4),
+                "final_score": round(float(final_scores[index]), 4),
+            }
 
-        results.sort(key=lambda item: item["final_score"], reverse=True)
+            for field_name, scores in field_scores.items():
+                item[f"{field_name}_embedding_score"] = round(
+                    float(scores[index]),
+                    4,
+                )
+
+            results.append(item)
+
+        results.sort(
+            key=lambda item: item["final_score"],
+            reverse=True,
+        )
 
         return results[:top_k]
 
 
 if __name__ == "__main__":
-    file_path = "Qwen_csv_20260516_iyqyxkuif.txt"
+    products = [
+        {
+            "id": "1001",
+            "description": "черный угловой диван из экокожи механизм дельфин стиль лофт",
+            "characteristics": {
+                "product_type": "диван угловой",
+                "model": "лофт",
+                "dimensions": "",
+                "color": "черный",
+                "material": "экокожа",
+                "features": "механизм дельфин",
+                "style_or_purpose": "лофт",
+            },
+            "price": 44900,
+        },
+        {
+            "id": "1002",
+            "description": "серый прямой диван рогожка раскладной книжка скандинавский стиль",
+            "characteristics": {
+                "product_type": "диван прямой",
+                "model": "стокгольм",
+                "dimensions": "180x85",
+                "color": "серый",
+                "material": "рогожка",
+                "features": "раскладной книжка",
+                "style_or_purpose": "скандинавский",
+            },
+            "price": 28900,
+        },
+        {
+            "id": "1003",
+            "description": "обеденный стол орех шпон ореха раздвижной",
+            "characteristics": {
+                "product_type": "стол обеденный",
+                "model": "турин",
+                "dimensions": "160x90",
+                "color": "орех",
+                "material": "шпон ореха",
+                "features": "раздвижной",
+                "style_or_purpose": "",
+            },
+            "price": 38700,
+        },
+    ]
 
-    products = load_products_from_csv(file_path)
-
-    search_engine = HybridFurnitureSearch(products)
+    search_engine = NeuralHybridProductSearch(
+        products=products,
+        domain_name="furniture",
+    )
 
     prepared_query = {
-        "article": "",
-        "text_for_exact": "диван угловой лофт черный механизм дельфин до 50000",
-        "text_for_embedding": "диван угловой черный экокожа механизм дельфин стиль лофт",
-        "text_for_category_embedding": "гостиная диван угловой лофт",
-        "categories": ["Гостиная"],
-        "attributes": {
-            "category": "Гостиная",
-            "product_type": "Диван угловой",
-            "color": "чёрный",
+        "id": "",
+        "description": "черный угловой диван из экокожи в стиле лофт",
+        "characteristics": {
+            "product_type": "диван угловой",
+            "color": "черный",
             "material": "экокожа",
             "features": "механизм дельфин",
             "style_or_purpose": "лофт",
-            "price_max": 50000,
-        }
+        },
+        "price_max": 50000,
     }
 
-    results = search_engine.search(prepared_query, top_k=100)
-
-    print("Новые категории:", search_engine.new_categories)
+    results = search_engine.search(
+        prepared_query,
+        top_k=100,
+    )
 
     for item in results:
         print()
-        print("Товар:", item["name"])
-        print("Артикул:", item["article"])
-        print("Категория:", item["category"])
+        print("ID:", item["product_id"])
+        print("Описание:", item["description"])
         print("Цена:", item["price"])
-        print("Article:", item["article_score"])
-        print("BM25:", item["text_score"])
-        print("General embedding:", item["general_embedding_score"])
-        print("Category embedding:", item["category_embedding_score"])
-        print("Attributes:", item["attribute_score"])
+        print("Exact ID:", item["exact_id_score"])
+        print("BM25:", item["bm25_score"])
+        print("Field embedding:", item["field_embedding_score"])
+        print("Price:", item["price_score"])
         print("Final:", item["final_score"])
