@@ -1,0 +1,7 @@
+numpy
+rank-bm25
+FlagEmbedding
+xgboost
+faiss-cpu
+openai
+python-dotenv

@@ -4,7 +4,7 @@ from pathlib import Path
 import numpy as np
 from xgboost import XGBRanker
 
-from search_core import field_value
+from search_core import field_value, require_query_domain
 
 
 def load_json(path):
@@ -16,6 +16,7 @@ def load_json(path):
 
 def save_json(path, data):
     path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
 
     with path.open("w", encoding="utf-8") as file:
         json.dump(data, file, ensure_ascii=False, indent=2)
@@ -37,30 +38,47 @@ def load_answers_by_query(path):
     return answers_by_query
 
 
-def build_training_dataset(
+def get_query_object(item):
+    if isinstance(item.get("query"), dict):
+        return item["query"]
+
+    return item
+
+
+def build_training_dataset_for_domain(
     search_engine,
     queries,
     answers_by_query,
-    bm25_limit=100,
-    embedding_limit=100,
+    domain,
+    first_stage_limit=1000,
+    final_candidate_limit=None,
 ):
     X = []
     y = []
     qid = []
     debug_rows = []
+    used_query_number = 0
 
-    for query_number, item in enumerate(queries):
+    for item in queries:
         query_id = item["query_id"]
-        query = item["query"]
+        query = get_query_object(item)
+        explicit_domain = require_query_domain(query)
+
+        if explicit_domain != domain:
+            continue
 
         relevant_ids = answers_by_query.get(query_id, set())
 
-        candidate_indexes, all_scores = search_engine.get_candidate_indexes(
+        candidate_indexes, all_scores = search_engine.get_candidate_indexes_for_domain(
             prepared_query=query,
+            domain=domain,
             relevant_ids=relevant_ids,
-            bm25_limit=bm25_limit,
-            embedding_limit=embedding_limit,
+            first_stage_limit=first_stage_limit,
+            final_candidate_limit=final_candidate_limit,
         )
+
+        if not candidate_indexes:
+            continue
 
         for product_index in candidate_indexes:
             product = search_engine.products[product_index]
@@ -76,13 +94,16 @@ def build_training_dataset(
 
             X.append(feature_vector)
             y.append(label)
-            qid.append(query_number)
+            qid.append(used_query_number)
 
             debug_rows.append({
                 "query_id": query_id,
                 "product_id": product_id,
+                "domain": domain,
                 "label": label,
             })
+
+        used_query_number += 1
 
     return (
         np.array(X, dtype=np.float32),
@@ -120,7 +141,6 @@ def train_xgb_ranker(X, y, qid):
 
 def get_boost_feature_weights(model, feature_names):
     raw_importances = np.array(model.feature_importances_, dtype=np.float32)
-
     total = float(np.sum(raw_importances))
 
     if total <= 0:
@@ -145,8 +165,17 @@ def get_boost_feature_weights(model, feature_names):
     return result
 
 
-def save_ranker(model, feature_names, output_dir):
-    output_dir = Path(output_dir)
+def weights_list_to_dict(weights_list):
+    result = {}
+
+    for item in weights_list:
+        result[item["feature"]] = float(item["normalized_weight"])
+
+    return result
+
+
+def save_domain_ranker(model, feature_names, output_dir, domain):
+    output_dir = Path(output_dir) / domain
     output_dir.mkdir(parents=True, exist_ok=True)
 
     model.save_model(str(output_dir / "xgb_ranker.json"))
@@ -158,6 +187,8 @@ def save_ranker(model, feature_names, output_dir):
     )
 
     save_json(output_dir / "boost_feature_weights.json", boost_weights)
+
+    return weights_list_to_dict(boost_weights)
 
 
 def print_boost_feature_weights(model, feature_names):
@@ -179,23 +210,141 @@ def print_boost_feature_weights(model, feature_names):
         )
 
 
-class XGBoostProductSearch:
-    def __init__(self, search_engine, ranker_model):
-        self.search_engine = search_engine
-        self.ranker_model = ranker_model
+def train_rankers_by_domain(
+    search_engine,
+    queries,
+    answers_by_query,
+    output_dir="trained_boost_ranker",
+    first_stage_limit=1000,
+    final_candidate_limit=None,
+):
+    weights_by_domain = {}
 
-    def search(self, prepared_query, top_k=100, bm25_limit=100, embedding_limit=100):
-        candidate_indexes, all_scores = self.search_engine.get_candidate_indexes(
+    for domain in search_engine.domain_configs:
+        X, y, qid, debug_rows = build_training_dataset_for_domain(
+            search_engine=search_engine,
+            queries=queries,
+            answers_by_query=answers_by_query,
+            domain=domain,
+            first_stage_limit=first_stage_limit,
+            final_candidate_limit=final_candidate_limit,
+        )
+
+        if len(X) == 0:
+            print()
+            print("Domain:", domain)
+            print("No training rows, skip")
+            continue
+
+        feature_names = search_engine.get_feature_names(domain)
+
+        print()
+        print("Domain:", domain)
+        print("Train rows:", len(X))
+        print("Feature count:", X.shape[1])
+        print("Queries:", len(set(qid)))
+        print("Positive labels:", int(y.sum()))
+        print("Feature names:", feature_names)
+
+        model = train_xgb_ranker(
+            X=X,
+            y=y,
+            qid=qid,
+        )
+
+        weights_by_domain[domain] = save_domain_ranker(
+            model=model,
+            feature_names=feature_names,
+            output_dir=output_dir,
+            domain=domain,
+        )
+
+        print_boost_feature_weights(
+            model=model,
+            feature_names=feature_names,
+        )
+
+    return weights_by_domain
+
+
+def load_weights_by_domain(model_dir="trained_boost_ranker"):
+    model_dir = Path(model_dir)
+    result = {}
+
+    if not model_dir.exists():
+        raise FileNotFoundError(
+            f"Папка с весами не найдена: {model_dir}. "
+            "Сначала запусти test_boost_ranker.py."
+        )
+
+    for domain_dir in sorted(model_dir.iterdir()):
+        if not domain_dir.is_dir():
+            continue
+
+        weights_path = domain_dir / "boost_feature_weights.json"
+
+        if not weights_path.exists():
+            continue
+
+        result[domain_dir.name] = weights_list_to_dict(load_json(weights_path))
+
+    if not result:
+        raise FileNotFoundError(
+            f"В папке {model_dir} не найдено boost_feature_weights.json."
+        )
+
+    return result
+
+
+class WeightedBoostProductSearch:
+    """
+    Финальный ранжировщик.
+
+    Он не руками задаёт веса, а берёт веса из XGBoost:
+    trained_boost_ranker/<domain>/boost_feature_weights.json
+
+    Итоговый score:
+    sum(feature_value * learned_weight)
+    """
+
+    def __init__(self, search_engine, weights_by_domain):
+        self.search_engine = search_engine
+        self.weights_by_domain = weights_by_domain
+
+    def _weighted_score(self, feature_names, feature_vector, domain):
+        weights = self.weights_by_domain.get(domain, {})
+        score = 0.0
+
+        for name, value in zip(feature_names, feature_vector):
+            score += float(value) * float(weights.get(name, 0.0))
+
+        return score
+
+    def search(
+        self,
+        prepared_query,
+        top_k=20,
+        first_stage_limit=1000,
+        final_candidate_limit=None,
+    ):
+        domain = require_query_domain(prepared_query)
+
+        if domain not in self.weights_by_domain:
+            return []
+
+        candidate_indexes, all_scores = self.search_engine.get_candidate_indexes_for_domain(
             prepared_query=prepared_query,
+            domain=domain,
             relevant_ids=[],
-            bm25_limit=bm25_limit,
-            embedding_limit=embedding_limit,
+            first_stage_limit=first_stage_limit,
+            final_candidate_limit=final_candidate_limit,
         )
 
         if not candidate_indexes:
             return []
 
-        X = []
+        feature_names = self.search_engine.get_feature_names(domain)
+        results = []
 
         for product_index in candidate_indexes:
             feature_vector = self.search_engine.build_feature_vector(
@@ -203,22 +352,23 @@ class XGBoostProductSearch:
                 product_index=product_index,
                 all_scores=all_scores,
             )
-            X.append(feature_vector)
 
-        X = np.array(X, dtype=np.float32)
-        predicted_scores = self.ranker_model.predict(X)
+            score = self._weighted_score(
+                feature_names=feature_names,
+                feature_vector=feature_vector,
+                domain=domain,
+            )
 
-        results = []
-
-        for product_index, predicted_score in zip(candidate_indexes, predicted_scores):
             product = self.search_engine.products[product_index]
 
             results.append({
                 "product_id": product["id"],
+                "article": product.get("article", ""),
+                "domain": domain,
                 "description": product.get("description", ""),
                 "characteristics": product.get("characteristics", {}),
                 "price": product.get("price"),
-                "ranker_score": round(float(predicted_score), 6),
+                "ranker_score": round(float(score), 6),
             })
 
         results.sort(
@@ -302,7 +452,7 @@ def evaluate_search(search_system, queries, answers_by_query, k=10):
 
     for item in queries:
         query_id = item["query_id"]
-        query = item["query"]
+        query = get_query_object(item)
         relevant_ids = answers_by_query.get(query_id, set())
 
         results = search_system.search(
