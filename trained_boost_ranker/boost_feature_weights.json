@@ -1,0 +1,112 @@
+[
+  {
+    "feature": "product_type_embedding_score",
+    "importance": 0.6807022094726562,
+    "normalized_weight": 0.6807022094726562
+  },
+  {
+    "feature": "field_embedding_score",
+    "importance": 0.15133006870746613,
+    "normalized_weight": 0.15133006870746613
+  },
+  {
+    "feature": "bm25_score",
+    "importance": 0.09666593372821808,
+    "normalized_weight": 0.09666593372821808
+  },
+  {
+    "feature": "description_embedding_score",
+    "importance": 0.018344586715102196,
+    "normalized_weight": 0.018344586715102196
+  },
+  {
+    "feature": "features_embedding_score",
+    "importance": 0.009887749329209328,
+    "normalized_weight": 0.009887749329209328
+  },
+  {
+    "feature": "material_embedding_score",
+    "importance": 0.009754177182912827,
+    "normalized_weight": 0.009754177182912827
+  },
+  {
+    "feature": "style_or_purpose_embedding_score",
+    "importance": 0.008471169508993626,
+    "normalized_weight": 0.008471169508993626
+  },
+  {
+    "feature": "product_has_features",
+    "importance": 0.007951123639941216,
+    "normalized_weight": 0.007951123639941216
+  },
+  {
+    "feature": "product_has_dimensions",
+    "importance": 0.00550448102876544,
+    "normalized_weight": 0.00550448102876544
+  },
+  {
+    "feature": "color_embedding_score",
+    "importance": 0.005396214313805103,
+    "normalized_weight": 0.005396214313805103
+  },
+  {
+    "feature": "dimensions_embedding_score",
+    "importance": 0.003224435495212674,
+    "normalized_weight": 0.003224435495212674
+  },
+  {
+    "feature": "price_score",
+    "importance": 0.0027678736951202154,
+    "normalized_weight": 0.0027678736951202154
+  },
+  {
+    "feature": "exact_id_score",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "has_query_id",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "has_price_filter",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "model_embedding_score",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "product_has_description",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "product_has_product_type",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "product_has_model",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "product_has_color",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "product_has_material",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "product_has_style_or_purpose",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  }
+]

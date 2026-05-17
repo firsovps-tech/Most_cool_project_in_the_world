@@ -1,0 +1,4202 @@
+[
+  {
+    "id": "1001",
+    "description": "черный обувница прихожая мдф и стекло с сиденьем лофт 90x45x90",
+    "characteristics": {
+      "product_type": "обувница",
+      "model": "прихожая",
+      "dimensions": "90x45x90",
+      "color": "черный",
+      "material": "мдф и стекло",
+      "features": "с сиденьем",
+      "style_or_purpose": "лофт"
+    },
+    "price": 10572
+  },
+  {
+    "id": "1002",
+    "description": "синий книжный шкаф библио мдф и стекло стеклянные дверцы минимализм 180x60x220",
+    "characteristics": {
+      "product_type": "книжный шкаф",
+      "model": "библио",
+      "dimensions": "180x60x220",
+      "color": "синий",
+      "material": "мдф и стекло",
+      "features": "стеклянные дверцы",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 16082
+  },
+  {
+    "id": "1003",
+    "description": "темно серый диван угловой лофт велюр минимализм 180x85",
+    "characteristics": {
+      "product_type": "диван угловой",
+      "model": "лофт",
+      "dimensions": "180x85",
+      "color": "темно серый",
+      "material": "велюр",
+      "features": "-",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 51062
+  },
+  {
+    "id": "1004",
+    "description": "орех полка настенная модерн велюр минимализм 90x20",
+    "characteristics": {
+      "product_type": "полка настенная",
+      "model": "модерн",
+      "dimensions": "90x20",
+      "color": "орех",
+      "material": "велюр",
+      "features": "-",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 58046
+  },
+  {
+    "id": "1005",
+    "description": "голубой стол детский школьник натуральная кожа ящики классический 140x70",
+    "characteristics": {
+      "product_type": "стол детский",
+      "model": "школьник",
+      "dimensions": "140x70",
+      "color": "голубой",
+      "material": "натуральная кожа",
+      "features": "ящики",
+      "style_or_purpose": "классический"
+    },
+    "price": 27298
+  },
+  {
+    "id": "1006",
+    "description": "темно серый стол обеденный сканди натуральная кожа овальный кухня 90x55",
+    "characteristics": {
+      "product_type": "стол обеденный",
+      "model": "сканди",
+      "dimensions": "90x55",
+      "color": "темно серый",
+      "material": "натуральная кожа",
+      "features": "овальный",
+      "style_or_purpose": "кухня"
+    },
+    "price": 29898
+  },
+  {
+    "id": "1007",
+    "description": "золотой кровать односпальная школьник ткань детская 180x200",
+    "characteristics": {
+      "product_type": "кровать односпальная",
+      "model": "школьник",
+      "dimensions": "180x200",
+      "color": "золотой",
+      "material": "ткань",
+      "features": "-",
+      "style_or_purpose": "детская"
+    },
+    "price": 50142
+  },
+  {
+    "id": "1008",
+    "description": "белый кровать односпальная сон шпон ореха классический",
+    "characteristics": {
+      "product_type": "кровать односпальная",
+      "model": "сон",
+      "dimensions": "-",
+      "color": "белый",
+      "material": "шпон ореха",
+      "features": "-",
+      "style_or_purpose": "классический"
+    },
+    "price": 73028
+  },
+  {
+    "id": "1009",
+    "description": "зеленый стол детский юниор велюр регулируемая высота детская 100x100",
+    "characteristics": {
+      "product_type": "стол детский",
+      "model": "юниор",
+      "dimensions": "100x100",
+      "color": "зеленый",
+      "material": "велюр",
+      "features": "регулируемая высота",
+      "style_or_purpose": "детская"
+    },
+    "price": 19935
+  },
+  {
+    "id": "1010",
+    "description": "белый кухонный гарнитур сканди велюр глянцевый фасад современный 220x60",
+    "characteristics": {
+      "product_type": "кухонный гарнитур",
+      "model": "сканди",
+      "dimensions": "220x60",
+      "color": "белый",
+      "material": "велюр",
+      "features": "глянцевый фасад",
+      "style_or_purpose": "современный"
+    },
+    "price": 109429
+  },
+  {
+    "id": "1011",
+    "description": "серый обувница эко ткань с сиденьем лофт",
+    "characteristics": {
+      "product_type": "обувница",
+      "model": "эко",
+      "dimensions": "-",
+      "color": "серый",
+      "material": "ткань",
+      "features": "с сиденьем",
+      "style_or_purpose": "лофт"
+    },
+    "price": 14748
+  },
+  {
+    "id": "1012",
+    "description": "зеленый полка настенная декор металл и дерево для декора минимализм 100x35x180",
+    "characteristics": {
+      "product_type": "полка настенная",
+      "model": "декор",
+      "dimensions": "100x35x180",
+      "color": "зеленый",
+      "material": "металл и дерево",
+      "features": "для декора",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 15708
+  },
+  {
+    "id": "1013",
+    "description": "бежевый кресло офисное комфорт металл и дерево подлокотники классический 70x90x100",
+    "characteristics": {
+      "product_type": "кресло офисное",
+      "model": "комфорт",
+      "dimensions": "70x90x100",
+      "color": "бежевый",
+      "material": "металл и дерево",
+      "features": "подлокотники",
+      "style_or_purpose": "классический"
+    },
+    "price": 36618
+  },
+  {
+    "id": "1014",
+    "description": "темно серый кухонный гарнитур глянец лдсп доводчики современный 220x60",
+    "characteristics": {
+      "product_type": "кухонный гарнитур",
+      "model": "глянец",
+      "dimensions": "220x60",
+      "color": "темно серый",
+      "material": "лдсп",
+      "features": "доводчики",
+      "style_or_purpose": "современный"
+    },
+    "price": 58675
+  },
+  {
+    "id": "1015",
+    "description": "розовый шкаф распашной эко ткань трехдверный классический 180x60x220",
+    "characteristics": {
+      "product_type": "шкаф распашной",
+      "model": "эко",
+      "dimensions": "180x60x220",
+      "color": "розовый",
+      "material": "ткань",
+      "features": "трехдверный",
+      "style_or_purpose": "классический"
+    },
+    "price": 39928
+  },
+  {
+    "id": "1016",
+    "description": "серый кресло детское мягкий рогожка регулировка высоты лофт",
+    "characteristics": {
+      "product_type": "кресло детское",
+      "model": "мягкий",
+      "dimensions": "-",
+      "color": "серый",
+      "material": "рогожка",
+      "features": "регулировка высоты",
+      "style_or_purpose": "лофт"
+    },
+    "price": 26661
+  },
+  {
+    "id": "1017",
+    "description": "орех стол обеденный прайм металл и стекло скандинавский 100x60",
+    "characteristics": {
+      "product_type": "стол обеденный",
+      "model": "прайм",
+      "dimensions": "100x60",
+      "color": "орех",
+      "material": "металл и стекло",
+      "features": "-",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 14065
+  },
+  {
+    "id": "1018",
+    "description": "белый кресло качалка классик натуральная кожа качалка классический 60x60x120",
+    "characteristics": {
+      "product_type": "кресло качалка",
+      "model": "классик",
+      "dimensions": "60x60x120",
+      "color": "белый",
+      "material": "натуральная кожа",
+      "features": "качалка",
+      "style_or_purpose": "классический"
+    },
+    "price": 29560
+  },
+  {
+    "id": "1019",
+    "description": "зеленый шкаф купе гарда мдф четырехдверный современный 240x65x230",
+    "characteristics": {
+      "product_type": "шкаф купе",
+      "model": "гарда",
+      "dimensions": "240x65x230",
+      "color": "зеленый",
+      "material": "мдф",
+      "features": "четырехдверный",
+      "style_or_purpose": "современный"
+    },
+    "price": 44674
+  },
+  {
+    "id": "1020",
+    "description": "венге кресло качалка уют лдсп качалка классический",
+    "characteristics": {
+      "product_type": "кресло качалка",
+      "model": "уют",
+      "dimensions": "-",
+      "color": "венге",
+      "material": "лдсп",
+      "features": "качалка",
+      "style_or_purpose": "классический"
+    },
+    "price": 33604
+  },
+  {
+    "id": "1021",
+    "description": "белый стол обеденный орех рогожка лофт 140x70",
+    "characteristics": {
+      "product_type": "стол обеденный",
+      "model": "орех",
+      "dimensions": "140x70",
+      "color": "белый",
+      "material": "рогожка",
+      "features": "-",
+      "style_or_purpose": "лофт"
+    },
+    "price": 5212
+  },
+  {
+    "id": "1022",
+    "description": "венге книжный шкаф прага натуральная кожа полки минимализм 60x45x200",
+    "characteristics": {
+      "product_type": "книжный шкаф",
+      "model": "прага",
+      "dimensions": "60x45x200",
+      "color": "венге",
+      "material": "натуральная кожа",
+      "features": "полки",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 54979
+  },
+  {
+    "id": "1023",
+    "description": "зеленый стол письменный компакт велюр полки скандинавский",
+    "characteristics": {
+      "product_type": "стол письменный",
+      "model": "компакт",
+      "dimensions": "-",
+      "color": "зеленый",
+      "material": "велюр",
+      "features": "полки",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 15587
+  },
+  {
+    "id": "1024",
+    "description": "черный комод прага металл и стекло шесть ящиков современный 45x40x50",
+    "characteristics": {
+      "product_type": "комод",
+      "model": "прага",
+      "dimensions": "45x40x50",
+      "color": "черный",
+      "material": "металл и стекло",
+      "features": "шесть ящиков",
+      "style_or_purpose": "современный"
+    },
+    "price": 9665
+  },
+  {
+    "id": "1025",
+    "description": "темно серый стол журнальный квадро лдсп полка минимализм 90x55",
+    "characteristics": {
+      "product_type": "стол журнальный",
+      "model": "квадро",
+      "dimensions": "90x55",
+      "color": "темно серый",
+      "material": "лдсп",
+      "features": "полка",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 10613
+  },
+  {
+    "id": "1026",
+    "description": "золотой книжный шкаф кабинет мдф полки лофт",
+    "characteristics": {
+      "product_type": "книжный шкаф",
+      "model": "кабинет",
+      "dimensions": "-",
+      "color": "золотой",
+      "material": "мдф",
+      "features": "полки",
+      "style_or_purpose": "лофт"
+    },
+    "price": 45148
+  },
+  {
+    "id": "1027",
+    "description": "бежевый комод соната шпон ореха современный 90x45x90",
+    "characteristics": {
+      "product_type": "комод",
+      "model": "соната",
+      "dimensions": "90x45x90",
+      "color": "бежевый",
+      "material": "шпон ореха",
+      "features": "-",
+      "style_or_purpose": "современный"
+    },
+    "price": 23671
+  },
+  {
+    "id": "1028",
+    "description": "розовый кухонный гарнитур матте рогожка классический 220x60",
+    "characteristics": {
+      "product_type": "кухонный гарнитур",
+      "model": "матте",
+      "dimensions": "220x60",
+      "color": "розовый",
+      "material": "рогожка",
+      "features": "-",
+      "style_or_purpose": "классический"
+    },
+    "price": 107422
+  },
+  {
+    "id": "1029",
+    "description": "дуб сонома кресло детское юниор мдф регулировка высоты лофт 45x50x85",
+    "characteristics": {
+      "product_type": "кресло детское",
+      "model": "юниор",
+      "dimensions": "45x50x85",
+      "color": "дуб сонома",
+      "material": "мдф",
+      "features": "регулировка высоты",
+      "style_or_purpose": "лофт"
+    },
+    "price": 20078
+  },
+  {
+    "id": "1030",
+    "description": "венге диван угловой марсель велюр лофт 180x85",
+    "characteristics": {
+      "product_type": "диван угловой",
+      "model": "марсель",
+      "dimensions": "180x85",
+      "color": "венге",
+      "material": "велюр",
+      "features": "-",
+      "style_or_purpose": "лофт"
+    },
+    "price": 34305
+  },
+  {
+    "id": "1031",
+    "description": "темно серый полка настенная декор мдф настенная скандинавский 80x30x180",
+    "characteristics": {
+      "product_type": "полка настенная",
+      "model": "декор",
+      "dimensions": "80x30x180",
+      "color": "темно серый",
+      "material": "мдф",
+      "features": "настенная",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 38695
+  },
+  {
+    "id": "1032",
+    "description": "синий шкаф детский радуга массив дерева ящики минимализм 100x55x210",
+    "characteristics": {
+      "product_type": "шкаф детский",
+      "model": "радуга",
+      "dimensions": "100x55x210",
+      "color": "синий",
+      "material": "массив дерева",
+      "features": "ящики",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 61405
+  },
+  {
+    "id": "1033",
+    "description": "зеленый кресло детское юниор массив дерева регулировка высоты современный 80x85x95",
+    "characteristics": {
+      "product_type": "кресло детское",
+      "model": "юниор",
+      "dimensions": "80x85x95",
+      "color": "зеленый",
+      "material": "массив дерева",
+      "features": "регулировка высоты",
+      "style_or_purpose": "современный"
+    },
+    "price": 15239
+  },
+  {
+    "id": "1034",
+    "description": "синий кровать односпальная юниор металл современный 180x200",
+    "characteristics": {
+      "product_type": "кровать односпальная",
+      "model": "юниор",
+      "dimensions": "180x200",
+      "color": "синий",
+      "material": "металл",
+      "features": "-",
+      "style_or_purpose": "современный"
+    },
+    "price": 45606
+  },
+  {
+    "id": "1035",
+    "description": "синий стол детский школьник металл и дерево регулируемая высота детская 140x70",
+    "characteristics": {
+      "product_type": "стол детский",
+      "model": "школьник",
+      "dimensions": "140x70",
+      "color": "синий",
+      "material": "металл и дерево",
+      "features": "регулируемая высота",
+      "style_or_purpose": "детская"
+    },
+    "price": 27236
+  },
+  {
+    "id": "1036",
+    "description": "темно серый кухонный остров остров велюр ящики минимализм 240x60",
+    "characteristics": {
+      "product_type": "кухонный остров",
+      "model": "остров",
+      "dimensions": "240x60",
+      "color": "темно серый",
+      "material": "велюр",
+      "features": "ящики",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 14186
+  },
+  {
+    "id": "1037",
+    "description": "бежевый стул барный лофт бар массив дерева регулировка высоты кухня 80x85x95",
+    "characteristics": {
+      "product_type": "стул барный",
+      "model": "лофт бар",
+      "dimensions": "80x85x95",
+      "color": "бежевый",
+      "material": "массив дерева",
+      "features": "регулировка высоты",
+      "style_or_purpose": "кухня"
+    },
+    "price": 12016
+  },
+  {
+    "id": "1038",
+    "description": "синий кровать односпальная юниор шпон ореха ящики для хранения детская 140x200",
+    "characteristics": {
+      "product_type": "кровать односпальная",
+      "model": "юниор",
+      "dimensions": "140x200",
+      "color": "синий",
+      "material": "шпон ореха",
+      "features": "ящики для хранения",
+      "style_or_purpose": "детская"
+    },
+    "price": 25899
+  },
+  {
+    "id": "1039",
+    "description": "дуб сонома стул барный металл велюр кухня 60x60x120",
+    "characteristics": {
+      "product_type": "стул барный",
+      "model": "металл",
+      "dimensions": "60x60x120",
+      "color": "дуб сонома",
+      "material": "велюр",
+      "features": "-",
+      "style_or_purpose": "кухня"
+    },
+    "price": 9209
+  },
+  {
+    "id": "1040",
+    "description": "бежевый диван угловой комфорт натуральная кожа модульный скандинавский 260x170",
+    "characteristics": {
+      "product_type": "диван угловой",
+      "model": "комфорт",
+      "dimensions": "260x170",
+      "color": "бежевый",
+      "material": "натуральная кожа",
+      "features": "модульный",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 88788
+  },
+  {
+    "id": "1041",
+    "description": "бежевый кровать двухъярусная домик велюр лестница минимализм",
+    "characteristics": {
+      "product_type": "кровать двухъярусная",
+      "model": "домик",
+      "dimensions": "-",
+      "color": "бежевый",
+      "material": "велюр",
+      "features": "лестница",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 18994
+  },
+  {
+    "id": "1042",
+    "description": "черный книжный шкаф прага лдсп минимализм 240x65x230",
+    "characteristics": {
+      "product_type": "книжный шкаф",
+      "model": "прага",
+      "dimensions": "240x65x230",
+      "color": "черный",
+      "material": "лдсп",
+      "features": "-",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 24317
+  },
+  {
+    "id": "1043",
+    "description": "белый диван прямой норд экокожа еврокнижка минимализм 180x85",
+    "characteristics": {
+      "product_type": "диван прямой",
+      "model": "норд",
+      "dimensions": "180x85",
+      "color": "белый",
+      "material": "экокожа",
+      "features": "еврокнижка",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 55828
+  },
+  {
+    "id": "1044",
+    "description": "зеленый стул обеденный норд велюр мягкое сиденье минимализм 45x50x85",
+    "characteristics": {
+      "product_type": "стул обеденный",
+      "model": "норд",
+      "dimensions": "45x50x85",
+      "color": "зеленый",
+      "material": "велюр",
+      "features": "мягкое сиденье",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 9868
+  },
+  {
+    "id": "1045",
+    "description": "зеленый стеллаж урбан шпон ореха угловой скандинавский 100x35x180",
+    "characteristics": {
+      "product_type": "стеллаж",
+      "model": "урбан",
+      "dimensions": "100x35x180",
+      "color": "зеленый",
+      "material": "шпон ореха",
+      "features": "угловой",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 48891
+  },
+  {
+    "id": "1046",
+    "description": "темно серый полка настенная куб рогожка лофт 90x20",
+    "characteristics": {
+      "product_type": "полка настенная",
+      "model": "куб",
+      "dimensions": "90x20",
+      "color": "темно серый",
+      "material": "рогожка",
+      "features": "-",
+      "style_or_purpose": "лофт"
+    },
+    "price": 34964
+  },
+  {
+    "id": "1047",
+    "description": "черный стол компьютерный геймер массив дерева минимализм 90x55",
+    "characteristics": {
+      "product_type": "стол компьютерный",
+      "model": "геймер",
+      "dimensions": "90x55",
+      "color": "черный",
+      "material": "массив дерева",
+      "features": "-",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 9801
+  },
+  {
+    "id": "1048",
+    "description": "венге комод соната рогожка пять ящиков скандинавский 45x40x50",
+    "characteristics": {
+      "product_type": "комод",
+      "model": "соната",
+      "dimensions": "45x40x50",
+      "color": "венге",
+      "material": "рогожка",
+      "features": "пять ящиков",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 14004
+  },
+  {
+    "id": "1049",
+    "description": "серый стол журнальный квадро массив дерева колесики минимализм",
+    "characteristics": {
+      "product_type": "стол журнальный",
+      "model": "квадро",
+      "dimensions": "-",
+      "color": "серый",
+      "material": "массив дерева",
+      "features": "колесики",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 39664
+  },
+  {
+    "id": "1050",
+    "description": "бежевый диван угловой марсель металл и дерево механизм дельфин лофт 240x160",
+    "characteristics": {
+      "product_type": "диван угловой",
+      "model": "марсель",
+      "dimensions": "240x160",
+      "color": "бежевый",
+      "material": "металл и дерево",
+      "features": "механизм дельфин",
+      "style_or_purpose": "лофт"
+    },
+    "price": 40129
+  },
+  {
+    "id": "1051",
+    "description": "розовый кресло детское мини шпон ореха регулировка высоты скандинавский 70x90x100",
+    "characteristics": {
+      "product_type": "кресло детское",
+      "model": "мини",
+      "dimensions": "70x90x100",
+      "color": "розовый",
+      "material": "шпон ореха",
+      "features": "регулировка высоты",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 28819
+  },
+  {
+    "id": "1052",
+    "description": "темно серый шкаф распашной урбан металл и дерево узкий минимализм 180x60x220",
+    "characteristics": {
+      "product_type": "шкаф распашной",
+      "model": "урбан",
+      "dimensions": "180x60x220",
+      "color": "темно серый",
+      "material": "металл и дерево",
+      "features": "узкий",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 30457
+  },
+  {
+    "id": "1053",
+    "description": "белый кресло детское мини металл и дерево скандинавский 45x50x85",
+    "characteristics": {
+      "product_type": "кресло детское",
+      "model": "мини",
+      "dimensions": "45x50x85",
+      "color": "белый",
+      "material": "металл и дерево",
+      "features": "-",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 9116
+  },
+  {
+    "id": "1054",
+    "description": "синий стол компьютерный кибер рогожка кабель-канал классический 140x70",
+    "characteristics": {
+      "product_type": "стол компьютерный",
+      "model": "кибер",
+      "dimensions": "140x70",
+      "color": "синий",
+      "material": "рогожка",
+      "features": "кабель-канал",
+      "style_or_purpose": "классический"
+    },
+    "price": 41154
+  },
+  {
+    "id": "1055",
+    "description": "венге полка настенная эко лдсп настенная декор 100x35x180",
+    "characteristics": {
+      "product_type": "полка настенная",
+      "model": "эко",
+      "dimensions": "100x35x180",
+      "color": "венге",
+      "material": "лдсп",
+      "features": "настенная",
+      "style_or_purpose": "декор"
+    },
+    "price": 40755
+  },
+  {
+    "id": "1056",
+    "description": "зеленый диван прямой лайн шпон ореха раскладной книжка современный 210x95",
+    "characteristics": {
+      "product_type": "диван прямой",
+      "model": "лайн",
+      "dimensions": "210x95",
+      "color": "зеленый",
+      "material": "шпон ореха",
+      "features": "раскладной книжка",
+      "style_or_purpose": "современный"
+    },
+    "price": 30482
+  },
+  {
+    "id": "1057",
+    "description": "голубой стол письменный профи лдсп регулируемая высота лофт 100x100",
+    "characteristics": {
+      "product_type": "стол письменный",
+      "model": "профи",
+      "dimensions": "100x100",
+      "color": "голубой",
+      "material": "лдсп",
+      "features": "регулируемая высота",
+      "style_or_purpose": "лофт"
+    },
+    "price": 21353
+  },
+  {
+    "id": "1058",
+    "description": "коричневый стеллаж книга натуральная кожа металлический каркас современный 100x35x180",
+    "characteristics": {
+      "product_type": "стеллаж",
+      "model": "книга",
+      "dimensions": "100x35x180",
+      "color": "коричневый",
+      "material": "натуральная кожа",
+      "features": "металлический каркас",
+      "style_or_purpose": "современный"
+    },
+    "price": 20514
+  },
+  {
+    "id": "1059",
+    "description": "голубой стол детский мини натуральная кожа ящики современный 90x55",
+    "characteristics": {
+      "product_type": "стол детский",
+      "model": "мини",
+      "dimensions": "90x55",
+      "color": "голубой",
+      "material": "натуральная кожа",
+      "features": "ящики",
+      "style_or_purpose": "современный"
+    },
+    "price": 16754
+  },
+  {
+    "id": "1060",
+    "description": "голубой книжный шкаф прага металл полки скандинавский 100x55x210",
+    "characteristics": {
+      "product_type": "книжный шкаф",
+      "model": "прага",
+      "dimensions": "100x55x210",
+      "color": "голубой",
+      "material": "металл",
+      "features": "полки",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 65601
+  },
+  {
+    "id": "1061",
+    "description": "орех полка настенная декор лдсп лофт 100x35x180",
+    "characteristics": {
+      "product_type": "полка настенная",
+      "model": "декор",
+      "dimensions": "100x35x180",
+      "color": "орех",
+      "material": "лдсп",
+      "features": "-",
+      "style_or_purpose": "лофт"
+    },
+    "price": 58515
+  },
+  {
+    "id": "1062",
+    "description": "бежевый кресло офисное директор натуральная кожа подлокотники лофт 45x50x85",
+    "characteristics": {
+      "product_type": "кресло офисное",
+      "model": "директор",
+      "dimensions": "45x50x85",
+      "color": "бежевый",
+      "material": "натуральная кожа",
+      "features": "подлокотники",
+      "style_or_purpose": "лофт"
+    },
+    "price": 30627
+  },
+  {
+    "id": "1063",
+    "description": "коричневый шкаф распашной лайн рогожка двухдверный скандинавский 150x60x220",
+    "characteristics": {
+      "product_type": "шкаф распашной",
+      "model": "лайн",
+      "dimensions": "150x60x220",
+      "color": "коричневый",
+      "material": "рогожка",
+      "features": "двухдверный",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 56040
+  },
+  {
+    "id": "1064",
+    "description": "синий кресло качалка классик шпон ореха классический 45x50x85",
+    "characteristics": {
+      "product_type": "кресло качалка",
+      "model": "классик",
+      "dimensions": "45x50x85",
+      "color": "синий",
+      "material": "шпон ореха",
+      "features": "-",
+      "style_or_purpose": "классический"
+    },
+    "price": 37738
+  },
+  {
+    "id": "1065",
+    "description": "зеленый стол обеденный сканди рогожка раздвижной кухня 160x90",
+    "characteristics": {
+      "product_type": "стол обеденный",
+      "model": "сканди",
+      "dimensions": "160x90",
+      "color": "зеленый",
+      "material": "рогожка",
+      "features": "раздвижной",
+      "style_or_purpose": "кухня"
+    },
+    "price": 33479
+  },
+  {
+    "id": "1066",
+    "description": "орех стол журнальный квадро металл и стекло современный 160x90",
+    "characteristics": {
+      "product_type": "стол журнальный",
+      "model": "квадро",
+      "dimensions": "160x90",
+      "color": "орех",
+      "material": "металл и стекло",
+      "features": "-",
+      "style_or_purpose": "современный"
+    },
+    "price": 17457
+  },
+  {
+    "id": "1067",
+    "description": "розовый стол обеденный турин металл раздвижной минимализм",
+    "characteristics": {
+      "product_type": "стол обеденный",
+      "model": "турин",
+      "dimensions": "-",
+      "color": "розовый",
+      "material": "металл",
+      "features": "раздвижной",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 40287
+  },
+  {
+    "id": "1068",
+    "description": "коричневый стеллаж индастриал металл пять полок классический 90x20",
+    "characteristics": {
+      "product_type": "стеллаж",
+      "model": "индастриал",
+      "dimensions": "90x20",
+      "color": "коричневый",
+      "material": "металл",
+      "features": "пять полок",
+      "style_or_purpose": "классический"
+    },
+    "price": 45839
+  },
+  {
+    "id": "1069",
+    "description": "розовый стол компьютерный геймер рогожка скандинавский 100x100",
+    "characteristics": {
+      "product_type": "стол компьютерный",
+      "model": "геймер",
+      "dimensions": "100x100",
+      "color": "розовый",
+      "material": "рогожка",
+      "features": "-",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 31764
+  },
+  {
+    "id": "1070",
+    "description": "розовый стол компьютерный компакт рогожка лофт 100x60",
+    "characteristics": {
+      "product_type": "стол компьютерный",
+      "model": "компакт",
+      "dimensions": "100x60",
+      "color": "розовый",
+      "material": "рогожка",
+      "features": "-",
+      "style_or_purpose": "лофт"
+    },
+    "price": 32554
+  },
+  {
+    "id": "1071",
+    "description": "синий стеллаж эко мдф и стекло открытый минимализм 90x20",
+    "characteristics": {
+      "product_type": "стеллаж",
+      "model": "эко",
+      "dimensions": "90x20",
+      "color": "синий",
+      "material": "мдф и стекло",
+      "features": "открытый",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 31612
+  },
+  {
+    "id": "1072",
+    "description": "бежевый комод лайн рогожка пять ящиков современный 70x25x120",
+    "characteristics": {
+      "product_type": "комод",
+      "model": "лайн",
+      "dimensions": "70x25x120",
+      "color": "бежевый",
+      "material": "рогожка",
+      "features": "пять ящиков",
+      "style_or_purpose": "современный"
+    },
+    "price": 25879
+  },
+  {
+    "id": "1073",
+    "description": "дуб сонома обувница эко массив дерева классический 90x45x90",
+    "characteristics": {
+      "product_type": "обувница",
+      "model": "эко",
+      "dimensions": "90x45x90",
+      "color": "дуб сонома",
+      "material": "массив дерева",
+      "features": "-",
+      "style_or_purpose": "классический"
+    },
+    "price": 22750
+  },
+  {
+    "id": "1074",
+    "description": "синий кресло мягкое уют мдф с пуфом минимализм",
+    "characteristics": {
+      "product_type": "кресло мягкое",
+      "model": "уют",
+      "dimensions": "-",
+      "color": "синий",
+      "material": "мдф",
+      "features": "с пуфом",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 19983
+  },
+  {
+    "id": "1075",
+    "description": "синий кровать двуспальная луна рогожка мягкое изголовье лофт 140x200",
+    "characteristics": {
+      "product_type": "кровать двуспальная",
+      "model": "луна",
+      "dimensions": "140x200",
+      "color": "синий",
+      "material": "рогожка",
+      "features": "мягкое изголовье",
+      "style_or_purpose": "лофт"
+    },
+    "price": 16600
+  },
+  {
+    "id": "1076",
+    "description": "дуб сонома диван прямой стокгольм металл и стекло еврокнижка современный 260x170",
+    "characteristics": {
+      "product_type": "диван прямой",
+      "model": "стокгольм",
+      "dimensions": "260x170",
+      "color": "дуб сонома",
+      "material": "металл и стекло",
+      "features": "еврокнижка",
+      "style_or_purpose": "современный"
+    },
+    "price": 50485
+  },
+  {
+    "id": "1077",
+    "description": "дуб сонома полка настенная эко металл для декора лофт 80x30x180",
+    "characteristics": {
+      "product_type": "полка настенная",
+      "model": "эко",
+      "dimensions": "80x30x180",
+      "color": "дуб сонома",
+      "material": "металл",
+      "features": "для декора",
+      "style_or_purpose": "лофт"
+    },
+    "price": 54215
+  },
+  {
+    "id": "1078",
+    "description": "голубой стол детский школьник металл ящики лофт",
+    "characteristics": {
+      "product_type": "стол детский",
+      "model": "школьник",
+      "dimensions": "-",
+      "color": "голубой",
+      "material": "металл",
+      "features": "ящики",
+      "style_or_purpose": "лофт"
+    },
+    "price": 38944
+  },
+  {
+    "id": "1079",
+    "description": "венге кресло офисное босс велюр регулировка высоты современный 60x60x120",
+    "characteristics": {
+      "product_type": "кресло офисное",
+      "model": "босс",
+      "dimensions": "60x60x120",
+      "color": "венге",
+      "material": "велюр",
+      "features": "регулировка высоты",
+      "style_or_purpose": "современный"
+    },
+    "price": 35260
+  },
+  {
+    "id": "1080",
+    "description": "венге кресло офисное профи металл и стекло колесики современный",
+    "characteristics": {
+      "product_type": "кресло офисное",
+      "model": "профи",
+      "dimensions": "-",
+      "color": "венге",
+      "material": "металл и стекло",
+      "features": "колесики",
+      "style_or_purpose": "современный"
+    },
+    "price": 35706
+  },
+  {
+    "id": "1081",
+    "description": "орех книжный шкаф стекло шпон ореха лофт",
+    "characteristics": {
+      "product_type": "книжный шкаф",
+      "model": "стекло",
+      "dimensions": "-",
+      "color": "орех",
+      "material": "шпон ореха",
+      "features": "-",
+      "style_or_purpose": "лофт"
+    },
+    "price": 45108
+  },
+  {
+    "id": "1082",
+    "description": "голубой кресло офисное директор велюр колесики минимализм 80x85x95",
+    "characteristics": {
+      "product_type": "кресло офисное",
+      "model": "директор",
+      "dimensions": "80x85x95",
+      "color": "голубой",
+      "material": "велюр",
+      "features": "колесики",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 29537
+  },
+  {
+    "id": "1083",
+    "description": "дуб сонома шкаф детский радуга мдф полки лофт 150x60x220",
+    "characteristics": {
+      "product_type": "шкаф детский",
+      "model": "радуга",
+      "dimensions": "150x60x220",
+      "color": "дуб сонома",
+      "material": "мдф",
+      "features": "полки",
+      "style_or_purpose": "лофт"
+    },
+    "price": 36010
+  },
+  {
+    "id": "1084",
+    "description": "белый стол компьютерный рабочий экокожа кабель-канал лофт 140x70",
+    "characteristics": {
+      "product_type": "стол компьютерный",
+      "model": "рабочий",
+      "dimensions": "140x70",
+      "color": "белый",
+      "material": "экокожа",
+      "features": "кабель-канал",
+      "style_or_purpose": "лофт"
+    },
+    "price": 15014
+  },
+  {
+    "id": "1085",
+    "description": "белый полка настенная лайн металл скандинавский",
+    "characteristics": {
+      "product_type": "полка настенная",
+      "model": "лайн",
+      "dimensions": "-",
+      "color": "белый",
+      "material": "металл",
+      "features": "-",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 32248
+  },
+  {
+    "id": "1086",
+    "description": "золотой диван прямой стокгольм металл мягкие подлокотники минимализм 300x200",
+    "characteristics": {
+      "product_type": "диван прямой",
+      "model": "стокгольм",
+      "dimensions": "300x200",
+      "color": "золотой",
+      "material": "металл",
+      "features": "мягкие подлокотники",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 27560
+  },
+  {
+    "id": "1087",
+    "description": "орех стол детский комфорт массив дерева регулируемая высота скандинавский 120x60",
+    "characteristics": {
+      "product_type": "стол детский",
+      "model": "комфорт",
+      "dimensions": "120x60",
+      "color": "орех",
+      "material": "массив дерева",
+      "features": "регулируемая высота",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 30558
+  },
+  {
+    "id": "1088",
+    "description": "венге стол детский растишка мдф и стекло ящики современный 100x60",
+    "characteristics": {
+      "product_type": "стол детский",
+      "model": "растишка",
+      "dimensions": "100x60",
+      "color": "венге",
+      "material": "мдф и стекло",
+      "features": "ящики",
+      "style_or_purpose": "современный"
+    },
+    "price": 22887
+  },
+  {
+    "id": "1089",
+    "description": "черный стул барный металл металл подножка классический 80x85x95",
+    "characteristics": {
+      "product_type": "стул барный",
+      "model": "металл",
+      "dimensions": "80x85x95",
+      "color": "черный",
+      "material": "металл",
+      "features": "подножка",
+      "style_or_purpose": "классический"
+    },
+    "price": 14864
+  },
+  {
+    "id": "1090",
+    "description": "серый шкаф купе гарда металл и стекло спальня 180x60x220",
+    "characteristics": {
+      "product_type": "шкаф купе",
+      "model": "гарда",
+      "dimensions": "180x60x220",
+      "color": "серый",
+      "material": "металл и стекло",
+      "features": "-",
+      "style_or_purpose": "спальня"
+    },
+    "price": 52790
+  },
+  {
+    "id": "1091",
+    "description": "белый тумба прикроватная минимал металл и дерево лофт 160x40x50",
+    "characteristics": {
+      "product_type": "тумба прикроватная",
+      "model": "минимал",
+      "dimensions": "160x40x50",
+      "color": "белый",
+      "material": "металл и дерево",
+      "features": "-",
+      "style_or_purpose": "лофт"
+    },
+    "price": 11954
+  },
+  {
+    "id": "1092",
+    "description": "орех диван прямой лайн ткань раскладной книжка современный 240x160",
+    "characteristics": {
+      "product_type": "диван прямой",
+      "model": "лайн",
+      "dimensions": "240x160",
+      "color": "орех",
+      "material": "ткань",
+      "features": "раскладной книжка",
+      "style_or_purpose": "современный"
+    },
+    "price": 69236
+  },
+  {
+    "id": "1093",
+    "description": "бежевый кухонный гарнитур лофт натуральная кожа скандинавский 100x45x190",
+    "characteristics": {
+      "product_type": "кухонный гарнитур",
+      "model": "лофт",
+      "dimensions": "100x45x190",
+      "color": "бежевый",
+      "material": "натуральная кожа",
+      "features": "-",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 111644
+  },
+  {
+    "id": "1094",
+    "description": "черный диван угловой марсель ткань ящик для белья классический 180x85",
+    "characteristics": {
+      "product_type": "диван угловой",
+      "model": "марсель",
+      "dimensions": "180x85",
+      "color": "черный",
+      "material": "ткань",
+      "features": "ящик для белья",
+      "style_or_purpose": "классический"
+    },
+    "price": 30276
+  },
+  {
+    "id": "1095",
+    "description": "темно серый кухонный гарнитур глянец велюр глянцевый фасад минимализм 120x80",
+    "characteristics": {
+      "product_type": "кухонный гарнитур",
+      "model": "глянец",
+      "dimensions": "120x80",
+      "color": "темно серый",
+      "material": "велюр",
+      "features": "глянцевый фасад",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 81266
+  },
+  {
+    "id": "1096",
+    "description": "синий кровать двухъярусная лестница мдф ящики для хранения современный 160x200",
+    "characteristics": {
+      "product_type": "кровать двухъярусная",
+      "model": "лестница",
+      "dimensions": "160x200",
+      "color": "синий",
+      "material": "мдф",
+      "features": "ящики для хранения",
+      "style_or_purpose": "современный"
+    },
+    "price": 65259
+  },
+  {
+    "id": "1097",
+    "description": "зеленый стол журнальный капля металл и стекло лофт 120x60",
+    "characteristics": {
+      "product_type": "стол журнальный",
+      "model": "капля",
+      "dimensions": "120x60",
+      "color": "зеленый",
+      "material": "металл и стекло",
+      "features": "-",
+      "style_or_purpose": "лофт"
+    },
+    "price": 12084
+  },
+  {
+    "id": "1098",
+    "description": "бежевый тумба прикроватная минимал металл и стекло современный",
+    "characteristics": {
+      "product_type": "тумба прикроватная",
+      "model": "минимал",
+      "dimensions": "-",
+      "color": "бежевый",
+      "material": "металл и стекло",
+      "features": "-",
+      "style_or_purpose": "современный"
+    },
+    "price": 12498
+  },
+  {
+    "id": "1099",
+    "description": "розовый кровать двуспальная индастриал металл и дерево мягкое изголовье спальня 160x200",
+    "characteristics": {
+      "product_type": "кровать двуспальная",
+      "model": "индастриал",
+      "dimensions": "160x200",
+      "color": "розовый",
+      "material": "металл и дерево",
+      "features": "мягкое изголовье",
+      "style_or_purpose": "спальня"
+    },
+    "price": 70724
+  },
+  {
+    "id": "1100",
+    "description": "голубой стеллаж урбан мдф металлический каркас кабинет 90x20",
+    "characteristics": {
+      "product_type": "стеллаж",
+      "model": "урбан",
+      "dimensions": "90x20",
+      "color": "голубой",
+      "material": "мдф",
+      "features": "металлический каркас",
+      "style_or_purpose": "кабинет"
+    },
+    "price": 39913
+  },
+  {
+    "id": "1101",
+    "description": "белый стул барный высокий шпон ореха подножка кухня 80x85x95",
+    "characteristics": {
+      "product_type": "стул барный",
+      "model": "высокий",
+      "dimensions": "80x85x95",
+      "color": "белый",
+      "material": "шпон ореха",
+      "features": "подножка",
+      "style_or_purpose": "кухня"
+    },
+    "price": 11031
+  },
+  {
+    "id": "1102",
+    "description": "коричневый кровать односпальная сон металл и дерево ортопедическое основание классический 140x200",
+    "characteristics": {
+      "product_type": "кровать односпальная",
+      "model": "сон",
+      "dimensions": "140x200",
+      "color": "коричневый",
+      "material": "металл и дерево",
+      "features": "ортопедическое основание",
+      "style_or_purpose": "классический"
+    },
+    "price": 43540
+  },
+  {
+    "id": "1103",
+    "description": "синий шкаф купе модерн рогожка минимализм 180x60x220",
+    "characteristics": {
+      "product_type": "шкаф купе",
+      "model": "модерн",
+      "dimensions": "180x60x220",
+      "color": "синий",
+      "material": "рогожка",
+      "features": "-",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 44465
+  },
+  {
+    "id": "1104",
+    "description": "бежевый стул барный сканди ткань регулировка высоты кухня 70x90x100",
+    "characteristics": {
+      "product_type": "стул барный",
+      "model": "сканди",
+      "dimensions": "70x90x100",
+      "color": "бежевый",
+      "material": "ткань",
+      "features": "регулировка высоты",
+      "style_or_purpose": "кухня"
+    },
+    "price": 10385
+  },
+  {
+    "id": "1105",
+    "description": "зеленый шкаф детский мини металл и стекло скандинавский 60x45x200",
+    "characteristics": {
+      "product_type": "шкаф детский",
+      "model": "мини",
+      "dimensions": "60x45x200",
+      "color": "зеленый",
+      "material": "металл и стекло",
+      "features": "-",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 46394
+  },
+  {
+    "id": "1106",
+    "description": "серый стол детский юниор массив дерева ящики скандинавский",
+    "characteristics": {
+      "product_type": "стол детский",
+      "model": "юниор",
+      "dimensions": "-",
+      "color": "серый",
+      "material": "массив дерева",
+      "features": "ящики",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 21931
+  },
+  {
+    "id": "1107",
+    "description": "зеленый стол компьютерный профи мдф и стекло надстройка минимализм 90x55",
+    "characteristics": {
+      "product_type": "стол компьютерный",
+      "model": "профи",
+      "dimensions": "90x55",
+      "color": "зеленый",
+      "material": "мдф и стекло",
+      "features": "надстройка",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 38857
+  },
+  {
+    "id": "1108",
+    "description": "темно серый шкаф распашной классик мдф и стекло антресоль современный 240x65x230",
+    "characteristics": {
+      "product_type": "шкаф распашной",
+      "model": "классик",
+      "dimensions": "240x65x230",
+      "color": "темно серый",
+      "material": "мдф и стекло",
+      "features": "антресоль",
+      "style_or_purpose": "современный"
+    },
+    "price": 63687
+  },
+  {
+    "id": "1109",
+    "description": "синий шкаф детский мини мдф и стекло современный 60x45x200",
+    "characteristics": {
+      "product_type": "шкаф детский",
+      "model": "мини",
+      "dimensions": "60x45x200",
+      "color": "синий",
+      "material": "мдф и стекло",
+      "features": "-",
+      "style_or_purpose": "современный"
+    },
+    "price": 20098
+  },
+  {
+    "id": "1110",
+    "description": "орех стол письменный школьник мдф и стекло полки скандинавский 100x100",
+    "characteristics": {
+      "product_type": "стол письменный",
+      "model": "школьник",
+      "dimensions": "100x100",
+      "color": "орех",
+      "material": "мдф и стекло",
+      "features": "полки",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 43112
+  },
+  {
+    "id": "1111",
+    "description": "венге стол журнальный сканди шпон ореха колесики современный 100x100",
+    "characteristics": {
+      "product_type": "стол журнальный",
+      "model": "сканди",
+      "dimensions": "100x100",
+      "color": "венге",
+      "material": "шпон ореха",
+      "features": "колесики",
+      "style_or_purpose": "современный"
+    },
+    "price": 41070
+  },
+  {
+    "id": "1112",
+    "description": "розовый стол компьютерный профи массив дерева надстройка скандинавский 120x60",
+    "characteristics": {
+      "product_type": "стол компьютерный",
+      "model": "профи",
+      "dimensions": "120x60",
+      "color": "розовый",
+      "material": "массив дерева",
+      "features": "надстройка",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 20108
+  },
+  {
+    "id": "1113",
+    "description": "коричневый кровать односпальная мини мдф бортик лофт 140x200",
+    "characteristics": {
+      "product_type": "кровать односпальная",
+      "model": "мини",
+      "dimensions": "140x200",
+      "color": "коричневый",
+      "material": "мдф",
+      "features": "бортик",
+      "style_or_purpose": "лофт"
+    },
+    "price": 63405
+  },
+  {
+    "id": "1114",
+    "description": "розовый кресло мягкое винтаж металл и стекло с пуфом гостиная 60x60x120",
+    "characteristics": {
+      "product_type": "кресло мягкое",
+      "model": "винтаж",
+      "dimensions": "60x60x120",
+      "color": "розовый",
+      "material": "металл и стекло",
+      "features": "с пуфом",
+      "style_or_purpose": "гостиная"
+    },
+    "price": 18707
+  },
+  {
+    "id": "1115",
+    "description": "серый шкаф детский радуга рогожка двухдверный классический 240x65x230",
+    "characteristics": {
+      "product_type": "шкаф детский",
+      "model": "радуга",
+      "dimensions": "240x65x230",
+      "color": "серый",
+      "material": "рогожка",
+      "features": "двухдверный",
+      "style_or_purpose": "классический"
+    },
+    "price": 22295
+  },
+  {
+    "id": "1116",
+    "description": "черный стол обеденный турин шпон ореха овальный классический 100x60",
+    "characteristics": {
+      "product_type": "стол обеденный",
+      "model": "турин",
+      "dimensions": "100x60",
+      "color": "черный",
+      "material": "шпон ореха",
+      "features": "овальный",
+      "style_or_purpose": "классический"
+    },
+    "price": 37170
+  },
+  {
+    "id": "1117",
+    "description": "зеленый кровать односпальная юниор рогожка ортопедическое основание современный 180x200",
+    "characteristics": {
+      "product_type": "кровать односпальная",
+      "model": "юниор",
+      "dimensions": "180x200",
+      "color": "зеленый",
+      "material": "рогожка",
+      "features": "ортопедическое основание",
+      "style_or_purpose": "современный"
+    },
+    "price": 37328
+  },
+  {
+    "id": "1118",
+    "description": "бежевый шкаф купе прага массив дерева зеркало спальня 180x60x220",
+    "characteristics": {
+      "product_type": "шкаф купе",
+      "model": "прага",
+      "dimensions": "180x60x220",
+      "color": "бежевый",
+      "material": "массив дерева",
+      "features": "зеркало",
+      "style_or_purpose": "спальня"
+    },
+    "price": 46227
+  },
+  {
+    "id": "1119",
+    "description": "синий кровать двуспальная индастриал металл и дерево подъемный механизм лофт 140x200",
+    "characteristics": {
+      "product_type": "кровать двуспальная",
+      "model": "индастриал",
+      "dimensions": "140x200",
+      "color": "синий",
+      "material": "металл и дерево",
+      "features": "подъемный механизм",
+      "style_or_purpose": "лофт"
+    },
+    "price": 68159
+  },
+  {
+    "id": "1120",
+    "description": "белый тумба прикроватная лайн велюр два ящика минимализм 160x40x50",
+    "characteristics": {
+      "product_type": "тумба прикроватная",
+      "model": "лайн",
+      "dimensions": "160x40x50",
+      "color": "белый",
+      "material": "велюр",
+      "features": "два ящика",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 25867
+  },
+  {
+    "id": "1121",
+    "description": "темно серый тумба тв сканди натуральная кожа современный 160x40x50",
+    "characteristics": {
+      "product_type": "тумба тв",
+      "model": "сканди",
+      "dimensions": "160x40x50",
+      "color": "темно серый",
+      "material": "натуральная кожа",
+      "features": "-",
+      "style_or_purpose": "современный"
+    },
+    "price": 20507
+  },
+  {
+    "id": "1122",
+    "description": "орех стол письменный компакт рогожка минимализм 90x55",
+    "characteristics": {
+      "product_type": "стол письменный",
+      "model": "компакт",
+      "dimensions": "90x55",
+      "color": "орех",
+      "material": "рогожка",
+      "features": "-",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 44952
+  },
+  {
+    "id": "1123",
+    "description": "голубой книжный шкаф библио велюр полки скандинавский",
+    "characteristics": {
+      "product_type": "книжный шкаф",
+      "model": "библио",
+      "dimensions": "-",
+      "color": "голубой",
+      "material": "велюр",
+      "features": "полки",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 19320
+  },
+  {
+    "id": "1124",
+    "description": "серый шкаф купе макси шпон ореха зеркало лофт 60x45x200",
+    "characteristics": {
+      "product_type": "шкаф купе",
+      "model": "макси",
+      "dimensions": "60x45x200",
+      "color": "серый",
+      "material": "шпон ореха",
+      "features": "зеркало",
+      "style_or_purpose": "лофт"
+    },
+    "price": 40772
+  },
+  {
+    "id": "1125",
+    "description": "дуб сонома кресло офисное профи рогожка регулировка высоты лофт 70x90x100",
+    "characteristics": {
+      "product_type": "кресло офисное",
+      "model": "профи",
+      "dimensions": "70x90x100",
+      "color": "дуб сонома",
+      "material": "рогожка",
+      "features": "регулировка высоты",
+      "style_or_purpose": "лофт"
+    },
+    "price": 32165
+  },
+  {
+    "id": "1126",
+    "description": "белый стол письменный лайн металл и дерево полки скандинавский",
+    "characteristics": {
+      "product_type": "стол письменный",
+      "model": "лайн",
+      "dimensions": "-",
+      "color": "белый",
+      "material": "металл и дерево",
+      "features": "полки",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 43652
+  },
+  {
+    "id": "1127",
+    "description": "орех стеллаж индастриал мдф металлический каркас лофт 100x35x180",
+    "characteristics": {
+      "product_type": "стеллаж",
+      "model": "индастриал",
+      "dimensions": "100x35x180",
+      "color": "орех",
+      "material": "мдф",
+      "features": "металлический каркас",
+      "style_or_purpose": "лофт"
+    },
+    "price": 22408
+  },
+  {
+    "id": "1128",
+    "description": "белый буфет классик лдсп ящики скандинавский",
+    "characteristics": {
+      "product_type": "буфет",
+      "model": "классик",
+      "dimensions": "-",
+      "color": "белый",
+      "material": "лдсп",
+      "features": "ящики",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 54083
+  },
+  {
+    "id": "1129",
+    "description": "бежевый буфет дача массив дерева стеклянные дверцы современный 220x60",
+    "characteristics": {
+      "product_type": "буфет",
+      "model": "дача",
+      "dimensions": "220x60",
+      "color": "бежевый",
+      "material": "массив дерева",
+      "features": "стеклянные дверцы",
+      "style_or_purpose": "современный"
+    },
+    "price": 50857
+  },
+  {
+    "id": "1130",
+    "description": "венге стул обеденный сканди шпон ореха изогнутая спинка современный 45x50x85",
+    "characteristics": {
+      "product_type": "стул обеденный",
+      "model": "сканди",
+      "dimensions": "45x50x85",
+      "color": "венге",
+      "material": "шпон ореха",
+      "features": "изогнутая спинка",
+      "style_or_purpose": "современный"
+    },
+    "price": 12798
+  },
+  {
+    "id": "1131",
+    "description": "розовый диван прямой честер ткань скандинавский 180x85",
+    "characteristics": {
+      "product_type": "диван прямой",
+      "model": "честер",
+      "dimensions": "180x85",
+      "color": "розовый",
+      "material": "ткань",
+      "features": "-",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 36970
+  },
+  {
+    "id": "1132",
+    "description": "зеленый шкаф детский школьник лдсп полки минимализм 60x45x200",
+    "characteristics": {
+      "product_type": "шкаф детский",
+      "model": "школьник",
+      "dimensions": "60x45x200",
+      "color": "зеленый",
+      "material": "лдсп",
+      "features": "полки",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 64011
+  },
+  {
+    "id": "1133",
+    "description": "дуб сонома кухонный гарнитур матте шпон ореха скандинавский 120x80",
+    "characteristics": {
+      "product_type": "кухонный гарнитур",
+      "model": "матте",
+      "dimensions": "120x80",
+      "color": "дуб сонома",
+      "material": "шпон ореха",
+      "features": "-",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 107132
+  },
+  {
+    "id": "1134",
+    "description": "белый обувница компакт массив дерева с сиденьем современный 120x45x85",
+    "characteristics": {
+      "product_type": "обувница",
+      "model": "компакт",
+      "dimensions": "120x45x85",
+      "color": "белый",
+      "material": "массив дерева",
+      "features": "с сиденьем",
+      "style_or_purpose": "современный"
+    },
+    "price": 16520
+  },
+  {
+    "id": "1135",
+    "description": "золотой стеллаж книга экокожа угловой современный",
+    "characteristics": {
+      "product_type": "стеллаж",
+      "model": "книга",
+      "dimensions": "-",
+      "color": "золотой",
+      "material": "экокожа",
+      "features": "угловой",
+      "style_or_purpose": "современный"
+    },
+    "price": 23888
+  },
+  {
+    "id": "1136",
+    "description": "золотой стеллаж эко натуральная кожа металлический каркас кабинет",
+    "characteristics": {
+      "product_type": "стеллаж",
+      "model": "эко",
+      "dimensions": "-",
+      "color": "золотой",
+      "material": "натуральная кожа",
+      "features": "металлический каркас",
+      "style_or_purpose": "кабинет"
+    },
+    "price": 10771
+  },
+  {
+    "id": "1137",
+    "description": "коричневый стол компьютерный профи мдф выдвижная полка минимализм",
+    "characteristics": {
+      "product_type": "стол компьютерный",
+      "model": "профи",
+      "dimensions": "-",
+      "color": "коричневый",
+      "material": "мдф",
+      "features": "выдвижная полка",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 5075
+  },
+  {
+    "id": "1138",
+    "description": "дуб сонома стеллаж урбан металл пять полок лофт 90x20",
+    "characteristics": {
+      "product_type": "стеллаж",
+      "model": "урбан",
+      "dimensions": "90x20",
+      "color": "дуб сонома",
+      "material": "металл",
+      "features": "пять полок",
+      "style_or_purpose": "лофт"
+    },
+    "price": 45804
+  },
+  {
+    "id": "1139",
+    "description": "синий кухонный гарнитур лофт массив дерева глянцевый фасад лофт 220x60",
+    "characteristics": {
+      "product_type": "кухонный гарнитур",
+      "model": "лофт",
+      "dimensions": "220x60",
+      "color": "синий",
+      "material": "массив дерева",
+      "features": "глянцевый фасад",
+      "style_or_purpose": "лофт"
+    },
+    "price": 67172
+  },
+  {
+    "id": "1140",
+    "description": "розовый стол письменный лайн массив дерева ящики кабинет 100x100",
+    "characteristics": {
+      "product_type": "стол письменный",
+      "model": "лайн",
+      "dimensions": "100x100",
+      "color": "розовый",
+      "material": "массив дерева",
+      "features": "ящики",
+      "style_or_purpose": "кабинет"
+    },
+    "price": 44903
+  },
+  {
+    "id": "1141",
+    "description": "розовый кухонный остров бар экокожа полки минимализм 100x45x190",
+    "characteristics": {
+      "product_type": "кухонный остров",
+      "model": "бар",
+      "dimensions": "100x45x190",
+      "color": "розовый",
+      "material": "экокожа",
+      "features": "полки",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 41192
+  },
+  {
+    "id": "1142",
+    "description": "темно серый стул барный бар мдф кухня 60x60x120",
+    "characteristics": {
+      "product_type": "стул барный",
+      "model": "бар",
+      "dimensions": "60x60x120",
+      "color": "темно серый",
+      "material": "мдф",
+      "features": "-",
+      "style_or_purpose": "кухня"
+    },
+    "price": 11165
+  },
+  {
+    "id": "1143",
+    "description": "венге полка настенная куб мдф и стекло скрытый крепеж современный",
+    "characteristics": {
+      "product_type": "полка настенная",
+      "model": "куб",
+      "dimensions": "-",
+      "color": "венге",
+      "material": "мдф и стекло",
+      "features": "скрытый крепеж",
+      "style_or_purpose": "современный"
+    },
+    "price": 35947
+  },
+  {
+    "id": "1144",
+    "description": "венге шкаф детский мини экокожа лофт 240x65x230",
+    "characteristics": {
+      "product_type": "шкаф детский",
+      "model": "мини",
+      "dimensions": "240x65x230",
+      "color": "венге",
+      "material": "экокожа",
+      "features": "-",
+      "style_or_purpose": "лофт"
+    },
+    "price": 47308
+  },
+  {
+    "id": "1145",
+    "description": "золотой книжный шкаф классик мдф нижние ящики современный 150x60x220",
+    "characteristics": {
+      "product_type": "книжный шкаф",
+      "model": "классик",
+      "dimensions": "150x60x220",
+      "color": "золотой",
+      "material": "мдф",
+      "features": "нижние ящики",
+      "style_or_purpose": "современный"
+    },
+    "price": 65623
+  },
+  {
+    "id": "1146",
+    "description": "золотой кресло качалка уют лдсп классический 70x90x100",
+    "characteristics": {
+      "product_type": "кресло качалка",
+      "model": "уют",
+      "dimensions": "70x90x100",
+      "color": "золотой",
+      "material": "лдсп",
+      "features": "-",
+      "style_or_purpose": "классический"
+    },
+    "price": 36442
+  },
+  {
+    "id": "1147",
+    "description": "синий тумба прикроватная эко массив дерева один ящик современный 70x25x120",
+    "characteristics": {
+      "product_type": "тумба прикроватная",
+      "model": "эко",
+      "dimensions": "70x25x120",
+      "color": "синий",
+      "material": "массив дерева",
+      "features": "один ящик",
+      "style_or_purpose": "современный"
+    },
+    "price": 21870
+  },
+  {
+    "id": "1148",
+    "description": "венге стол журнальный квадро натуральная кожа стеклянная столешница современный 120x60",
+    "characteristics": {
+      "product_type": "стол журнальный",
+      "model": "квадро",
+      "dimensions": "120x60",
+      "color": "венге",
+      "material": "натуральная кожа",
+      "features": "стеклянная столешница",
+      "style_or_purpose": "современный"
+    },
+    "price": 17363
+  },
+  {
+    "id": "1149",
+    "description": "зеленый полка настенная лайн металл для декора современный 80x30x180",
+    "characteristics": {
+      "product_type": "полка настенная",
+      "model": "лайн",
+      "dimensions": "80x30x180",
+      "color": "зеленый",
+      "material": "металл",
+      "features": "для декора",
+      "style_or_purpose": "современный"
+    },
+    "price": 25852
+  },
+  {
+    "id": "1150",
+    "description": "розовый книжный шкаф кабинет натуральная кожа современный",
+    "characteristics": {
+      "product_type": "книжный шкаф",
+      "model": "кабинет",
+      "dimensions": "-",
+      "color": "розовый",
+      "material": "натуральная кожа",
+      "features": "-",
+      "style_or_purpose": "современный"
+    },
+    "price": 65930
+  },
+  {
+    "id": "1151",
+    "description": "дуб сонома буфет классик лдсп ящики минимализм",
+    "characteristics": {
+      "product_type": "буфет",
+      "model": "классик",
+      "dimensions": "-",
+      "color": "дуб сонома",
+      "material": "лдсп",
+      "features": "ящики",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 26757
+  },
+  {
+    "id": "1152",
+    "description": "золотой стол детский школьник массив дерева регулируемая высота минимализм 140x70",
+    "characteristics": {
+      "product_type": "стол детский",
+      "model": "школьник",
+      "dimensions": "140x70",
+      "color": "золотой",
+      "material": "массив дерева",
+      "features": "регулируемая высота",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 6005
+  },
+  {
+    "id": "1153",
+    "description": "орех книжный шкаф классик металл и дерево полки кабинет 180x60x220",
+    "characteristics": {
+      "product_type": "книжный шкаф",
+      "model": "классик",
+      "dimensions": "180x60x220",
+      "color": "орех",
+      "material": "металл и дерево",
+      "features": "полки",
+      "style_or_purpose": "кабинет"
+    },
+    "price": 65218
+  },
+  {
+    "id": "1154",
+    "description": "зеленый стол обеденный орех мдф и стекло классический 90x55",
+    "characteristics": {
+      "product_type": "стол обеденный",
+      "model": "орех",
+      "dimensions": "90x55",
+      "color": "зеленый",
+      "material": "мдф и стекло",
+      "features": "-",
+      "style_or_purpose": "классический"
+    },
+    "price": 26532
+  },
+  {
+    "id": "1155",
+    "description": "орех стол детский комфорт ткань минимализм 90x55",
+    "characteristics": {
+      "product_type": "стол детский",
+      "model": "комфорт",
+      "dimensions": "90x55",
+      "color": "орех",
+      "material": "ткань",
+      "features": "-",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 9484
+  },
+  {
+    "id": "1156",
+    "description": "темно серый шкаф детский радуга мдф и стекло двухдверный современный 60x45x200",
+    "characteristics": {
+      "product_type": "шкаф детский",
+      "model": "радуга",
+      "dimensions": "60x45x200",
+      "color": "темно серый",
+      "material": "мдф и стекло",
+      "features": "двухдверный",
+      "style_or_purpose": "современный"
+    },
+    "price": 63831
+  },
+  {
+    "id": "1157",
+    "description": "дуб сонома обувница прихожая экокожа с сиденьем прихожая 45x40x50",
+    "characteristics": {
+      "product_type": "обувница",
+      "model": "прихожая",
+      "dimensions": "45x40x50",
+      "color": "дуб сонома",
+      "material": "экокожа",
+      "features": "с сиденьем",
+      "style_or_purpose": "прихожая"
+    },
+    "price": 16629
+  },
+  {
+    "id": "1158",
+    "description": "бежевый кухонный остров остров ткань полки современный 120x80",
+    "characteristics": {
+      "product_type": "кухонный остров",
+      "model": "остров",
+      "dimensions": "120x80",
+      "color": "бежевый",
+      "material": "ткань",
+      "features": "полки",
+      "style_or_purpose": "современный"
+    },
+    "price": 21003
+  },
+  {
+    "id": "1159",
+    "description": "зеленый кресло качалка классик металл и дерево мягкая подушка лофт 60x60x120",
+    "characteristics": {
+      "product_type": "кресло качалка",
+      "model": "классик",
+      "dimensions": "60x60x120",
+      "color": "зеленый",
+      "material": "металл и дерево",
+      "features": "мягкая подушка",
+      "style_or_purpose": "лофт"
+    },
+    "price": 11587
+  },
+  {
+    "id": "1160",
+    "description": "зеленый тумба тв гранд металл и дерево полки современный 70x25x120",
+    "characteristics": {
+      "product_type": "тумба тв",
+      "model": "гранд",
+      "dimensions": "70x25x120",
+      "color": "зеленый",
+      "material": "металл и дерево",
+      "features": "полки",
+      "style_or_purpose": "современный"
+    },
+    "price": 10689
+  },
+  {
+    "id": "1161",
+    "description": "синий шкаф детский мини рогожка скандинавский",
+    "characteristics": {
+      "product_type": "шкаф детский",
+      "model": "мини",
+      "dimensions": "-",
+      "color": "синий",
+      "material": "рогожка",
+      "features": "-",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 14615
+  },
+  {
+    "id": "1162",
+    "description": "бежевый кресло детское мягкий металл и дерево регулировка высоты детская 80x85x95",
+    "characteristics": {
+      "product_type": "кресло детское",
+      "model": "мягкий",
+      "dimensions": "80x85x95",
+      "color": "бежевый",
+      "material": "металл и дерево",
+      "features": "регулировка высоты",
+      "style_or_purpose": "детская"
+    },
+    "price": 39973
+  },
+  {
+    "id": "1163",
+    "description": "бежевый стол журнальный стекло металл и дерево стеклянная столешница классический 120x60",
+    "characteristics": {
+      "product_type": "стол журнальный",
+      "model": "стекло",
+      "dimensions": "120x60",
+      "color": "бежевый",
+      "material": "металл и дерево",
+      "features": "стеклянная столешница",
+      "style_or_purpose": "классический"
+    },
+    "price": 34939
+  },
+  {
+    "id": "1164",
+    "description": "темно серый стол детский юниор металл детская 100x60",
+    "characteristics": {
+      "product_type": "стол детский",
+      "model": "юниор",
+      "dimensions": "100x60",
+      "color": "темно серый",
+      "material": "металл",
+      "features": "-",
+      "style_or_purpose": "детская"
+    },
+    "price": 29993
+  },
+  {
+    "id": "1165",
+    "description": "зеленый тумба прикроватная лайн рогожка полка спальня",
+    "characteristics": {
+      "product_type": "тумба прикроватная",
+      "model": "лайн",
+      "dimensions": "-",
+      "color": "зеленый",
+      "material": "рогожка",
+      "features": "полка",
+      "style_or_purpose": "спальня"
+    },
+    "price": 18969
+  },
+  {
+    "id": "1166",
+    "description": "зеленый стол обеденный турин металл и дерево раздвижной минимализм 100x100",
+    "characteristics": {
+      "product_type": "стол обеденный",
+      "model": "турин",
+      "dimensions": "100x100",
+      "color": "зеленый",
+      "material": "металл и дерево",
+      "features": "раздвижной",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 37553
+  },
+  {
+    "id": "1167",
+    "description": "голубой буфет стекло натуральная кожа ящики минимализм 220x60",
+    "characteristics": {
+      "product_type": "буфет",
+      "model": "стекло",
+      "dimensions": "220x60",
+      "color": "голубой",
+      "material": "натуральная кожа",
+      "features": "ящики",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 19352
+  },
+  {
+    "id": "1168",
+    "description": "зеленый обувница слим рогожка узкая классический 45x40x50",
+    "characteristics": {
+      "product_type": "обувница",
+      "model": "слим",
+      "dimensions": "45x40x50",
+      "color": "зеленый",
+      "material": "рогожка",
+      "features": "узкая",
+      "style_or_purpose": "классический"
+    },
+    "price": 26560
+  },
+  {
+    "id": "1169",
+    "description": "бежевый обувница прихожая натуральная кожа прихожая 70x25x120",
+    "characteristics": {
+      "product_type": "обувница",
+      "model": "прихожая",
+      "dimensions": "70x25x120",
+      "color": "бежевый",
+      "material": "натуральная кожа",
+      "features": "-",
+      "style_or_purpose": "прихожая"
+    },
+    "price": 17955
+  },
+  {
+    "id": "1170",
+    "description": "белый книжный шкаф классик рогожка нижние ящики классический 180x60x220",
+    "characteristics": {
+      "product_type": "книжный шкаф",
+      "model": "классик",
+      "dimensions": "180x60x220",
+      "color": "белый",
+      "material": "рогожка",
+      "features": "нижние ящики",
+      "style_or_purpose": "классический"
+    },
+    "price": 25510
+  },
+  {
+    "id": "1171",
+    "description": "голубой шкаф распашной слим шпон ореха узкий минимализм 240x65x230",
+    "characteristics": {
+      "product_type": "шкаф распашной",
+      "model": "слим",
+      "dimensions": "240x65x230",
+      "color": "голубой",
+      "material": "шпон ореха",
+      "features": "узкий",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 31860
+  },
+  {
+    "id": "1172",
+    "description": "бежевый буфет классик массив дерева полки классический 220x60",
+    "characteristics": {
+      "product_type": "буфет",
+      "model": "классик",
+      "dimensions": "220x60",
+      "color": "бежевый",
+      "material": "массив дерева",
+      "features": "полки",
+      "style_or_purpose": "классический"
+    },
+    "price": 57706
+  },
+  {
+    "id": "1173",
+    "description": "белый кровать односпальная сон экокожа бортик классический 180x200",
+    "characteristics": {
+      "product_type": "кровать односпальная",
+      "model": "сон",
+      "dimensions": "180x200",
+      "color": "белый",
+      "material": "экокожа",
+      "features": "бортик",
+      "style_or_purpose": "классический"
+    },
+    "price": 78390
+  },
+  {
+    "id": "1174",
+    "description": "коричневый стол детский комфорт мдф детская 120x60",
+    "characteristics": {
+      "product_type": "стол детский",
+      "model": "комфорт",
+      "dimensions": "120x60",
+      "color": "коричневый",
+      "material": "мдф",
+      "features": "-",
+      "style_or_purpose": "детская"
+    },
+    "price": 40164
+  },
+  {
+    "id": "1175",
+    "description": "коричневый кровать односпальная сон металл и дерево минимализм 180x200",
+    "characteristics": {
+      "product_type": "кровать односпальная",
+      "model": "сон",
+      "dimensions": "180x200",
+      "color": "коричневый",
+      "material": "металл и дерево",
+      "features": "-",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 68897
+  },
+  {
+    "id": "1176",
+    "description": "белый обувница эко металл и дерево узкая современный 45x40x50",
+    "characteristics": {
+      "product_type": "обувница",
+      "model": "эко",
+      "dimensions": "45x40x50",
+      "color": "белый",
+      "material": "металл и дерево",
+      "features": "узкая",
+      "style_or_purpose": "современный"
+    },
+    "price": 26301
+  },
+  {
+    "id": "1177",
+    "description": "коричневый кресло детское юниор металл и стекло регулировка высоты классический 45x50x85",
+    "characteristics": {
+      "product_type": "кресло детское",
+      "model": "юниор",
+      "dimensions": "45x50x85",
+      "color": "коричневый",
+      "material": "металл и стекло",
+      "features": "регулировка высоты",
+      "style_or_purpose": "классический"
+    },
+    "price": 29820
+  },
+  {
+    "id": "1178",
+    "description": "розовый буфет ретро рогожка классический 120x80",
+    "characteristics": {
+      "product_type": "буфет",
+      "model": "ретро",
+      "dimensions": "120x80",
+      "color": "розовый",
+      "material": "рогожка",
+      "features": "-",
+      "style_or_purpose": "классический"
+    },
+    "price": 7971
+  },
+  {
+    "id": "1179",
+    "description": "дуб сонома диван прямой лайн мдф еврокнижка лофт 270x180",
+    "characteristics": {
+      "product_type": "диван прямой",
+      "model": "лайн",
+      "dimensions": "270x180",
+      "color": "дуб сонома",
+      "material": "мдф",
+      "features": "еврокнижка",
+      "style_or_purpose": "лофт"
+    },
+    "price": 42781
+  },
+  {
+    "id": "1180",
+    "description": "коричневый стул обеденный барселона металл и дерево изогнутая спинка минимализм 60x60x120",
+    "characteristics": {
+      "product_type": "стул обеденный",
+      "model": "барселона",
+      "dimensions": "60x60x120",
+      "color": "коричневый",
+      "material": "металл и дерево",
+      "features": "изогнутая спинка",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 9797
+  },
+  {
+    "id": "1181",
+    "description": "золотой обувница прихожая массив дерева откидные дверцы современный 120x45x85",
+    "characteristics": {
+      "product_type": "обувница",
+      "model": "прихожая",
+      "dimensions": "120x45x85",
+      "color": "золотой",
+      "material": "массив дерева",
+      "features": "откидные дверцы",
+      "style_or_purpose": "современный"
+    },
+    "price": 7072
+  },
+  {
+    "id": "1182",
+    "description": "темно серый полка настенная куб массив дерева лофт 90x20",
+    "characteristics": {
+      "product_type": "полка настенная",
+      "model": "куб",
+      "dimensions": "90x20",
+      "color": "темно серый",
+      "material": "массив дерева",
+      "features": "-",
+      "style_or_purpose": "лофт"
+    },
+    "price": 11511
+  },
+  {
+    "id": "1183",
+    "description": "венге стеллаж лофт металл и дерево угловой кабинет",
+    "characteristics": {
+      "product_type": "стеллаж",
+      "model": "лофт",
+      "dimensions": "-",
+      "color": "венге",
+      "material": "металл и дерево",
+      "features": "угловой",
+      "style_or_purpose": "кабинет"
+    },
+    "price": 23080
+  },
+  {
+    "id": "1184",
+    "description": "золотой шкаф распашной классик массив дерева двухдверный классический 100x55x210",
+    "characteristics": {
+      "product_type": "шкаф распашной",
+      "model": "классик",
+      "dimensions": "100x55x210",
+      "color": "золотой",
+      "material": "массив дерева",
+      "features": "двухдверный",
+      "style_or_purpose": "классический"
+    },
+    "price": 56054
+  },
+  {
+    "id": "1185",
+    "description": "черный обувница лайн лдсп с сиденьем лофт 90x45x90",
+    "characteristics": {
+      "product_type": "обувница",
+      "model": "лайн",
+      "dimensions": "90x45x90",
+      "color": "черный",
+      "material": "лдсп",
+      "features": "с сиденьем",
+      "style_or_purpose": "лофт"
+    },
+    "price": 24500
+  },
+  {
+    "id": "1186",
+    "description": "золотой шкаф распашной классик натуральная кожа лофт 240x65x230",
+    "characteristics": {
+      "product_type": "шкаф распашной",
+      "model": "классик",
+      "dimensions": "240x65x230",
+      "color": "золотой",
+      "material": "натуральная кожа",
+      "features": "-",
+      "style_or_purpose": "лофт"
+    },
+    "price": 28152
+  },
+  {
+    "id": "1187",
+    "description": "коричневый буфет классик натуральная кожа ящики минимализм 100x45x190",
+    "characteristics": {
+      "product_type": "буфет",
+      "model": "классик",
+      "dimensions": "100x45x190",
+      "color": "коричневый",
+      "material": "натуральная кожа",
+      "features": "ящики",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 23171
+  },
+  {
+    "id": "1188",
+    "description": "серый стол детский мини шпон ореха полка лофт 90x55",
+    "characteristics": {
+      "product_type": "стол детский",
+      "model": "мини",
+      "dimensions": "90x55",
+      "color": "серый",
+      "material": "шпон ореха",
+      "features": "полка",
+      "style_or_purpose": "лофт"
+    },
+    "price": 6689
+  },
+  {
+    "id": "1189",
+    "description": "коричневый кровать двухъярусная близнецы натуральная кожа ящики для хранения минимализм 160x200",
+    "characteristics": {
+      "product_type": "кровать двухъярусная",
+      "model": "близнецы",
+      "dimensions": "160x200",
+      "color": "коричневый",
+      "material": "натуральная кожа",
+      "features": "ящики для хранения",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 16034
+  },
+  {
+    "id": "1190",
+    "description": "черный шкаф купе неон экокожа четырехдверный минимализм 60x45x200",
+    "characteristics": {
+      "product_type": "шкаф купе",
+      "model": "неон",
+      "dimensions": "60x45x200",
+      "color": "черный",
+      "material": "экокожа",
+      "features": "четырехдверный",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 62867
+  },
+  {
+    "id": "1191",
+    "description": "дуб сонома кровать двуспальная комфорт натуральная кожа ящики для хранения минимализм",
+    "characteristics": {
+      "product_type": "кровать двуспальная",
+      "model": "комфорт",
+      "dimensions": "-",
+      "color": "дуб сонома",
+      "material": "натуральная кожа",
+      "features": "ящики для хранения",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 22146
+  },
+  {
+    "id": "1192",
+    "description": "темно серый кресло офисное профи металл и стекло регулировка высоты классический",
+    "characteristics": {
+      "product_type": "кресло офисное",
+      "model": "профи",
+      "dimensions": "-",
+      "color": "темно серый",
+      "material": "металл и стекло",
+      "features": "регулировка высоты",
+      "style_or_purpose": "классический"
+    },
+    "price": 18883
+  },
+  {
+    "id": "1193",
+    "description": "черный кресло офисное босс массив дерева поясничная поддержка современный 45x50x85",
+    "characteristics": {
+      "product_type": "кресло офисное",
+      "model": "босс",
+      "dimensions": "45x50x85",
+      "color": "черный",
+      "material": "массив дерева",
+      "features": "поясничная поддержка",
+      "style_or_purpose": "современный"
+    },
+    "price": 25065
+  },
+  {
+    "id": "1194",
+    "description": "белый полка настенная эко мдф скрытый крепеж минимализм 100x35x180",
+    "characteristics": {
+      "product_type": "полка настенная",
+      "model": "эко",
+      "dimensions": "100x35x180",
+      "color": "белый",
+      "material": "мдф",
+      "features": "скрытый крепеж",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 9304
+  },
+  {
+    "id": "1195",
+    "description": "зеленый кровать двухъярусная юниор плюс металл и дерево бортик современный",
+    "characteristics": {
+      "product_type": "кровать двухъярусная",
+      "model": "юниор плюс",
+      "dimensions": "-",
+      "color": "зеленый",
+      "material": "металл и дерево",
+      "features": "бортик",
+      "style_or_purpose": "современный"
+    },
+    "price": 49770
+  },
+  {
+    "id": "1196",
+    "description": "венге стол письменный лайн металл и стекло надстройка кабинет",
+    "characteristics": {
+      "product_type": "стол письменный",
+      "model": "лайн",
+      "dimensions": "-",
+      "color": "венге",
+      "material": "металл и стекло",
+      "features": "надстройка",
+      "style_or_purpose": "кабинет"
+    },
+    "price": 12498
+  },
+  {
+    "id": "1197",
+    "description": "розовый стол детский комфорт велюр современный 100x60",
+    "characteristics": {
+      "product_type": "стол детский",
+      "model": "комфорт",
+      "dimensions": "100x60",
+      "color": "розовый",
+      "material": "велюр",
+      "features": "-",
+      "style_or_purpose": "современный"
+    },
+    "price": 32119
+  },
+  {
+    "id": "1198",
+    "description": "орех стол компьютерный компакт металл полки скандинавский 140x70",
+    "characteristics": {
+      "product_type": "стол компьютерный",
+      "model": "компакт",
+      "dimensions": "140x70",
+      "color": "орех",
+      "material": "металл",
+      "features": "полки",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 25481
+  },
+  {
+    "id": "1199",
+    "description": "коричневый стеллаж лофт экокожа кабинет 80x30x180",
+    "characteristics": {
+      "product_type": "стеллаж",
+      "model": "лофт",
+      "dimensions": "80x30x180",
+      "color": "коричневый",
+      "material": "экокожа",
+      "features": "-",
+      "style_or_purpose": "кабинет"
+    },
+    "price": 59511
+  },
+  {
+    "id": "1200",
+    "description": "орех кровать двуспальная соната мдф ящики для хранения лофт",
+    "characteristics": {
+      "product_type": "кровать двуспальная",
+      "model": "соната",
+      "dimensions": "-",
+      "color": "орех",
+      "material": "мдф",
+      "features": "ящики для хранения",
+      "style_or_purpose": "лофт"
+    },
+    "price": 18930
+  },
+  {
+    "id": "1201",
+    "description": "венге тумба прикроватная эко ткань два ящика современный 120x45x85",
+    "characteristics": {
+      "product_type": "тумба прикроватная",
+      "model": "эко",
+      "dimensions": "120x45x85",
+      "color": "венге",
+      "material": "ткань",
+      "features": "два ящика",
+      "style_or_purpose": "современный"
+    },
+    "price": 27801
+  },
+  {
+    "id": "1202",
+    "description": "золотой кухонный гарнитур лофт мдф и стекло глянцевый фасад скандинавский",
+    "characteristics": {
+      "product_type": "кухонный гарнитур",
+      "model": "лофт",
+      "dimensions": "-",
+      "color": "золотой",
+      "material": "мдф и стекло",
+      "features": "глянцевый фасад",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 90953
+  },
+  {
+    "id": "1203",
+    "description": "зеленый стол журнальный лофт мини шпон ореха полка лофт 100x100",
+    "characteristics": {
+      "product_type": "стол журнальный",
+      "model": "лофт мини",
+      "dimensions": "100x100",
+      "color": "зеленый",
+      "material": "шпон ореха",
+      "features": "полка",
+      "style_or_purpose": "лофт"
+    },
+    "price": 36600
+  },
+  {
+    "id": "1204",
+    "description": "коричневый шкаф детский облако шпон ореха полки детская 150x60x220",
+    "characteristics": {
+      "product_type": "шкаф детский",
+      "model": "облако",
+      "dimensions": "150x60x220",
+      "color": "коричневый",
+      "material": "шпон ореха",
+      "features": "полки",
+      "style_or_purpose": "детская"
+    },
+    "price": 51624
+  },
+  {
+    "id": "1205",
+    "description": "золотой шкаф детский мини шпон ореха двухдверный минимализм",
+    "characteristics": {
+      "product_type": "шкаф детский",
+      "model": "мини",
+      "dimensions": "-",
+      "color": "золотой",
+      "material": "шпон ореха",
+      "features": "двухдверный",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 68359
+  },
+  {
+    "id": "1206",
+    "description": "черный полка настенная куб экокожа скрытый крепеж классический 90x20",
+    "characteristics": {
+      "product_type": "полка настенная",
+      "model": "куб",
+      "dimensions": "90x20",
+      "color": "черный",
+      "material": "экокожа",
+      "features": "скрытый крепеж",
+      "style_or_purpose": "классический"
+    },
+    "price": 27270
+  },
+  {
+    "id": "1207",
+    "description": "серый стол журнальный лофт мини экокожа стеклянная столешница гостиная 100x60",
+    "characteristics": {
+      "product_type": "стол журнальный",
+      "model": "лофт мини",
+      "dimensions": "100x60",
+      "color": "серый",
+      "material": "экокожа",
+      "features": "стеклянная столешница",
+      "style_or_purpose": "гостиная"
+    },
+    "price": 7009
+  },
+  {
+    "id": "1208",
+    "description": "темно серый кровать двуспальная индастриал металл современный 160x200",
+    "characteristics": {
+      "product_type": "кровать двуспальная",
+      "model": "индастриал",
+      "dimensions": "160x200",
+      "color": "темно серый",
+      "material": "металл",
+      "features": "-",
+      "style_or_purpose": "современный"
+    },
+    "price": 25315
+  },
+  {
+    "id": "1209",
+    "description": "розовый стол журнальный квадро ткань гостиная 100x60",
+    "characteristics": {
+      "product_type": "стол журнальный",
+      "model": "квадро",
+      "dimensions": "100x60",
+      "color": "розовый",
+      "material": "ткань",
+      "features": "-",
+      "style_or_purpose": "гостиная"
+    },
+    "price": 15316
+  },
+  {
+    "id": "1210",
+    "description": "черный кухонный гарнитур прайм металл и дерево глянцевый фасад скандинавский 240x60",
+    "characteristics": {
+      "product_type": "кухонный гарнитур",
+      "model": "прайм",
+      "dimensions": "240x60",
+      "color": "черный",
+      "material": "металл и дерево",
+      "features": "глянцевый фасад",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 105576
+  },
+  {
+    "id": "1211",
+    "description": "дуб сонома кресло мягкое капля металл с пуфом лофт",
+    "characteristics": {
+      "product_type": "кресло мягкое",
+      "model": "капля",
+      "dimensions": "-",
+      "color": "дуб сонома",
+      "material": "металл",
+      "features": "с пуфом",
+      "style_or_purpose": "лофт"
+    },
+    "price": 12729
+  },
+  {
+    "id": "1212",
+    "description": "белый стол журнальный сканди рогожка стеклянная столешница минимализм 100x100",
+    "characteristics": {
+      "product_type": "стол журнальный",
+      "model": "сканди",
+      "dimensions": "100x100",
+      "color": "белый",
+      "material": "рогожка",
+      "features": "стеклянная столешница",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 25212
+  },
+  {
+    "id": "1213",
+    "description": "орех диван прямой стокгольм металл и стекло еврокнижка гостиная 210x95",
+    "characteristics": {
+      "product_type": "диван прямой",
+      "model": "стокгольм",
+      "dimensions": "210x95",
+      "color": "орех",
+      "material": "металл и стекло",
+      "features": "еврокнижка",
+      "style_or_purpose": "гостиная"
+    },
+    "price": 64507
+  },
+  {
+    "id": "1214",
+    "description": "голубой шкаф распашной слим рогожка узкий скандинавский 60x45x200",
+    "characteristics": {
+      "product_type": "шкаф распашной",
+      "model": "слим",
+      "dimensions": "60x45x200",
+      "color": "голубой",
+      "material": "рогожка",
+      "features": "узкий",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 14506
+  },
+  {
+    "id": "1215",
+    "description": "серый кресло мягкое сканди экокожа минимализм 60x60x120",
+    "characteristics": {
+      "product_type": "кресло мягкое",
+      "model": "сканди",
+      "dimensions": "60x60x120",
+      "color": "серый",
+      "material": "экокожа",
+      "features": "-",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 25392
+  },
+  {
+    "id": "1216",
+    "description": "белый комод урбан металл четыре ящика современный 45x40x50",
+    "characteristics": {
+      "product_type": "комод",
+      "model": "урбан",
+      "dimensions": "45x40x50",
+      "color": "белый",
+      "material": "металл",
+      "features": "четыре ящика",
+      "style_or_purpose": "современный"
+    },
+    "price": 21065
+  },
+  {
+    "id": "1217",
+    "description": "зеленый кровать двуспальная верона металл ортопедическое основание современный 180x200",
+    "characteristics": {
+      "product_type": "кровать двуспальная",
+      "model": "верона",
+      "dimensions": "180x200",
+      "color": "зеленый",
+      "material": "металл",
+      "features": "ортопедическое основание",
+      "style_or_purpose": "современный"
+    },
+    "price": 33973
+  },
+  {
+    "id": "1218",
+    "description": "черный кровать односпальная сон ткань бортик минимализм 180x200",
+    "characteristics": {
+      "product_type": "кровать односпальная",
+      "model": "сон",
+      "dimensions": "180x200",
+      "color": "черный",
+      "material": "ткань",
+      "features": "бортик",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 69527
+  },
+  {
+    "id": "1219",
+    "description": "белый полка настенная куб металл настенная лофт",
+    "characteristics": {
+      "product_type": "полка настенная",
+      "model": "куб",
+      "dimensions": "-",
+      "color": "белый",
+      "material": "металл",
+      "features": "настенная",
+      "style_or_purpose": "лофт"
+    },
+    "price": 43592
+  },
+  {
+    "id": "1220",
+    "description": "белый стул обеденный лофт металл классический 70x90x100",
+    "characteristics": {
+      "product_type": "стул обеденный",
+      "model": "лофт",
+      "dimensions": "70x90x100",
+      "color": "белый",
+      "material": "металл",
+      "features": "-",
+      "style_or_purpose": "классический"
+    },
+    "price": 6630
+  },
+  {
+    "id": "1221",
+    "description": "белый стол компьютерный кибер шпон ореха полки минимализм 160x90",
+    "characteristics": {
+      "product_type": "стол компьютерный",
+      "model": "кибер",
+      "dimensions": "160x90",
+      "color": "белый",
+      "material": "шпон ореха",
+      "features": "полки",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 17707
+  },
+  {
+    "id": "1222",
+    "description": "коричневый кресло детское радуга мдф и стекло регулировка высоты лофт 45x50x85",
+    "characteristics": {
+      "product_type": "кресло детское",
+      "model": "радуга",
+      "dimensions": "45x50x85",
+      "color": "коричневый",
+      "material": "мдф и стекло",
+      "features": "регулировка высоты",
+      "style_or_purpose": "лофт"
+    },
+    "price": 13798
+  },
+  {
+    "id": "1223",
+    "description": "серый стол обеденный сканди металл и стекло круглый классический 90x55",
+    "characteristics": {
+      "product_type": "стол обеденный",
+      "model": "сканди",
+      "dimensions": "90x55",
+      "color": "серый",
+      "material": "металл и стекло",
+      "features": "круглый",
+      "style_or_purpose": "классический"
+    },
+    "price": 16609
+  },
+  {
+    "id": "1224",
+    "description": "дуб сонома кухонный гарнитур лофт натуральная кожа угловой минимализм 240x60",
+    "characteristics": {
+      "product_type": "кухонный гарнитур",
+      "model": "лофт",
+      "dimensions": "240x60",
+      "color": "дуб сонома",
+      "material": "натуральная кожа",
+      "features": "угловой",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 92363
+  },
+  {
+    "id": "1225",
+    "description": "серый стол детский юниор массив дерева регулируемая высота современный 140x70",
+    "characteristics": {
+      "product_type": "стол детский",
+      "model": "юниор",
+      "dimensions": "140x70",
+      "color": "серый",
+      "material": "массив дерева",
+      "features": "регулируемая высота",
+      "style_or_purpose": "современный"
+    },
+    "price": 24845
+  },
+  {
+    "id": "1226",
+    "description": "зеленый кухонный остров прайм лдсп полки минимализм 100x45x190",
+    "characteristics": {
+      "product_type": "кухонный остров",
+      "model": "прайм",
+      "dimensions": "100x45x190",
+      "color": "зеленый",
+      "material": "лдсп",
+      "features": "полки",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 25342
+  },
+  {
+    "id": "1227",
+    "description": "черный кресло офисное комфорт лдсп колесики скандинавский 45x50x85",
+    "characteristics": {
+      "product_type": "кресло офисное",
+      "model": "комфорт",
+      "dimensions": "45x50x85",
+      "color": "черный",
+      "material": "лдсп",
+      "features": "колесики",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 30124
+  },
+  {
+    "id": "1228",
+    "description": "зеленый стол детский школьник металл и стекло современный 160x90",
+    "characteristics": {
+      "product_type": "стол детский",
+      "model": "школьник",
+      "dimensions": "160x90",
+      "color": "зеленый",
+      "material": "металл и стекло",
+      "features": "-",
+      "style_or_purpose": "современный"
+    },
+    "price": 41327
+  },
+  {
+    "id": "1229",
+    "description": "дуб сонома кухонный остров остров натуральная кожа барная стойка классический 120x80",
+    "characteristics": {
+      "product_type": "кухонный остров",
+      "model": "остров",
+      "dimensions": "120x80",
+      "color": "дуб сонома",
+      "material": "натуральная кожа",
+      "features": "барная стойка",
+      "style_or_purpose": "классический"
+    },
+    "price": 26071
+  },
+  {
+    "id": "1230",
+    "description": "венге тумба тв гранд экокожа длинная современный 45x40x50",
+    "characteristics": {
+      "product_type": "тумба тв",
+      "model": "гранд",
+      "dimensions": "45x40x50",
+      "color": "венге",
+      "material": "экокожа",
+      "features": "длинная",
+      "style_or_purpose": "современный"
+    },
+    "price": 17253
+  },
+  {
+    "id": "1231",
+    "description": "венге полка настенная декор металл и дерево для декора декор 100x35x180",
+    "characteristics": {
+      "product_type": "полка настенная",
+      "model": "декор",
+      "dimensions": "100x35x180",
+      "color": "венге",
+      "material": "металл и дерево",
+      "features": "для декора",
+      "style_or_purpose": "декор"
+    },
+    "price": 51374
+  },
+  {
+    "id": "1232",
+    "description": "венге кресло офисное комфорт шпон ореха подлокотники скандинавский 70x90x100",
+    "characteristics": {
+      "product_type": "кресло офисное",
+      "model": "комфорт",
+      "dimensions": "70x90x100",
+      "color": "венге",
+      "material": "шпон ореха",
+      "features": "подлокотники",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 39078
+  },
+  {
+    "id": "1233",
+    "description": "орех стол письменный лайн натуральная кожа регулируемая высота классический 160x90",
+    "characteristics": {
+      "product_type": "стол письменный",
+      "model": "лайн",
+      "dimensions": "160x90",
+      "color": "орех",
+      "material": "натуральная кожа",
+      "features": "регулируемая высота",
+      "style_or_purpose": "классический"
+    },
+    "price": 8431
+  },
+  {
+    "id": "1234",
+    "description": "белый кухонный остров прайм ткань деревянная столешница минимализм 240x60",
+    "characteristics": {
+      "product_type": "кухонный остров",
+      "model": "прайм",
+      "dimensions": "240x60",
+      "color": "белый",
+      "material": "ткань",
+      "features": "деревянная столешница",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 23621
+  },
+  {
+    "id": "1235",
+    "description": "золотой стол обеденный прайм экокожа овальный кухня 160x90",
+    "characteristics": {
+      "product_type": "стол обеденный",
+      "model": "прайм",
+      "dimensions": "160x90",
+      "color": "золотой",
+      "material": "экокожа",
+      "features": "овальный",
+      "style_or_purpose": "кухня"
+    },
+    "price": 14268
+  },
+  {
+    "id": "1236",
+    "description": "синий стол журнальный квадро мдф и стекло стеклянная столешница лофт 160x90",
+    "characteristics": {
+      "product_type": "стол журнальный",
+      "model": "квадро",
+      "dimensions": "160x90",
+      "color": "синий",
+      "material": "мдф и стекло",
+      "features": "стеклянная столешница",
+      "style_or_purpose": "лофт"
+    },
+    "price": 10552
+  },
+  {
+    "id": "1237",
+    "description": "орех стол письменный компакт металл и дерево регулируемая высота лофт 100x100",
+    "characteristics": {
+      "product_type": "стол письменный",
+      "model": "компакт",
+      "dimensions": "100x100",
+      "color": "орех",
+      "material": "металл и дерево",
+      "features": "регулируемая высота",
+      "style_or_purpose": "лофт"
+    },
+    "price": 39497
+  },
+  {
+    "id": "1238",
+    "description": "венге кровать двуспальная комфорт ткань подъемный механизм скандинавский 160x200",
+    "characteristics": {
+      "product_type": "кровать двуспальная",
+      "model": "комфорт",
+      "dimensions": "160x200",
+      "color": "венге",
+      "material": "ткань",
+      "features": "подъемный механизм",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 26813
+  },
+  {
+    "id": "1239",
+    "description": "голубой шкаф распашной урбан массив дерева трехдверный лофт 100x55x210",
+    "characteristics": {
+      "product_type": "шкаф распашной",
+      "model": "урбан",
+      "dimensions": "100x55x210",
+      "color": "голубой",
+      "material": "массив дерева",
+      "features": "трехдверный",
+      "style_or_purpose": "лофт"
+    },
+    "price": 24154
+  },
+  {
+    "id": "1240",
+    "description": "золотой кровать двуспальная верона натуральная кожа подъемный механизм минимализм",
+    "characteristics": {
+      "product_type": "кровать двуспальная",
+      "model": "верона",
+      "dimensions": "-",
+      "color": "золотой",
+      "material": "натуральная кожа",
+      "features": "подъемный механизм",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 69730
+  },
+  {
+    "id": "1241",
+    "description": "черный книжный шкаф стекло металл и дерево нижние ящики минимализм 100x55x210",
+    "characteristics": {
+      "product_type": "книжный шкаф",
+      "model": "стекло",
+      "dimensions": "100x55x210",
+      "color": "черный",
+      "material": "металл и дерево",
+      "features": "нижние ящики",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 53141
+  },
+  {
+    "id": "1242",
+    "description": "серый стул обеденный мягкий экокожа металлические ножки классический 80x85x95",
+    "characteristics": {
+      "product_type": "стул обеденный",
+      "model": "мягкий",
+      "dimensions": "80x85x95",
+      "color": "серый",
+      "material": "экокожа",
+      "features": "металлические ножки",
+      "style_or_purpose": "классический"
+    },
+    "price": 3715
+  },
+  {
+    "id": "1243",
+    "description": "синий стул барный высокий мдф и стекло регулировка высоты современный",
+    "characteristics": {
+      "product_type": "стул барный",
+      "model": "высокий",
+      "dimensions": "-",
+      "color": "синий",
+      "material": "мдф и стекло",
+      "features": "регулировка высоты",
+      "style_or_purpose": "современный"
+    },
+    "price": 7668
+  },
+  {
+    "id": "1244",
+    "description": "темно серый кухонный гарнитур лофт шпон ореха матовый фасад скандинавский 240x60",
+    "characteristics": {
+      "product_type": "кухонный гарнитур",
+      "model": "лофт",
+      "dimensions": "240x60",
+      "color": "темно серый",
+      "material": "шпон ореха",
+      "features": "матовый фасад",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 75430
+  },
+  {
+    "id": "1245",
+    "description": "дуб сонома стол журнальный стекло массив дерева колесики современный 160x90",
+    "characteristics": {
+      "product_type": "стол журнальный",
+      "model": "стекло",
+      "dimensions": "160x90",
+      "color": "дуб сонома",
+      "material": "массив дерева",
+      "features": "колесики",
+      "style_or_purpose": "современный"
+    },
+    "price": 39567
+  },
+  {
+    "id": "1246",
+    "description": "золотой стул барный лофт бар велюр регулировка высоты скандинавский 45x50x85",
+    "characteristics": {
+      "product_type": "стул барный",
+      "model": "лофт бар",
+      "dimensions": "45x50x85",
+      "color": "золотой",
+      "material": "велюр",
+      "features": "регулировка высоты",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 13505
+  },
+  {
+    "id": "1247",
+    "description": "венге кресло мягкое винтаж мдф мягкое скандинавский 45x50x85",
+    "characteristics": {
+      "product_type": "кресло мягкое",
+      "model": "винтаж",
+      "dimensions": "45x50x85",
+      "color": "венге",
+      "material": "мдф",
+      "features": "мягкое",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 34005
+  },
+  {
+    "id": "1248",
+    "description": "дуб сонома шкаф купе неон шпон ореха подсветка современный 60x45x200",
+    "characteristics": {
+      "product_type": "шкаф купе",
+      "model": "неон",
+      "dimensions": "60x45x200",
+      "color": "дуб сонома",
+      "material": "шпон ореха",
+      "features": "подсветка",
+      "style_or_purpose": "современный"
+    },
+    "price": 28551
+  },
+  {
+    "id": "1249",
+    "description": "коричневый буфет ретро лдсп классический 240x60",
+    "characteristics": {
+      "product_type": "буфет",
+      "model": "ретро",
+      "dimensions": "240x60",
+      "color": "коричневый",
+      "material": "лдсп",
+      "features": "-",
+      "style_or_purpose": "классический"
+    },
+    "price": 37899
+  },
+  {
+    "id": "1250",
+    "description": "орех стол журнальный капля мдф колесики лофт 90x55",
+    "characteristics": {
+      "product_type": "стол журнальный",
+      "model": "капля",
+      "dimensions": "90x55",
+      "color": "орех",
+      "material": "мдф",
+      "features": "колесики",
+      "style_or_purpose": "лофт"
+    },
+    "price": 25885
+  },
+  {
+    "id": "1251",
+    "description": "голубой кровать односпальная школьник экокожа бортик детская 160x200",
+    "characteristics": {
+      "product_type": "кровать односпальная",
+      "model": "школьник",
+      "dimensions": "160x200",
+      "color": "голубой",
+      "material": "экокожа",
+      "features": "бортик",
+      "style_or_purpose": "детская"
+    },
+    "price": 75122
+  },
+  {
+    "id": "1252",
+    "description": "розовый буфет ретро экокожа современный",
+    "characteristics": {
+      "product_type": "буфет",
+      "model": "ретро",
+      "dimensions": "-",
+      "color": "розовый",
+      "material": "экокожа",
+      "features": "-",
+      "style_or_purpose": "современный"
+    },
+    "price": 5344
+  },
+  {
+    "id": "1253",
+    "description": "черный кресло детское мини рогожка регулировка высоты лофт",
+    "characteristics": {
+      "product_type": "кресло детское",
+      "model": "мини",
+      "dimensions": "-",
+      "color": "черный",
+      "material": "рогожка",
+      "features": "регулировка высоты",
+      "style_or_purpose": "лофт"
+    },
+    "price": 39809
+  },
+  {
+    "id": "1254",
+    "description": "венге книжный шкаф стекло металл стеклянные дверцы скандинавский 100x55x210",
+    "characteristics": {
+      "product_type": "книжный шкаф",
+      "model": "стекло",
+      "dimensions": "100x55x210",
+      "color": "венге",
+      "material": "металл",
+      "features": "стеклянные дверцы",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 33736
+  },
+  {
+    "id": "1255",
+    "description": "темно серый кровать односпальная юниор металл ортопедическое основание детская 90x200",
+    "characteristics": {
+      "product_type": "кровать односпальная",
+      "model": "юниор",
+      "dimensions": "90x200",
+      "color": "темно серый",
+      "material": "металл",
+      "features": "ортопедическое основание",
+      "style_or_purpose": "детская"
+    },
+    "price": 69833
+  },
+  {
+    "id": "1256",
+    "description": "зеленый кресло детское мягкий шпон ореха мягкое классический",
+    "characteristics": {
+      "product_type": "кресло детское",
+      "model": "мягкий",
+      "dimensions": "-",
+      "color": "зеленый",
+      "material": "шпон ореха",
+      "features": "мягкое",
+      "style_or_purpose": "классический"
+    },
+    "price": 27843
+  },
+  {
+    "id": "1257",
+    "description": "бежевый шкаф детский юниор металл двухдверный минимализм 150x60x220",
+    "characteristics": {
+      "product_type": "шкаф детский",
+      "model": "юниор",
+      "dimensions": "150x60x220",
+      "color": "бежевый",
+      "material": "металл",
+      "features": "двухдверный",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 29765
+  },
+  {
+    "id": "1258",
+    "description": "серый тумба прикроватная луна металл и дерево два ящика минимализм 120x45x85",
+    "characteristics": {
+      "product_type": "тумба прикроватная",
+      "model": "луна",
+      "dimensions": "120x45x85",
+      "color": "серый",
+      "material": "металл и дерево",
+      "features": "два ящика",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 8217
+  },
+  {
+    "id": "1259",
+    "description": "венге кресло качалка сканди натуральная кожа качалка современный 80x85x95",
+    "characteristics": {
+      "product_type": "кресло качалка",
+      "model": "сканди",
+      "dimensions": "80x85x95",
+      "color": "венге",
+      "material": "натуральная кожа",
+      "features": "качалка",
+      "style_or_purpose": "современный"
+    },
+    "price": 10426
+  },
+  {
+    "id": "1260",
+    "description": "коричневый обувница компакт рогожка три секции скандинавский 45x40x50",
+    "characteristics": {
+      "product_type": "обувница",
+      "model": "компакт",
+      "dimensions": "45x40x50",
+      "color": "коричневый",
+      "material": "рогожка",
+      "features": "три секции",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 17298
+  },
+  {
+    "id": "1261",
+    "description": "голубой шкаф детский облако металл и стекло полки лофт 60x45x200",
+    "characteristics": {
+      "product_type": "шкаф детский",
+      "model": "облако",
+      "dimensions": "60x45x200",
+      "color": "голубой",
+      "material": "металл и стекло",
+      "features": "полки",
+      "style_or_purpose": "лофт"
+    },
+    "price": 37088
+  },
+  {
+    "id": "1262",
+    "description": "золотой комод урбан металл и дерево пять ящиков классический 160x40x50",
+    "characteristics": {
+      "product_type": "комод",
+      "model": "урбан",
+      "dimensions": "160x40x50",
+      "color": "золотой",
+      "material": "металл и дерево",
+      "features": "пять ящиков",
+      "style_or_purpose": "классический"
+    },
+    "price": 28786
+  },
+  {
+    "id": "1263",
+    "description": "голубой кресло мягкое уют экокожа мягкое классический 80x85x95",
+    "characteristics": {
+      "product_type": "кресло мягкое",
+      "model": "уют",
+      "dimensions": "80x85x95",
+      "color": "голубой",
+      "material": "экокожа",
+      "features": "мягкое",
+      "style_or_purpose": "классический"
+    },
+    "price": 10211
+  },
+  {
+    "id": "1264",
+    "description": "черный стол письменный школьник натуральная кожа полки кабинет 120x60",
+    "characteristics": {
+      "product_type": "стол письменный",
+      "model": "школьник",
+      "dimensions": "120x60",
+      "color": "черный",
+      "material": "натуральная кожа",
+      "features": "полки",
+      "style_or_purpose": "кабинет"
+    },
+    "price": 25321
+  },
+  {
+    "id": "1265",
+    "description": "золотой кресло качалка классик шпон ореха деревянные полозья скандинавский 45x50x85",
+    "characteristics": {
+      "product_type": "кресло качалка",
+      "model": "классик",
+      "dimensions": "45x50x85",
+      "color": "золотой",
+      "material": "шпон ореха",
+      "features": "деревянные полозья",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 33683
+  },
+  {
+    "id": "1266",
+    "description": "бежевый обувница слим ткань три секции классический 120x45x85",
+    "characteristics": {
+      "product_type": "обувница",
+      "model": "слим",
+      "dimensions": "120x45x85",
+      "color": "бежевый",
+      "material": "ткань",
+      "features": "три секции",
+      "style_or_purpose": "классический"
+    },
+    "price": 14952
+  },
+  {
+    "id": "1267",
+    "description": "орех кровать односпальная школьник металл ортопедическое основание современный 160x200",
+    "characteristics": {
+      "product_type": "кровать односпальная",
+      "model": "школьник",
+      "dimensions": "160x200",
+      "color": "орех",
+      "material": "металл",
+      "features": "ортопедическое основание",
+      "style_or_purpose": "современный"
+    },
+    "price": 78813
+  },
+  {
+    "id": "1268",
+    "description": "розовый шкаф купе гарда массив дерева трехдверный минимализм 150x60x220",
+    "characteristics": {
+      "product_type": "шкаф купе",
+      "model": "гарда",
+      "dimensions": "150x60x220",
+      "color": "розовый",
+      "material": "массив дерева",
+      "features": "трехдверный",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 66504
+  },
+  {
+    "id": "1269",
+    "description": "белый кровать двуспальная комфорт металл ортопедическое основание лофт",
+    "characteristics": {
+      "product_type": "кровать двуспальная",
+      "model": "комфорт",
+      "dimensions": "-",
+      "color": "белый",
+      "material": "металл",
+      "features": "ортопедическое основание",
+      "style_or_purpose": "лофт"
+    },
+    "price": 34252
+  },
+  {
+    "id": "1270",
+    "description": "белый стол компьютерный геймер ткань надстройка скандинавский 140x70",
+    "characteristics": {
+      "product_type": "стол компьютерный",
+      "model": "геймер",
+      "dimensions": "140x70",
+      "color": "белый",
+      "material": "ткань",
+      "features": "надстройка",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 44493
+  },
+  {
+    "id": "1271",
+    "description": "серый полка настенная эко мдф и стекло скандинавский",
+    "characteristics": {
+      "product_type": "полка настенная",
+      "model": "эко",
+      "dimensions": "-",
+      "color": "серый",
+      "material": "мдф и стекло",
+      "features": "-",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 7775
+  },
+  {
+    "id": "1272",
+    "description": "зеленый книжный шкаф прага металл нижние ящики классический 60x45x200",
+    "characteristics": {
+      "product_type": "книжный шкаф",
+      "model": "прага",
+      "dimensions": "60x45x200",
+      "color": "зеленый",
+      "material": "металл",
+      "features": "нижние ящики",
+      "style_or_purpose": "классический"
+    },
+    "price": 18917
+  },
+  {
+    "id": "1273",
+    "description": "коричневый стеллаж эко шпон ореха открытый кабинет 100x35x180",
+    "characteristics": {
+      "product_type": "стеллаж",
+      "model": "эко",
+      "dimensions": "100x35x180",
+      "color": "коричневый",
+      "material": "шпон ореха",
+      "features": "открытый",
+      "style_or_purpose": "кабинет"
+    },
+    "price": 44817
+  },
+  {
+    "id": "1274",
+    "description": "черный стеллаж эко экокожа пять полок лофт 90x20",
+    "characteristics": {
+      "product_type": "стеллаж",
+      "model": "эко",
+      "dimensions": "90x20",
+      "color": "черный",
+      "material": "экокожа",
+      "features": "пять полок",
+      "style_or_purpose": "лофт"
+    },
+    "price": 28733
+  },
+  {
+    "id": "1275",
+    "description": "черный стул обеденный лофт металл и стекло металлические ножки классический 80x85x95",
+    "characteristics": {
+      "product_type": "стул обеденный",
+      "model": "лофт",
+      "dimensions": "80x85x95",
+      "color": "черный",
+      "material": "металл и стекло",
+      "features": "металлические ножки",
+      "style_or_purpose": "классический"
+    },
+    "price": 9077
+  },
+  {
+    "id": "1276",
+    "description": "голубой стол журнальный сканди мдф полка минимализм 120x60",
+    "characteristics": {
+      "product_type": "стол журнальный",
+      "model": "сканди",
+      "dimensions": "120x60",
+      "color": "голубой",
+      "material": "мдф",
+      "features": "полка",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 31085
+  },
+  {
+    "id": "1277",
+    "description": "темно серый стол компьютерный профи мдф полки классический 100x60",
+    "characteristics": {
+      "product_type": "стол компьютерный",
+      "model": "профи",
+      "dimensions": "100x60",
+      "color": "темно серый",
+      "material": "мдф",
+      "features": "полки",
+      "style_or_purpose": "классический"
+    },
+    "price": 37705
+  },
+  {
+    "id": "1278",
+    "description": "венге кресло качалка классик мдф скандинавский 80x85x95",
+    "characteristics": {
+      "product_type": "кресло качалка",
+      "model": "классик",
+      "dimensions": "80x85x95",
+      "color": "венге",
+      "material": "мдф",
+      "features": "-",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 16031
+  },
+  {
+    "id": "1279",
+    "description": "розовый тумба тв лайн массив дерева полки гостиная 90x45x90",
+    "characteristics": {
+      "product_type": "тумба тв",
+      "model": "лайн",
+      "dimensions": "90x45x90",
+      "color": "розовый",
+      "material": "массив дерева",
+      "features": "полки",
+      "style_or_purpose": "гостиная"
+    },
+    "price": 8426
+  },
+  {
+    "id": "1280",
+    "description": "розовый кресло офисное эргономик массив дерева регулировка высоты классический 70x90x100",
+    "characteristics": {
+      "product_type": "кресло офисное",
+      "model": "эргономик",
+      "dimensions": "70x90x100",
+      "color": "розовый",
+      "material": "массив дерева",
+      "features": "регулировка высоты",
+      "style_or_purpose": "классический"
+    },
+    "price": 30883
+  },
+  {
+    "id": "1281",
+    "description": "венге стол журнальный лофт мини шпон ореха колесики скандинавский",
+    "characteristics": {
+      "product_type": "стол журнальный",
+      "model": "лофт мини",
+      "dimensions": "-",
+      "color": "венге",
+      "material": "шпон ореха",
+      "features": "колесики",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 15322
+  },
+  {
+    "id": "1282",
+    "description": "голубой полка настенная лайн ткань для декора декор 100x35x180",
+    "characteristics": {
+      "product_type": "полка настенная",
+      "model": "лайн",
+      "dimensions": "100x35x180",
+      "color": "голубой",
+      "material": "ткань",
+      "features": "для декора",
+      "style_or_purpose": "декор"
+    },
+    "price": 56908
+  },
+  {
+    "id": "1283",
+    "description": "голубой кровать двухъярусная домик массив дерева лестница скандинавский",
+    "characteristics": {
+      "product_type": "кровать двухъярусная",
+      "model": "домик",
+      "dimensions": "-",
+      "color": "голубой",
+      "material": "массив дерева",
+      "features": "лестница",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 52504
+  },
+  {
+    "id": "1284",
+    "description": "голубой стол журнальный сканди шпон ореха полка минимализм 90x55",
+    "characteristics": {
+      "product_type": "стол журнальный",
+      "model": "сканди",
+      "dimensions": "90x55",
+      "color": "голубой",
+      "material": "шпон ореха",
+      "features": "полка",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 9308
+  },
+  {
+    "id": "1285",
+    "description": "розовый стол письменный лайн мдф и стекло надстройка минимализм 140x70",
+    "characteristics": {
+      "product_type": "стол письменный",
+      "model": "лайн",
+      "dimensions": "140x70",
+      "color": "розовый",
+      "material": "мдф и стекло",
+      "features": "надстройка",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 31832
+  },
+  {
+    "id": "1286",
+    "description": "белый буфет дача экокожа полки классический 100x45x190",
+    "characteristics": {
+      "product_type": "буфет",
+      "model": "дача",
+      "dimensions": "100x45x190",
+      "color": "белый",
+      "material": "экокожа",
+      "features": "полки",
+      "style_or_purpose": "классический"
+    },
+    "price": 34489
+  },
+  {
+    "id": "1287",
+    "description": "коричневый кресло офисное профи экокожа подлокотники лофт 80x85x95",
+    "characteristics": {
+      "product_type": "кресло офисное",
+      "model": "профи",
+      "dimensions": "80x85x95",
+      "color": "коричневый",
+      "material": "экокожа",
+      "features": "подлокотники",
+      "style_or_purpose": "лофт"
+    },
+    "price": 25477
+  },
+  {
+    "id": "1288",
+    "description": "золотой стол детский школьник мдф ящики скандинавский 100x60",
+    "characteristics": {
+      "product_type": "стол детский",
+      "model": "школьник",
+      "dimensions": "100x60",
+      "color": "золотой",
+      "material": "мдф",
+      "features": "ящики",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 15614
+  },
+  {
+    "id": "1289",
+    "description": "коричневый стол компьютерный кибер шпон ореха надстройка рабочее место 120x60",
+    "characteristics": {
+      "product_type": "стол компьютерный",
+      "model": "кибер",
+      "dimensions": "120x60",
+      "color": "коричневый",
+      "material": "шпон ореха",
+      "features": "надстройка",
+      "style_or_purpose": "рабочее место"
+    },
+    "price": 17864
+  },
+  {
+    "id": "1290",
+    "description": "бежевый обувница лайн экокожа с сиденьем минимализм 70x25x120",
+    "characteristics": {
+      "product_type": "обувница",
+      "model": "лайн",
+      "dimensions": "70x25x120",
+      "color": "бежевый",
+      "material": "экокожа",
+      "features": "с сиденьем",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 9061
+  },
+  {
+    "id": "1291",
+    "description": "зеленый кресло качалка дача металл и стекло мягкая подушка лофт",
+    "characteristics": {
+      "product_type": "кресло качалка",
+      "model": "дача",
+      "dimensions": "-",
+      "color": "зеленый",
+      "material": "металл и стекло",
+      "features": "мягкая подушка",
+      "style_or_purpose": "лофт"
+    },
+    "price": 32613
+  },
+  {
+    "id": "1292",
+    "description": "коричневый кресло детское юниор металл и стекло мягкое детская 45x50x85",
+    "characteristics": {
+      "product_type": "кресло детское",
+      "model": "юниор",
+      "dimensions": "45x50x85",
+      "color": "коричневый",
+      "material": "металл и стекло",
+      "features": "мягкое",
+      "style_or_purpose": "детская"
+    },
+    "price": 10489
+  },
+  {
+    "id": "1293",
+    "description": "бежевый обувница лайн металл и дерево узкая минимализм 160x40x50",
+    "characteristics": {
+      "product_type": "обувница",
+      "model": "лайн",
+      "dimensions": "160x40x50",
+      "color": "бежевый",
+      "material": "металл и дерево",
+      "features": "узкая",
+      "style_or_purpose": "минимализм"
+    },
+    "price": 26254
+  },
+  {
+    "id": "1294",
+    "description": "дуб сонома обувница прихожая металл и дерево откидные дверцы скандинавский",
+    "characteristics": {
+      "product_type": "обувница",
+      "model": "прихожая",
+      "dimensions": "-",
+      "color": "дуб сонома",
+      "material": "металл и дерево",
+      "features": "откидные дверцы",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 15899
+  },
+  {
+    "id": "1295",
+    "description": "голубой кресло мягкое уют натуральная кожа скандинавский 80x85x95",
+    "characteristics": {
+      "product_type": "кресло мягкое",
+      "model": "уют",
+      "dimensions": "80x85x95",
+      "color": "голубой",
+      "material": "натуральная кожа",
+      "features": "-",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 11391
+  },
+  {
+    "id": "1296",
+    "description": "серый полка настенная декор массив дерева современный",
+    "characteristics": {
+      "product_type": "полка настенная",
+      "model": "декор",
+      "dimensions": "-",
+      "color": "серый",
+      "material": "массив дерева",
+      "features": "-",
+      "style_or_purpose": "современный"
+    },
+    "price": 18370
+  },
+  {
+    "id": "1297",
+    "description": "серый стол компьютерный рабочий ткань надстройка классический",
+    "characteristics": {
+      "product_type": "стол компьютерный",
+      "model": "рабочий",
+      "dimensions": "-",
+      "color": "серый",
+      "material": "ткань",
+      "features": "надстройка",
+      "style_or_purpose": "классический"
+    },
+    "price": 27634
+  },
+  {
+    "id": "1298",
+    "description": "голубой стул обеденный мягкий ткань мягкое сиденье скандинавский 60x60x120",
+    "characteristics": {
+      "product_type": "стул обеденный",
+      "model": "мягкий",
+      "dimensions": "60x60x120",
+      "color": "голубой",
+      "material": "ткань",
+      "features": "мягкое сиденье",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 10642
+  },
+  {
+    "id": "1299",
+    "description": "дуб сонома кровать односпальная школьник велюр бортик детская 90x200",
+    "characteristics": {
+      "product_type": "кровать односпальная",
+      "model": "школьник",
+      "dimensions": "90x200",
+      "color": "дуб сонома",
+      "material": "велюр",
+      "features": "бортик",
+      "style_or_purpose": "детская"
+    },
+    "price": 34019
+  },
+  {
+    "id": "1300",
+    "description": "орех стул обеденный лофт велюр металлические ножки скандинавский",
+    "characteristics": {
+      "product_type": "стул обеденный",
+      "model": "лофт",
+      "dimensions": "-",
+      "color": "орех",
+      "material": "велюр",
+      "features": "металлические ножки",
+      "style_or_purpose": "скандинавский"
+    },
+    "price": 14814
+  }
+]
