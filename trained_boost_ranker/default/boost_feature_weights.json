@@ -1,0 +1,97 @@
+[
+  {
+    "feature": "product_type_embedding_score",
+    "importance": 0.8573095202445984,
+    "normalized_weight": 0.8573095798492432
+  },
+  {
+    "feature": "bm25_score",
+    "importance": 0.09146124124526978,
+    "normalized_weight": 0.09146124869585037
+  },
+  {
+    "feature": "color_embedding_score",
+    "importance": 0.011237764731049538,
+    "normalized_weight": 0.011237765662372112
+  },
+  {
+    "feature": "material_embedding_score",
+    "importance": 0.010668658651411533,
+    "normalized_weight": 0.010668659582734108
+  },
+  {
+    "feature": "style_or_purpose_embedding_score",
+    "importance": 0.006699289660900831,
+    "normalized_weight": 0.0066992901265621185
+  },
+  {
+    "feature": "features_embedding_score",
+    "importance": 0.005833970382809639,
+    "normalized_weight": 0.005833970848470926
+  },
+  {
+    "feature": "product_has_features",
+    "importance": 0.005790122784674168,
+    "normalized_weight": 0.005790123250335455
+  },
+  {
+    "feature": "product_has_dimensions",
+    "importance": 0.00435688765719533,
+    "normalized_weight": 0.004356888122856617
+  },
+  {
+    "feature": "dimensions_embedding_score",
+    "importance": 0.004285637754946947,
+    "normalized_weight": 0.004285638220608234
+  },
+  {
+    "feature": "price_score",
+    "importance": 0.0023568389005959034,
+    "normalized_weight": 0.002356839133426547
+  },
+  {
+    "feature": "exact_id_score",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "has_query_id",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "has_price_filter",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "model_embedding_score",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "product_has_product_type",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "product_has_model",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "product_has_color",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "product_has_material",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "product_has_style_or_purpose",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  }
+]

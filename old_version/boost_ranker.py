@@ -4,7 +4,7 @@ from pathlib import Path
 import numpy as np
 from xgboost import XGBRanker
 
-from search_core import field_value
+from search_core_old_vertion import field_value
 
 
 def load_json(path):
@@ -37,72 +37,30 @@ def load_answers_by_query(path):
     return answers_by_query
 
 
-def build_product_id_to_domain(search_engine):
-    result = {}
-
-    for product in search_engine.products:
-        product_id = field_value(product.get("id"))
-        domain = field_value(product.get("domain")) or "default"
-
-        if product_id:
-            result[product_id] = domain
-
-    return result
-
-
-def query_has_domain_answers(relevant_ids, product_id_to_domain, domain):
-    for product_id in relevant_ids:
-        if product_id_to_domain.get(product_id) == domain:
-            return True
-
-    return False
-
-
-def build_training_dataset_for_domain(
+def build_training_dataset(
     search_engine,
     queries,
     answers_by_query,
-    domain,
-    first_stage_limit=1000,
+    bm25_limit=100,
+    embedding_limit=100,
 ):
     X = []
     y = []
     qid = []
     debug_rows = []
 
-    product_id_to_domain = build_product_id_to_domain(search_engine)
-    used_query_number = 0
-
-    for item in queries:
+    for query_number, item in enumerate(queries):
         query_id = item["query_id"]
         query = item["query"]
 
         relevant_ids = answers_by_query.get(query_id, set())
 
-        explicit_domain = (
-            field_value(query.get("domain"))
-            or field_value(query.get("category"))
-        )
-
-        if explicit_domain and explicit_domain != domain:
-            continue
-
-        if not explicit_domain and not query_has_domain_answers(
-            relevant_ids=relevant_ids,
-            product_id_to_domain=product_id_to_domain,
-            domain=domain,
-        ):
-            continue
-
-        candidate_indexes, all_scores = search_engine.get_candidate_indexes_for_domain(
+        candidate_indexes, all_scores = search_engine.get_candidate_indexes(
             prepared_query=query,
-            domain=domain,
             relevant_ids=relevant_ids,
-            first_stage_limit=first_stage_limit,
+            bm25_limit=bm25_limit,
+            embedding_limit=embedding_limit,
         )
-
-        if not candidate_indexes:
-            continue
 
         for product_index in candidate_indexes:
             product = search_engine.products[product_index]
@@ -118,16 +76,13 @@ def build_training_dataset_for_domain(
 
             X.append(feature_vector)
             y.append(label)
-            qid.append(used_query_number)
+            qid.append(query_number)
 
             debug_rows.append({
                 "query_id": query_id,
                 "product_id": product_id,
-                "domain": domain,
                 "label": label,
             })
-
-        used_query_number += 1
 
     return (
         np.array(X, dtype=np.float32),
@@ -165,6 +120,7 @@ def train_xgb_ranker(X, y, qid):
 
 def get_boost_feature_weights(model, feature_names):
     raw_importances = np.array(model.feature_importances_, dtype=np.float32)
+
     total = float(np.sum(raw_importances))
 
     if total <= 0:
@@ -189,8 +145,8 @@ def get_boost_feature_weights(model, feature_names):
     return result
 
 
-def save_domain_ranker(model, feature_names, output_dir, domain):
-    output_dir = Path(output_dir) / domain
+def save_ranker(model, feature_names, output_dir):
+    output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     model.save_model(str(output_dir / "xgb_ranker.json"))
@@ -223,85 +179,17 @@ def print_boost_feature_weights(model, feature_names):
         )
 
 
-def train_rankers_by_domain(
-    search_engine,
-    queries,
-    answers_by_query,
-    output_dir="trained_boost_ranker",
-    first_stage_limit=1000,
-):
-    models_by_domain = {}
-
-    for domain in search_engine.domain_configs:
-        X, y, qid, debug_rows = build_training_dataset_for_domain(
-            search_engine=search_engine,
-            queries=queries,
-            answers_by_query=answers_by_query,
-            domain=domain,
-            first_stage_limit=first_stage_limit,
-        )
-
-        if len(X) == 0:
-            print()
-            print("Domain:", domain)
-            print("No training rows, skip")
-            continue
-
-        feature_names = search_engine.get_feature_names(domain)
-
-        print()
-        print("Domain:", domain)
-        print("Train rows:", len(X))
-        print("Feature count:", X.shape[1])
-        print("Queries:", len(set(qid)))
-        print("Positive labels:", int(y.sum()))
-        print("Feature names:", feature_names)
-
-        model = train_xgb_ranker(
-            X=X,
-            y=y,
-            qid=qid,
-        )
-
-        save_domain_ranker(
-            model=model,
-            feature_names=feature_names,
-            output_dir=output_dir,
-            domain=domain,
-        )
-
-        print_boost_feature_weights(
-            model=model,
-            feature_names=feature_names,
-        )
-
-        models_by_domain[domain] = model
-
-    return models_by_domain
-
-
 class XGBoostProductSearch:
-    def __init__(self, search_engine, models_by_domain):
+    def __init__(self, search_engine, ranker_model):
         self.search_engine = search_engine
-        self.models_by_domain = models_by_domain
+        self.ranker_model = ranker_model
 
-    def search_domain(
-        self,
-        prepared_query,
-        domain,
-        per_domain_top_k=100,
-        first_stage_limit=1000,
-    ):
-        if domain not in self.models_by_domain:
-            return []
-
-        model = self.models_by_domain[domain]
-
-        candidate_indexes, all_scores = self.search_engine.get_candidate_indexes_for_domain(
+    def search(self, prepared_query, top_k=100, bm25_limit=100, embedding_limit=100):
+        candidate_indexes, all_scores = self.search_engine.get_candidate_indexes(
             prepared_query=prepared_query,
-            domain=domain,
             relevant_ids=[],
-            first_stage_limit=first_stage_limit,
+            bm25_limit=bm25_limit,
+            embedding_limit=embedding_limit,
         )
 
         if not candidate_indexes:
@@ -318,7 +206,7 @@ class XGBoostProductSearch:
             X.append(feature_vector)
 
         X = np.array(X, dtype=np.float32)
-        predicted_scores = model.predict(X)
+        predicted_scores = self.ranker_model.predict(X)
 
         results = []
 
@@ -327,8 +215,6 @@ class XGBoostProductSearch:
 
             results.append({
                 "product_id": product["id"],
-                "article": product.get("article", ""),
-                "domain": domain,
                 "description": product.get("description", ""),
                 "characteristics": product.get("characteristics", {}),
                 "price": product.get("price"),
@@ -340,43 +226,7 @@ class XGBoostProductSearch:
             reverse=True,
         )
 
-        return results[:per_domain_top_k]
-
-    def search(
-        self,
-        prepared_query,
-        top_k=100,
-        per_domain_top_k=100,
-        first_stage_limit=1000,
-    ):
-        all_results = []
-
-        explicit_domain = (
-            field_value(prepared_query.get("domain"))
-            or field_value(prepared_query.get("category"))
-        )
-
-        if explicit_domain:
-            domains = [explicit_domain]
-        else:
-            domains = list(self.search_engine.domain_configs.keys())
-
-        for domain in domains:
-            domain_results = self.search_domain(
-                prepared_query=prepared_query,
-                domain=domain,
-                per_domain_top_k=per_domain_top_k,
-                first_stage_limit=first_stage_limit,
-            )
-
-            all_results.extend(domain_results)
-
-        all_results.sort(
-            key=lambda item: item["ranker_score"],
-            reverse=True,
-        )
-
-        return all_results[:top_k]
+        return results[:top_k]
 
 
 def precision_at_k(results, relevant_ids, k):

@@ -1,0 +1,21 @@
+[
+  "exact_id_score",
+  "bm25_score",
+  "price_score",
+  "has_query_id",
+  "has_price_filter",
+  "product_type_embedding_score",
+  "model_embedding_score",
+  "dimensions_embedding_score",
+  "color_embedding_score",
+  "material_embedding_score",
+  "features_embedding_score",
+  "style_or_purpose_embedding_score",
+  "product_has_product_type",
+  "product_has_model",
+  "product_has_dimensions",
+  "product_has_color",
+  "product_has_material",
+  "product_has_features",
+  "product_has_style_or_purpose"
+]
