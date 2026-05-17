@@ -1,6 +1,4 @@
-import csv
 from dataclasses import dataclass
-from pathlib import Path
 
 import numpy as np
 from rank_bm25 import BM25Okapi
@@ -12,6 +10,7 @@ class SearchDomainConfig:
     searchable_fields: list[str]
     field_embedding_weights: dict[str, float]
     final_weights: dict[str, float]
+    missing_field_scores: dict[str, float]
 
 
 DOMAIN_CONFIGS = {
@@ -42,6 +41,16 @@ DOMAIN_CONFIGS = {
             "field_embedding_score": 0.35,
             "price_score": 0.10,
         },
+        missing_field_scores={
+            "description": 0.0,
+            "product_type": 0.2,
+            "model": 0.5,
+            "dimensions": 0.5,
+            "color": 0.5,
+            "material": 0.4,
+            "features": 0.4,
+            "style_or_purpose": 0.5,
+        },
     ),
 }
 
@@ -50,29 +59,22 @@ def handle_new_domain(domain_name, observed_fields):
     return
 
 
-def normalize_text(value):
-    if value is None:
+def is_empty(value):
+    return value is None or value == "" or value == "-"
+
+
+def field_value(value):
+    if is_empty(value):
         return ""
 
-    value = str(value).strip().lower()
-    value = value.replace("ё", "е")
-    value = " ".join(value.split())
-
-    if value in {"", "-", "none", "null", "nan"}:
-        return ""
-
-    return value
-
-
-def clean_field(value):
-    return normalize_text(value)
+    return str(value)
 
 
 def join_non_empty(parts):
     result = []
 
     for part in parts:
-        part = clean_field(part)
+        part = field_value(part)
 
         if part:
             result.append(part)
@@ -81,7 +83,12 @@ def join_non_empty(parts):
 
 
 def tokenize(text):
-    return normalize_text(text).split()
+    text = field_value(text)
+
+    if not text:
+        return []
+
+    return text.split()
 
 
 def normalize_vector(vector):
@@ -107,12 +114,7 @@ def normalize_scores(scores):
 
 
 def price_to_float(value):
-    if value is None:
-        return None
-
-    value = str(value).replace(" ", "").replace(",", ".")
-
-    if not value:
+    if is_empty(value):
         return None
 
     try:
@@ -161,64 +163,6 @@ def calculate_price_score(product_price, price_min=None, price_max=None):
     return None
 
 
-def load_furniture_products_from_csv(
-    file_path,
-    id_field="id",
-    description_field="Описание",
-):
-    products = []
-    file_path = Path(file_path)
-
-    with file_path.open("r", encoding="utf-8-sig", newline="") as file:
-        reader = csv.DictReader(file, delimiter=";")
-
-        for row in reader:
-            product_id = clean_field(row[id_field])
-
-            raw_description = row.get(description_field, "")
-
-            product_type = row.get("Тип товара", "")
-            model = row.get("Модель", "")
-            dimensions = row.get("Габариты", "")
-            color = row.get("Цвет", "")
-            material = row.get("Материал", "")
-            features = row.get("Особенности", "")
-            style_or_purpose = row.get("Стиль/Назначение", "")
-            price = row.get("Цена (₽)", "")
-
-            description = join_non_empty([
-                raw_description,
-                product_type,
-                model,
-                dimensions,
-                color,
-                material,
-                features,
-                style_or_purpose,
-            ])
-
-            characteristics = {
-                "product_type": clean_field(product_type),
-                "model": clean_field(model),
-                "dimensions": clean_field(dimensions),
-                "color": clean_field(color),
-                "material": clean_field(material),
-                "features": clean_field(features),
-                "style_or_purpose": clean_field(style_or_purpose),
-            }
-
-            product = {
-                "id": product_id,
-                "description": description,
-                "characteristics": characteristics,
-                "price": price,
-            }
-
-            products.append(product)
-
-    return products
-
-
 class NeuralHybridProductSearch:
     def __init__(self, products, domain_name="furniture"):
         self.products = products
@@ -245,11 +189,13 @@ class NeuralHybridProductSearch:
         fields = set()
 
         for product in self.products:
-            if clean_field(product.get("description")):
+            if field_value(product.get("description")):
                 fields.add("description")
 
-            for field_name, field_value in product.get("characteristics", {}).items():
-                if clean_field(field_value):
+            characteristics = product.get("characteristics", {})
+
+            for field_name, field_val in characteristics.items():
+                if field_value(field_val):
                     fields.add(field_name)
 
         return sorted(fields)
@@ -265,24 +211,15 @@ class NeuralHybridProductSearch:
             text = self._build_bm25_text_for_product(product)
             texts.append(text)
 
-        tokens = [tokenize(text) for text in texts]
+        tokens = []
+
+        for text in texts:
+            tokens.append(tokenize(text))
+
         self.bm25 = BM25Okapi(tokens)
 
     def _build_bm25_text_for_product(self, product):
-        parts = [
-            product.get("description", ""),
-        ]
-
-        for field_name in self.config.searchable_fields:
-            if field_name == "description":
-                continue
-
-            value = product.get("characteristics", {}).get(field_name)
-
-            if value:
-                parts.append(value)
-
-        return join_non_empty(parts)
+        return field_value(product.get("description", ""))
 
     def _build_field_embedding_indexes(self):
         for field_name in self.config.searchable_fields:
@@ -292,32 +229,32 @@ class NeuralHybridProductSearch:
                 value = self._get_product_field_value(product, field_name)
                 texts.append(value)
 
-            vectors = self._encode_texts(texts, max_length=256)
+            vectors = self._encode_texts(texts)
             self.field_embeddings[field_name] = vectors
 
     def _get_product_field_value(self, product, field_name):
         if field_name == "description":
-            return clean_field(product.get("description", ""))
+            return field_value(product.get("description", ""))
 
-        return clean_field(
-            product.get("characteristics", {}).get(field_name, "")
-        )
+        characteristics = product.get("characteristics", {})
 
-    def _encode_texts(self, texts, max_length=256):
-        cleaned_texts = []
+        return field_value(characteristics.get(field_name, ""))
+
+    def _encode_texts(self, texts):
+        prepared_texts = []
 
         for text in texts:
-            text = clean_field(text)
+            text = field_value(text)
 
             if not text:
                 text = " "
 
-            cleaned_texts.append(text)
+            prepared_texts.append(text)
 
         output = self.embedding_model.encode(
-            cleaned_texts,
+            prepared_texts,
             batch_size=8,
-            max_length=max_length,
+            max_length=256,
         )
 
         vectors = output["dense_vecs"]
@@ -329,12 +266,12 @@ class NeuralHybridProductSearch:
 
         return np.array(normalized_vectors, dtype=np.float32)
 
-    def _encode_one_text(self, text, max_length=256):
-        vectors = self._encode_texts([text], max_length=max_length)
+    def _encode_one_text(self, text):
+        vectors = self._encode_texts([text])
         return vectors[0]
 
     def _exact_id_scores(self, query_id):
-        query_id = clean_field(query_id)
+        query_id = field_value(query_id)
 
         scores = np.zeros(len(self.products), dtype=np.float32)
 
@@ -342,7 +279,7 @@ class NeuralHybridProductSearch:
             return scores
 
         for index, product in enumerate(self.products):
-            product_id = clean_field(product.get("id"))
+            product_id = field_value(product.get("id"))
 
             if product_id == query_id:
                 scores[index] = 1.0
@@ -352,7 +289,7 @@ class NeuralHybridProductSearch:
         return scores
 
     def _bm25_scores(self, query_text):
-        query_text = clean_field(query_text)
+        query_text = field_value(query_text)
 
         if not query_text:
             return np.zeros(len(self.products), dtype=np.float32)
@@ -362,10 +299,13 @@ class NeuralHybridProductSearch:
 
         return normalize_scores(raw_scores)
 
+    def _build_bm25_text_for_query(self, prepared_query):
+        return field_value(prepared_query.get("description", ""))
+
     def _field_embedding_scores(self, prepared_query):
         result = {}
 
-        query_description = clean_field(
+        query_description = field_value(
             prepared_query.get("description", "")
         )
 
@@ -375,7 +315,9 @@ class NeuralHybridProductSearch:
             if field_name == "description":
                 query_value = query_description
             else:
-                query_value = clean_field(query_characteristics.get(field_name))
+                query_value = field_value(
+                    query_characteristics.get(field_name, "")
+                )
 
             if not query_value:
                 continue
@@ -383,14 +325,17 @@ class NeuralHybridProductSearch:
             if field_name not in self.field_embeddings:
                 continue
 
-            query_vector = self._encode_one_text(
-                query_value,
-                max_length=256,
-            )
+            query_vector = self._encode_one_text(query_value)
 
             product_vectors = self.field_embeddings[field_name]
             raw_scores = product_vectors @ query_vector
+
             scores = normalize_scores(raw_scores)
+
+            missing_score = self.config.missing_field_scores.get(
+                field_name,
+                0.5,
+            )
 
             for index, product in enumerate(self.products):
                 product_value = self._get_product_field_value(
@@ -399,7 +344,7 @@ class NeuralHybridProductSearch:
                 )
 
                 if not product_value:
-                    scores[index] = 0.0
+                    scores[index] = missing_score
 
             result[field_name] = scores
 
@@ -445,24 +390,6 @@ class NeuralHybridProductSearch:
             scores[index] = score
 
         return scores
-
-    def _build_bm25_text_for_query(self, prepared_query):
-        parts = [
-            prepared_query.get("description", ""),
-        ]
-
-        query_characteristics = prepared_query.get("characteristics", {})
-
-        for field_name in self.config.searchable_fields:
-            if field_name == "description":
-                continue
-
-            value = query_characteristics.get(field_name)
-
-            if value:
-                parts.append(value)
-
-        return join_non_empty(parts)
 
     def _calculate_final_scores(
         self,
@@ -518,7 +445,7 @@ class NeuralHybridProductSearch:
             bm25_scores=bm25_scores,
             field_embedding_scores=field_embedding_scores,
             price_scores=price_scores,
-            has_query_id=bool(clean_field(query_id)),
+            has_query_id=bool(field_value(query_id)),
             has_price_filter=(
                 prepared_query.get("price_min") is not None
                 or prepared_query.get("price_max") is not None
@@ -564,7 +491,7 @@ if __name__ == "__main__":
             "characteristics": {
                 "product_type": "диван угловой",
                 "model": "лофт",
-                "dimensions": "",
+                "dimensions": "-",
                 "color": "черный",
                 "material": "экокожа",
                 "features": "механизм дельфин",
@@ -596,7 +523,7 @@ if __name__ == "__main__":
                 "color": "орех",
                 "material": "шпон ореха",
                 "features": "раздвижной",
-                "style_or_purpose": "",
+                "style_or_purpose": "-",
             },
             "price": 38700,
         },
@@ -612,6 +539,8 @@ if __name__ == "__main__":
         "description": "черный угловой диван из экокожи в стиле лофт",
         "characteristics": {
             "product_type": "диван угловой",
+            "model": "-",
+            "dimensions": "-",
             "color": "черный",
             "material": "экокожа",
             "features": "механизм дельфин",
@@ -629,6 +558,7 @@ if __name__ == "__main__":
         print()
         print("ID:", item["product_id"])
         print("Описание:", item["description"])
+        print("Характеристики:", item["characteristics"])
         print("Цена:", item["price"])
         print("Exact ID:", item["exact_id_score"])
         print("BM25:", item["bm25_score"])
