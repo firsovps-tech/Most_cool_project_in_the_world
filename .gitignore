@@ -1,15 +1,16 @@
-
 .env
 .venv/
+
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
 
 data/search_cache/
 data/training_cache/
 
 *.Zone.Identifier
-README_PROJECT_AI360.md:Zone.Identifier
+*Zone.Identifier
 
 vector_db_visualization*.png
 
@@ -17,3 +18,5 @@ eval_rows_boost.json
 eval_summary_boost.json
 reports/eval_rows_boost.json
 reports/eval_summary_boost.json
+
+.DS_Store
