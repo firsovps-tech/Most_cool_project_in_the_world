@@ -1,0 +1,97 @@
+[
+  {
+    "feature": "product_has_Наименование",
+    "importance": 0.5664079785346985,
+    "normalized_weight": 0.5664079785346985
+  },
+  {
+    "feature": "bm25_score",
+    "importance": 0.12568244338035583,
+    "normalized_weight": 0.12568244338035583
+  },
+  {
+    "feature": "general_embedding_score",
+    "importance": 0.1114790067076683,
+    "normalized_weight": 0.1114790067076683
+  },
+  {
+    "feature": "Тип товара_embedding_score",
+    "importance": 0.04614180698990822,
+    "normalized_weight": 0.04614180698990822
+  },
+  {
+    "feature": "detail_embedding_score",
+    "importance": 0.04026777669787407,
+    "normalized_weight": 0.04026777669787407
+  },
+  {
+    "feature": "Наименование_embedding_score",
+    "importance": 0.028867708519101143,
+    "normalized_weight": 0.028867708519101143
+  },
+  {
+    "feature": "product_has_Материал",
+    "importance": 0.013567538000643253,
+    "normalized_weight": 0.013567538000643253
+  },
+  {
+    "feature": "Габариты_embedding_score",
+    "importance": 0.013249526731669903,
+    "normalized_weight": 0.013249526731669903
+  },
+  {
+    "feature": "Материал_embedding_score",
+    "importance": 0.012543212622404099,
+    "normalized_weight": 0.012543212622404099
+  },
+  {
+    "feature": "product_has_Габариты",
+    "importance": 0.0099013177677989,
+    "normalized_weight": 0.0099013177677989
+  },
+  {
+    "feature": "product_has_Особенности",
+    "importance": 0.009162617847323418,
+    "normalized_weight": 0.009162617847323418
+  },
+  {
+    "feature": "Цвет_embedding_score",
+    "importance": 0.009091979824006557,
+    "normalized_weight": 0.009091979824006557
+  },
+  {
+    "feature": "Особенности_embedding_score",
+    "importance": 0.007015401963144541,
+    "normalized_weight": 0.007015401963144541
+  },
+  {
+    "feature": "product_has_Цвет",
+    "importance": 0.0066216797567903996,
+    "normalized_weight": 0.0066216797567903996
+  },
+  {
+    "feature": "exact_id_score",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "price_score",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "has_query_id",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "has_price_filter",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "product_has_Тип товара",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  }
+]

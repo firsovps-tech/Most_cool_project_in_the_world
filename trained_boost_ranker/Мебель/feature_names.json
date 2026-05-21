@@ -1,0 +1,21 @@
+[
+  "exact_id_score",
+  "bm25_score",
+  "general_embedding_score",
+  "detail_embedding_score",
+  "price_score",
+  "has_query_id",
+  "has_price_filter",
+  "Тип товара_embedding_score",
+  "Наименование_embedding_score",
+  "Габариты_embedding_score",
+  "Цвет_embedding_score",
+  "Особенности_embedding_score",
+  "Материал_embedding_score",
+  "product_has_Тип товара",
+  "product_has_Наименование",
+  "product_has_Габариты",
+  "product_has_Цвет",
+  "product_has_Особенности",
+  "product_has_Материал"
+]
