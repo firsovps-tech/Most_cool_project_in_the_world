@@ -7,6 +7,8 @@ from typing import Any
 from dotenv import load_dotenv
 from openai import OpenAI
 
+from src.parsing.spelling_corrector import correct_spelling, looks_like_product_id
+
 
 load_dotenv()
 
@@ -125,6 +127,7 @@ def create_client() -> OpenAI:
 
     if project:
         kwargs["project"] = project
+        kwargs["default_headers"] = {"x-folder-id": project}
 
     return OpenAI(**kwargs)
 
@@ -405,6 +408,15 @@ def normalize_one_query(
     if not query_text:
         raise ValueError(f"Пустой query_text у запроса {query_id}")
 
+    original_query_text = query_text
+    is_product_code = looks_like_product_id(query_text)
+
+    # Артикулы/ID не отправляем в исправление орфографии,
+    # чтобы LLM случайно не изменила код товара.
+    # Но дальше Rita LLM-парсинг оставляем стандартным.
+    if not is_product_code:
+        query_text = correct_spelling(query_text, use_llm=use_llm)
+
     domain_characteristics = load_domain_characteristics(domain_characteristics_path)
     client = create_client() if use_llm else None
 
@@ -449,9 +461,12 @@ def normalize_one_query(
 
     return {
         "query_id": query_id,
-        "raw_query_text": query_text,
+        "id": original_query_text,
+        "raw_query_text": original_query_text,
+        "corrected_query_text": query_text,
         "query_text": clean_query,
         "domain": domain,
+        "category": domain,
         "characteristics": characteristics,
     }
 

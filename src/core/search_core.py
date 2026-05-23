@@ -48,11 +48,38 @@ def is_empty(value):
     return value is None or str(value).strip() == "" or str(value).strip() == "-"
 
 
+def normalize_product_id(value):
+    return (
+        str(value)
+        .strip()
+        .lower()
+        .replace(" ", "")
+        .replace("_", "-")
+        .replace("–", "-")
+        .replace("—", "-")
+    )
+
+
 def field_value(value):
     if is_empty(value):
         return ""
 
     return str(value).strip()
+
+def get_exact_query_text(prepared_query):
+    for key in [
+        "raw_query_text",
+        "corrected_query_text",
+        "article",
+        "id",
+        "query_id",
+        "query_text",
+    ]:
+        value = field_value(prepared_query.get(key, ""))
+        if value:
+            return value
+
+    return ""
 
 
 def tokenize(text):
@@ -594,6 +621,8 @@ class NeuralHybridProductSearch:
         return self.feature_names_by_domain[domain]
 
     def _build_indexes(self):
+        print("[SEARCH CACHE] build indexes start", flush=True)
+
         for index, product in enumerate(self.products):
             domain = get_product_domain(product)
 
@@ -603,10 +632,26 @@ class NeuralHybridProductSearch:
             self.domain_to_product_indexes[domain].append(index)
 
         for domain in self.domain_configs:
+            product_count = len(self.domain_to_product_indexes.get(domain, []))
+            print(f"[SEARCH CACHE] domain={domain} | products={product_count}", flush=True)
+
+            print(f"[SEARCH CACHE] BM25 start | domain={domain}", flush=True)
             self._build_bm25_index_for_domain(domain)
+            print(f"[SEARCH CACHE] BM25 done  | domain={domain}", flush=True)
+
+            print(f"[SEARCH CACHE] general embeddings start | domain={domain}", flush=True)
             self._build_general_embedding_index_for_domain(domain)
+            print(f"[SEARCH CACHE] general embeddings done  | domain={domain}", flush=True)
+
+            print(f"[SEARCH CACHE] field embeddings start | domain={domain}", flush=True)
             self._build_field_embedding_indexes_for_domain(domain)
+            print(f"[SEARCH CACHE] field embeddings done  | domain={domain}", flush=True)
+
+            print(f"[SEARCH CACHE] FAISS start | domain={domain}", flush=True)
             self._build_faiss_hnsw_index_for_domain(domain)
+            print(f"[SEARCH CACHE] FAISS done  | domain={domain}", flush=True)
+
+        print("[SEARCH CACHE] build indexes done", flush=True)
 
     def _build_bm25_index_for_domain(self, domain):
         product_indexes = self.domain_to_product_indexes.get(domain, [])
@@ -724,16 +769,23 @@ class NeuralHybridProductSearch:
         product_indexes = self.domain_to_product_indexes.get(domain, [])
         scores = np.zeros(len(product_indexes), dtype=np.float32)
 
-        query_id = field_value(query_id)
+        query_id_norm = normalize_product_id(query_id)
 
-        if not query_id:
+        if not query_id_norm:
             return scores
 
         for local_index, product_index in enumerate(product_indexes):
             product = self.products[product_index]
 
-            if field_value(product.get("id")) == query_id:
-                scores[local_index] = 1.0
+            product_id_norm = normalize_product_id(product.get("id", ""))
+            article_norm = normalize_product_id(product.get("article", ""))
+
+            if query_id_norm == product_id_norm or query_id_norm == article_norm:
+                scores[local_index] = 100.0
+            elif product_id_norm and (query_id_norm in product_id_norm or product_id_norm in query_id_norm):
+                scores[local_index] = 50.0
+            elif article_norm and (query_id_norm in article_norm or article_norm in query_id_norm):
+                scores[local_index] = 50.0
 
         return scores
 
@@ -870,7 +922,7 @@ class NeuralHybridProductSearch:
         general_embedding_scores,
     ):
         exact_id_scores = self._exact_id_scores_for_domain(
-            prepared_query.get("id", ""),
+            get_exact_query_text(prepared_query),
             domain,
         )
 
@@ -931,7 +983,7 @@ class NeuralHybridProductSearch:
         possible_local_indexes.update(hnsw_local_indexes)
 
         exact_id_scores = self._exact_id_scores_for_domain(
-            prepared_query.get("id", ""),
+            get_exact_query_text(prepared_query),
             domain,
         )
 
@@ -940,11 +992,18 @@ class NeuralHybridProductSearch:
                 possible_local_indexes.add(local_index)
 
         relevant_ids = set(field_value(item) for item in relevant_ids)
+        normalized_relevant_ids = set(
+            normalize_product_id(item)
+            for item in relevant_ids
+            if normalize_product_id(item)
+        )
 
         for local_index, product_index in enumerate(product_indexes):
             product = self.products[product_index]
+            product_id_norm = normalize_product_id(product.get("id", ""))
+            article_norm = normalize_product_id(product.get("article", ""))
 
-            if field_value(product.get("id")) in relevant_ids:
+            if product_id_norm in normalized_relevant_ids or article_norm in normalized_relevant_ids:
                 possible_local_indexes.add(local_index)
 
         first_stage_scores = np.zeros(len(product_indexes), dtype=np.float32)
@@ -963,10 +1022,18 @@ class NeuralHybridProductSearch:
 
         first_stage_local_indexes = set(sorted_first_stage[:first_stage_limit])
 
+        # Если в запросе есть артикул/ID и товар найден,
+        # обязательно оставляем его среди кандидатов.
+        for local_index in self._top_local_indexes(exact_id_scores, id_limit):
+            if exact_id_scores[local_index] > 0:
+                first_stage_local_indexes.add(local_index)
+
         for local_index, product_index in enumerate(product_indexes):
             product = self.products[product_index]
+            product_id_norm = normalize_product_id(product.get("id", ""))
+            article_norm = normalize_product_id(product.get("article", ""))
 
-            if field_value(product.get("id")) in relevant_ids:
+            if product_id_norm in normalized_relevant_ids or article_norm in normalized_relevant_ids:
                 first_stage_local_indexes.add(local_index)
 
         all_scores = self._make_all_scores(
@@ -999,7 +1066,7 @@ class NeuralHybridProductSearch:
         local_index = local_index_by_product_index[product_index]
         product = self.products[product_index]
 
-        has_query_id = 1.0 if field_value(prepared_query.get("id", "")) else 0.0
+        has_query_id = 1.0 if field_value(get_exact_query_text(prepared_query)) else 0.0
 
         has_price_filter = (
             prepared_query.get("price_min") is not None

@@ -20,3 +20,4 @@ reports/eval_rows_boost.json
 reports/eval_summary_boost.json
 
 .DS_Store
+.env
