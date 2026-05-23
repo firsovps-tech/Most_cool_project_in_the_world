@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Поиск подходящих вариантов</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="hero__badge">Умный поиск по базе</div>
+      <h1>Найдите самые подходящие варианты по обычному запросу</h1>
+      <p>
+        Введите фразу, например «белая кровать 160» или «угловой диван рогожка»,
+        а система отсортирует результаты по релевантности.
+      </p>
+
+      <form id="searchForm" class="search-box">
+        <input id="queryInput" type="text" autocomplete="off"
+               placeholder="Например: белая кровать 160" required>
+        <select id="topKSelect" aria-label="Количество результатов">
+          <option value="5">5</option>
+          <option value="10" selected>10</option>
+          <option value="20">20</option>
+        </select>
+        <button type="submit">Найти</button>
+      </form>
+
+      <div class="examples">
+        <button type="button" data-query="белая кровать 160">белая кровать 160</button>
+        <button type="button" data-query="угловой диван рогожка">угловой диван рогожка</button>
+        <button type="button" data-query="стол письменный белый">стол письменный белый</button>
+      </div>
+    </section>
+
+    <section class="status" id="statusBox" hidden></section>
+
+    <section class="summary" id="summaryBox" hidden>
+      <div>
+        <span class="muted">Домен</span>
+        <strong id="domainText"></strong>
+      </div>
+      <div>
+        <span class="muted">Исправленный запрос</span>
+        <strong id="correctedText"></strong>
+      </div>
+    </section>
+
+    <section class="results" id="results"></section>
+  </main>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
