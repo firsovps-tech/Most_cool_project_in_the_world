@@ -59,7 +59,7 @@ def create_client() -> OpenAI:
 
 
 def get_model_name() -> str:
-  return os.getenv("OPENAI_MODEL", "hydragpt/kimi-k2p6")
+  return os.getenv("OPENAI_MODEL", "opencode/deepseek-v4-flash-free")
 
 
 def extract_json(text: str) -> dict[str, Any]:
@@ -97,8 +97,7 @@ def ask_llm_json(
         "role": "user",
         "content": user_prompt
       }
-    ],
-    temperature=0
+    ]
   )
 
   content = response.choices[0].message.content
@@ -149,10 +148,11 @@ def build_domain_classification_prompt() -> str:
 Верни строго JSON такого вида:
 
 {{
-  "domain": "furniture | food | electronics",
-  "confidence": 0.0,
-  "reason": "краткая причина выбора"
+  "domain": "furniture"
 }}
+
+Допустимые значения domain:
+{json.dumps(list(DOMAINS.keys()), ensure_ascii=False)}
 
 Правила:
 1. Верни только JSON.
@@ -163,7 +163,7 @@ def build_domain_classification_prompt() -> str:
 """.strip()
 
 
-def classify_domain(client: OpenAI, query_text: str) -> dict[str, Any]:
+def classify_domain(client: OpenAI, query_text: str) -> str:
   result = ask_llm_json(
     client=client,
     system_prompt=build_domain_classification_prompt(),
@@ -175,7 +175,7 @@ def classify_domain(client: OpenAI, query_text: str) -> dict[str, Any]:
   if domain not in DOMAINS:
     raise ValueError(f"Модель вернула неизвестный домен: {domain}")
 
-  return result
+  return domain
 
 
 def build_domain_parser_prompt(domain: str) -> str:
@@ -201,15 +201,13 @@ def build_domain_parser_prompt(domain: str) -> str:
 Верни строго JSON такого вида:
 
 {{
-  "corrected_query": "запрос с исправленными ошибками",
-  "important_words": ["важное слово 1", "важное слово 2"],
   "characteristics": {json.dumps(example_characteristics, ensure_ascii=False)}
 }}
 
 Твоя задача:
 1. Исправить орфографические ошибки.
 2. Удалить мусорные слова.
-3. Оставить только важные слова.
+3. Оставить только важные товарные признаки.
 4. Распределить информацию по характеристикам.
 5. Не выдумывать данные, которых нет в запросе.
 6. Если значение характеристики отсутствует, ставь null.
@@ -221,10 +219,12 @@ def build_domain_parser_prompt(domain: str) -> str:
 - "метл" → "металл"
 - "лаваза" → "Lavazza"
 - "айфон" → "iPhone"
+- "икеа" → "IKEA"
 
 Важно:
 Верни только JSON.
 Не используй markdown.
+Не добавляй пояснения.
 """.strip()
 
 
@@ -269,6 +269,7 @@ def clean_characteristics(
 
 def build_clean_query(domain: str, characteristics: dict[str, str]) -> str:
   order = CHARACTERISTIC_ORDER.get(domain, list(characteristics.keys()))
+
   parts = []
 
   for key in order:
@@ -285,8 +286,7 @@ def normalize_one_query(
   query_id: str,
   query_text: str
 ) -> dict[str, Any]:
-  domain_result = classify_domain(client, query_text)
-  domain = domain_result["domain"]
+  domain = classify_domain(client, query_text)
 
   parsed = parse_query_for_domain(
     client=client,
@@ -306,13 +306,9 @@ def normalize_one_query(
 
   return {
     "query_id": query_id,
-    "query_text": query_text,
+    "query_text": clean_query,
     "domain": domain,
-    "domain_confidence": domain_result.get("confidence"),
-    "corrected_query": parsed.get("corrected_query"),
-    "important_words": parsed.get("important_words", []),
-    "characteristics": characteristics,
-    "clean_query": clean_query
+    "characteristics": characteristics
   }
 
 
@@ -336,11 +332,7 @@ def normalize_queries(input_path: str, output_path: str) -> None:
       results.append(result)
 
     except Exception as error:
-      results.append({
-        "query_id": query_id,
-        "query_text": query_text,
-        "error": str(error)
-      })
+      print(f"Ошибка при обработке {query_id}: {error}")
 
   with open(output_path, "w", encoding="utf-8") as file:
     json.dump(results, file, ensure_ascii=False, indent=2)
