@@ -1,0 +1,97 @@
+[
+  {
+    "feature": "exact_id_score",
+    "importance": 20.0,
+    "normalized_weight": 0.6743088334457181
+  },
+  {
+    "feature": "price_score",
+    "importance": 2.0,
+    "normalized_weight": 0.06743088334457181
+  },
+  {
+    "feature": "has_query_id",
+    "importance": 2.0,
+    "normalized_weight": 0.06743088334457181
+  },
+  {
+    "feature": "bm25_score",
+    "importance": 1.5,
+    "normalized_weight": 0.05057316250842886
+  },
+  {
+    "feature": "general_embedding_score",
+    "importance": 1.5,
+    "normalized_weight": 0.05057316250842886
+  },
+  {
+    "feature": "Цвет_embedding_score",
+    "importance": 0.75,
+    "normalized_weight": 0.02528658125421443
+  },
+  {
+    "feature": "Тип товара_embedding_score",
+    "importance": 0.5,
+    "normalized_weight": 0.016857720836142953
+  },
+  {
+    "feature": "Габариты_embedding_score",
+    "importance": 0.5,
+    "normalized_weight": 0.016857720836142953
+  },
+  {
+    "feature": "product_has_Тип товара",
+    "importance": 0.25,
+    "normalized_weight": 0.008428860418071477
+  },
+  {
+    "feature": "product_has_Наименование",
+    "importance": 0.25,
+    "normalized_weight": 0.008428860418071477
+  },
+  {
+    "feature": "product_has_Габариты",
+    "importance": 0.25,
+    "normalized_weight": 0.008428860418071477
+  },
+  {
+    "feature": "Наименование_embedding_score",
+    "importance": 0.1,
+    "normalized_weight": 0.003371544167228591
+  },
+  {
+    "feature": "product_has_Материал",
+    "importance": 0.03,
+    "normalized_weight": 0.0010114632501685772
+  },
+  {
+    "feature": "has_price_filter",
+    "importance": 0.01,
+    "normalized_weight": 0.00033715441672285906
+  },
+  {
+    "feature": "product_has_Цвет",
+    "importance": 0.01,
+    "normalized_weight": 0.00033715441672285906
+  },
+  {
+    "feature": "product_has_Особенности",
+    "importance": 0.01,
+    "normalized_weight": 0.00033715441672285906
+  },
+  {
+    "feature": "detail_embedding_score",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "Особенности_embedding_score",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "Материал_embedding_score",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  }
+]

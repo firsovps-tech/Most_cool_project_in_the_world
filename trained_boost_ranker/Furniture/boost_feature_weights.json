@@ -1,0 +1,97 @@
+[
+  {
+    "feature": "exact_id_score",
+    "importance": 20.0,
+    "normalized_weight": 0.5910165484633569
+  },
+  {
+    "feature": "price_score",
+    "importance": 2.0,
+    "normalized_weight": 0.05910165484633569
+  },
+  {
+    "feature": "has_query_id",
+    "importance": 2.0,
+    "normalized_weight": 0.05910165484633569
+  },
+  {
+    "feature": "Material_embedding_score",
+    "importance": 2.0,
+    "normalized_weight": 0.05910165484633569
+  },
+  {
+    "feature": "bm25_score",
+    "importance": 1.5,
+    "normalized_weight": 0.04432624113475177
+  },
+  {
+    "feature": "general_embedding_score",
+    "importance": 1.5,
+    "normalized_weight": 0.04432624113475177
+  },
+  {
+    "feature": "Product Type_embedding_score",
+    "importance": 1.5,
+    "normalized_weight": 0.04432624113475177
+  },
+  {
+    "feature": "Name_embedding_score",
+    "importance": 1.5,
+    "normalized_weight": 0.04432624113475177
+  },
+  {
+    "feature": "Dimensions_embedding_score",
+    "importance": 1.0,
+    "normalized_weight": 0.029550827423167846
+  },
+  {
+    "feature": "Features_embedding_score",
+    "importance": 0.25,
+    "normalized_weight": 0.0073877068557919616
+  },
+  {
+    "feature": "Color_embedding_score",
+    "importance": 0.25,
+    "normalized_weight": 0.0073877068557919616
+  },
+  {
+    "feature": "product_has_Color",
+    "importance": 0.15,
+    "normalized_weight": 0.004432624113475177
+  },
+  {
+    "feature": "product_has_Features",
+    "importance": 0.075,
+    "normalized_weight": 0.0022163120567375884
+  },
+  {
+    "feature": "product_has_Material",
+    "importance": 0.075,
+    "normalized_weight": 0.0022163120567375884
+  },
+  {
+    "feature": "product_has_Name",
+    "importance": 0.03,
+    "normalized_weight": 0.0008865248226950353
+  },
+  {
+    "feature": "has_price_filter",
+    "importance": 0.01,
+    "normalized_weight": 0.0002955082742316785
+  },
+  {
+    "feature": "detail_embedding_score",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "product_has_Product Type",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  },
+  {
+    "feature": "product_has_Dimensions",
+    "importance": 0.0,
+    "normalized_weight": 0.0
+  }
+]

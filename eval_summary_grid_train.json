@@ -1,0 +1,38 @@
+{
+  "ndcg@5": 0.6651745,
+  "hit@5": 0.87,
+  "error_hit@5": 0.13,
+  "ndcg@10": 0.623431,
+  "hit@10": 0.895,
+  "error_hit@10": 0.105,
+  "ndcg@20": 0.5525579999999999,
+  "hit@20": 0.92,
+  "error_hit@20": 0.08,
+  "rank@5_mean_found": 1.3218390804597702,
+  "rank@5_missing": 26,
+  "rank@10_mean_found": 1.5083798882681565,
+  "rank@10_missing": 21,
+  "rank@20_mean_found": 1.9130434782608696,
+  "rank@20_missing": 16,
+  "queries": 200,
+  "by_dataset": {
+    "overnight_gold_standard.json": {
+      "ndcg@5": 0.6651745,
+      "hit@5": 0.87,
+      "error_hit@5": 0.13,
+      "ndcg@10": 0.623431,
+      "hit@10": 0.895,
+      "error_hit@10": 0.105,
+      "ndcg@20": 0.5525579999999999,
+      "hit@20": 0.92,
+      "error_hit@20": 0.08,
+      "rank@5_mean_found": 1.3218390804597702,
+      "rank@5_missing": 26,
+      "rank@10_mean_found": 1.5083798882681565,
+      "rank@10_missing": 21,
+      "rank@20_mean_found": 1.9130434782608696,
+      "rank@20_missing": 16,
+      "queries": 200
+    }
+  }
+}

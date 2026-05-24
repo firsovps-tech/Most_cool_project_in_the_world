@@ -1,0 +1,6 @@
+{
+  "llm_ndcg@20": 0.8987199999999997,
+  "llm_precision@5": 0.8800000000000001,
+  "queries": 15,
+  "dataset": "smart_gold_standard.json"
+}

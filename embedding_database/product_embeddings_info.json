@@ -1,0 +1,13 @@
+{
+  "source": "search_engine.general_embeddings_by_domain",
+  "num_products": 4894,
+  "embedding_dim": 1024,
+  "vectors_file": "embedding_database/product_embeddings.npy",
+  "metadata_file": "embedding_database/product_embeddings_metadata.csv",
+  "full_parquet_file": "embedding_database/product_embeddings_full.parquet",
+  "domains": [
+    "Furniture",
+    "Мебель"
+  ],
+  "description": "Full product embedding database exported from Rita search engine general product embeddings."
+}
