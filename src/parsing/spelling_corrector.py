@@ -7,6 +7,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 from openai import OpenAI
 
+from src.parsing.t5_spellchecker import correct_query_spelling_t5
+
 load_dotenv()
 
 CACHE_PATH = Path("data") / "spelling_correction_cache.json"
@@ -19,6 +21,12 @@ def field_value(value) -> str:
     if not value or value == "-":
         return ""
     return value
+
+
+def normalize_yo(text: str) -> str:
+    if text is None:
+        return ""
+    return str(text).replace("ё", "е").replace("Ё", "Е")
 
 
 def looks_like_product_id(query: str) -> bool:
@@ -78,30 +86,18 @@ def _get_model_name() -> str:
     return model
 
 
-def correct_spelling(query_text: str, use_llm: bool = True, retries: int = 2) -> str:
+def _correct_spelling_llm(query_text: str, retries: int = 2) -> str:
+    """
+    Старый LLM-корректор из Rita.
+    Используем только как fallback, если локальная T5-модель не смогла отработать.
+    """
     query_text = field_value(query_text)
-
-    if not query_text:
-        return ""
-
-    # Артикулы и product id не отправляем в LLM, чтобы модель не сломала код товара.
-    if looks_like_product_id(query_text):
-        return query_text
-
-    if not use_llm:
-        return query_text
-
-    cache = _load_cache()
-    if query_text in cache:
-        return field_value(cache[query_text]) or query_text
 
     try:
         client = _create_client()
         model = _get_model_name()
     except Exception as error:
-        print(f"Spelling correction skipped: {error}", flush=True)
-        cache[query_text] = query_text
-        _save_cache(cache)
+        print(f"LLM spelling correction skipped: {error}", flush=True)
         return query_text
 
     prompt = f"""
@@ -129,15 +125,54 @@ def correct_spelling(query_text: str, use_llm: bool = True, retries: int = 2) ->
                 temperature=0,
             )
             corrected = field_value(response.choices[0].message.content).strip('"')
-            corrected = corrected or query_text
-            cache[query_text] = corrected
-            _save_cache(cache)
-            return corrected
+            return corrected or query_text
         except Exception as error:
-            print(f"Spelling correction error {attempt + 1}/{retries}: {error}", flush=True)
+            print(f"LLM spelling correction error {attempt + 1}/{retries}: {error}", flush=True)
             if attempt + 1 < retries:
                 time.sleep(2)
 
-    cache[query_text] = query_text
-    _save_cache(cache)
     return query_text
+
+
+def correct_spelling(query_text: str, use_llm: bool = True, retries: int = 2) -> str:
+    """
+    Объединённый spellchecker.
+
+    Порядок:
+    1. нормализуем ё -> е;
+    2. если весь запрос похож на артикул/product id, не исправляем;
+    3. сначала пробуем локальную T5-модель ai-forever/T5-base-spellchecker;
+    4. если T5 упала, используем старый LLM-корректор как fallback;
+    5. результат сохраняем в data/spelling_correction_cache.json.
+
+    В project.py эта функция вызывается до выбора домена и до LLM-парсинга характеристик.
+    """
+    query_text = normalize_yo(field_value(query_text))
+
+    if not query_text:
+        return ""
+
+    # Артикулы и product id не отправляем в исправление,
+    # чтобы модель не сломала код товара.
+    if looks_like_product_id(query_text) and len(query_text.split()) == 1:
+        return query_text
+
+    if not use_llm:
+        return query_text
+
+    cache = _load_cache()
+    if query_text in cache:
+        return field_value(cache[query_text]) or query_text
+
+    try:
+        corrected = correct_query_spelling_t5(query_text)
+    except Exception as error:
+        print(f"T5 spelling correction failed, fallback to LLM: {error}", flush=True)
+        corrected = _correct_spelling_llm(query_text, retries=retries)
+
+    corrected = normalize_yo(field_value(corrected)) or query_text
+
+    cache[query_text] = corrected
+    _save_cache(cache)
+
+    return corrected
