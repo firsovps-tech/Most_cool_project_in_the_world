@@ -1,14 +1,252 @@
 [
   {
-    "query_id": "q1",
-    "query_text": "стул"
+    "query_id": "t1",
+    "query_text": "диван угловой серый",
+    "top_20_product_ids": []
   },
   {
-    "query_id": "q2",
-    "query_text": "белая кровать 160"
+    "query_id": "t2",
+    "query_text": "обеденный стол раздвижной",
+    "top_20_product_ids": []
   },
   {
-    "query_id": "q3",
-    "query_text": "стол для кухни"
+    "query_id": "t3",
+    "query_text": "матрас 160х200 ортопедический",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t4",
+    "query_text": "белый шкаф-купе с зеркалом",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t5",
+    "query_text": "стеллаж деревянный лофт",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t6",
+    "query_text": "компьютерное кресло черное",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t7",
+    "query_text": "двуспальная кровать велюр 180",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t8",
+    "query_text": "тумба под телевизор белая",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t9",
+    "query_text": "стул кухонный мягкий серый",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t10",
+    "query_text": "комод массив дуба",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t11",
+    "query_text": "обувница в прихожую узкая",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t12",
+    "query_text": "круглый журнальный столик мрамор",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t13",
+    "query_text": "детская кровать с бортиком",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t14",
+    "query_text": "вешалка напольная металлическая",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t15",
+    "query_text": "пуф велюровый круглый",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t16",
+    "query_text": "барный стул экокожа черный",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t17",
+    "query_text": "письменный стол 120х60",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t18",
+    "query_text": "диван-кровать двуспальный трансформер",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t19",
+    "query_text": "подвесная тумба под раковину",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t20",
+    "query_text": "кресло-мешок велюр",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t21",
+    "query_text": "кухонный стул деревяный с мягким сиденьем",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t22",
+    "query_text": "сервант для посуды классика",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t23",
+    "query_text": "зеркало с подсветкой в ванную",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t24",
+    "query_text": "кровать полутораспальная 140",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t25",
+    "query_text": "шкаф распашной трехстворчатый",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t26",
+    "query_text": "диван прямой рогожка",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t27",
+    "query_text": "стеклянный обеденный стол круглый",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t28",
+    "query_text": "кресло реклайнер графит",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t29",
+    "query_text": "корзина для белья тканевая складная",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t30",
+    "query_text": "прикроватная тумбочка венге",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t31",
+    "query_text": "ортопедический матрас 180х200 беспружинный",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t32",
+    "query_text": "кухонный гарнитур угловой",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t33",
+    "query_text": "офисный стул без колесиков",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t34",
+    "query_text": "шкаф книжный со стеклянными дверцами",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t35",
+    "query_text": "консольный столик лофт",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t36",
+    "query_text": "кровать-чердак для ребенка",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t37",
+    "query_text": "вешалка настенная в прихожую дерево",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t38",
+    "query_text": "стеллаж перегородка для зонирования",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t39",
+    "query_text": "туалетный столик с зеркалом и подсветкой",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t40",
+    "query_text": "плед пушистый покрывало серый",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t41",
+    "query_text": "кресло качалка из ротанга",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t42",
+    "query_text": "кухонный стол круглый белый",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t43",
+    "query_text": "шкаф для обуви с сиденьем",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t44",
+    "query_text": "диван угловой с оттоманкой",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t45",
+    "query_text": "подвесное кресло кокон",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t46",
+    "query_text": "комод белый глянцевый",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t47",
+    "query_text": "обеденный стол лофт 140х80",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t48",
+    "query_text": "матрас детский кокосовый",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t49",
+    "query_text": "деревянный стул из массива бука",
+    "top_20_product_ids": []
+  },
+  {
+    "query_id": "t50",
+    "query_text": "стеллаж металлический черный лофт",
+    "top_20_product_ids": []
   }
 ]
